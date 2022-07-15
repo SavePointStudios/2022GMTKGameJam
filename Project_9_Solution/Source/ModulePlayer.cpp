@@ -1,5 +1,6 @@
 #include "ModulePlayer.h"
 #include "Application.h"
+#include "Particle.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
 #include "ModuleRender.h"
@@ -40,10 +41,10 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	texture = App->textures->Load("Assets/Sprites/ship.png");
+	//texture = App->textures->Load("Assets/Sprites/ship.png");
 	currentAnimation = &idleAnim;
 
-	laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
+	//laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	position.x = 150;
@@ -61,6 +62,9 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
+
+#pragma region WASD
+
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
 		position.x -= speed;
@@ -84,6 +88,47 @@ Update_Status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
 	{
 		position.y -= speed;
+		if (currentAnimation != &upAnim)
+		{
+			upAnim.Reset();
+			currentAnimation = &upAnim;
+		}
+	}
+#pragma endregion
+
+	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
+	{
+		direction = 0;
+		App->particles->laser.speed.x = 0;
+		App->particles->laser.speed.y = 5;
+	}
+
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+	{
+		direction = 1;
+		App->particles->laser.speed.x = 5;
+		App->particles->laser.speed.y = 0;
+	}
+
+	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+	{
+		direction = 2;
+		App->particles->laser.speed.x = 0;
+		App->particles->laser.speed.y = -5;
+
+		if (currentAnimation != &downAnim)
+		{
+			downAnim.Reset();
+			currentAnimation = &downAnim;
+		}
+	}
+
+	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+	{
+		direction = 3;
+		App->particles->laser.speed.x = -5;
+		App->particles->laser.speed.y = 0;
+
 		if (currentAnimation != &upAnim)
 		{
 			upAnim.Reset();
@@ -127,7 +172,7 @@ Update_Status ModulePlayer::PostUpdate()
 	// Draw UI (score) --------------------------------------
 	sprintf_s(scoreText, 10, "%7d", score);
 
-	// TODO 3: Blit the text of the score in at the bottom of the screen
+    //Blit the text of the score in at the bottom of the screen
 	App->fonts->BlitText(58, 248, scoreFont, scoreText);
 
 	
