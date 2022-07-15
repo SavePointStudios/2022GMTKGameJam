@@ -14,6 +14,7 @@
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
+#include "ModuleDebug.h"
 
 Application::Application()
 {
@@ -36,6 +37,7 @@ Application::Application()
 	modules[10] =	fade =			new ModuleFadeToBlack(true);
 	modules[11] =	fonts =			new ModuleFonts(true);
 	modules[12] =	render =		new ModuleRender(true);
+	modules[13] =	debug =			new ModuleDebug(true);
 }
 
 Application::~Application()
