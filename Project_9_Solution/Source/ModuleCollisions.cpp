@@ -104,42 +104,11 @@ Update_Status ModuleCollisions::Update()
 
 Update_Status ModuleCollisions::PostUpdate()
 {
-	if (debug)
-		DebugDraw();
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 void ModuleCollisions::DebugDraw()
 {
-	Uint8 alpha = 80;
-	for(uint i = 0; i < MAX_COLLIDERS; ++i)
-	{
-		if(colliders[i] == nullptr)
-			continue;
-		
-		switch(colliders[i]->type)
-		{
-			case Collider::Type::NONE: // white
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 255, alpha);
-			break;
-			case Collider::Type::WALL: // blue
-			App->render->DrawQuad(colliders[i]->rect, 0, 0, 255, alpha);
-			break;
-			case Collider::Type::PLAYER: // green
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 0, alpha);
-			break;
-			case Collider::Type::ENEMY: // red
-			App->render->DrawQuad(colliders[i]->rect, 255, 0, 0, alpha);
-			break;
-			case Collider::Type::PLAYER_SHOT: // yellow
-			App->render->DrawQuad(colliders[i]->rect, 255, 255, 0, alpha);
-			break;
-			case Collider::Type::ENEMY_SHOT: // magenta
-			App->render->DrawQuad(colliders[i]->rect, 0, 255, 255, alpha);
-			break;
-		}
-	}
 }
 
 // Called before quitting

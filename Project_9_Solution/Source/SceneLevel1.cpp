@@ -64,7 +64,7 @@ bool SceneLevel1::Start()
 
 Update_Status SceneLevel1::Update()
 {
-	App->render->camera.x += 3;
+	
 
 	return Update_Status::UPDATE_CONTINUE;
 }
