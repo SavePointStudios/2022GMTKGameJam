@@ -27,6 +27,9 @@ bool ModuleDebug::Start() {
 
 Update_Status ModuleDebug::Update() {
 
+	if (App->input->keys[SDL_SCANCODE_ESCAPE] == KEY_DOWN)
+		return Update_Status::UPDATE_STOP;
+
 	if (App->input->keys[SDL_SCANCODE_F2] == KEY_DOWN)
 		debug = !debug;
 
@@ -73,6 +76,9 @@ void ModuleDebug::DebugDraw() {
 			break;
 		case Collider::Type::ENEMY_SHOT: // magenta
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 255, 255, alpha);
+			break;
+		case Collider::Type::BREAKABLE:
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 0, alpha);
 			break;
 		default:
 			break;

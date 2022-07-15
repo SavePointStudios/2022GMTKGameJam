@@ -3,11 +3,11 @@
 
 #include "Breakable.h"
 
-class Breakable_Fence : public Breakable {
+class Breakable_Chips : public Breakable {
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and the collider
-	Breakable_Fence(int x, int y, unsigned short version);
+	Breakable_Chips(int x, int y, unsigned short version);
 
 	void Update() override;
 
