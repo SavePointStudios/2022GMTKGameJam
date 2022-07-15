@@ -46,6 +46,8 @@ protected:
 	// The breakable's collider
 	Collider* collider = nullptr;
 
+	int destroyedFx = -1;
+
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;
 

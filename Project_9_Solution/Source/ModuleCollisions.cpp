@@ -15,31 +15,58 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT_BREAKER] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::WALL][Collider::Type::BREAKABLE] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
-
+	matrix[Collider::Type::PLAYER][Collider::Type::BREAKABLE] = true;
+	
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_SHOT_BREAKER] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
-
+	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE] = true;
+	
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BREAKABLE] = true;
+
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::WALL] = false;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::PLAYER_SHOT_BREAKER] = false;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::BREAKABLE] = true;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BREAKABLE] = true;
+	
+	matrix[Collider::Type::BREAKABLE][Collider::Type::WALL] = false;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER] = true;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY] = true;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER_SHOT] = true;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER_SHOT_BREAKER] = true;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY_SHOT] = true;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::BREAKABLE] = false;
+	
 }
 
 // Destructor
