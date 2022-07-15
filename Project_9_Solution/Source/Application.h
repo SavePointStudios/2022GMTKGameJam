@@ -10,6 +10,7 @@ class ModuleWindow;
 class ModuleInput;
 class ModuleTextures;
 class ModuleAudio;
+class ModuleUI;
 class ModulePlayer;
 class SceneIntro;
 class SceneLevel1;
@@ -51,6 +52,8 @@ public:
 	ModuleInput* input = nullptr;
 	ModuleTextures* textures = nullptr;
 	ModuleAudio* audio = nullptr;
+	
+	ModuleUI* ui = nullptr;
 
 	ModulePlayer* player = nullptr;
 
