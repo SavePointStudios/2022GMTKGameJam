@@ -5,6 +5,7 @@
 
 #include "Module.h"
 #include "Collider.h"
+#include "ModuleDebug.h"
 
 class ModuleCollisions : public Module
 {
@@ -51,6 +52,8 @@ private:
 
 	// Simple debugging flag to draw all colliders
 	bool debug = false;
+
+	friend void ModuleDebug::DebugDraw();
 };
 
 #endif // __MODULE_COLLISIONS_H__
