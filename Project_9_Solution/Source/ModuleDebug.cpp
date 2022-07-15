@@ -34,6 +34,8 @@ Update_Status ModuleDebug::Update() {
 		//Funcionalidad debug (esto es el update, aqui no se dibuja nada)
 		if (App->input->keys[SDL_SCANCODE_V] == KEY_DOWN)
 			variables = !variables;
+		if (App->input->keys[SDL_SCANCODE_V] == KEY_DOWN)
+			camLimits = !camLimits;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -62,6 +64,8 @@ void ModuleDebug::DebugDraw() {
 		}
 
 	}
+
+	App->fonts->BlitText(0, 0, 0, "ola q tal");
 
 	//Pa cuando tengamos enemigos
 	/*for (size_t i = 0; i < MAX_ENEMIES; i++) {
@@ -108,7 +112,7 @@ void ModuleDebug::DebugDraw() {
 	//Variables debug
 	if (variables) {
 		//Ejemplo del debug de las variables
-		//App->fonts->BlitText(10, debugBox, 0, "-GOD MODE");
+		App->fonts->BlitText(0, 0, 0, "-GOD MODE");
 		//App->fonts->BlitText(25, debugBox + 40, 0, std::to_string(App->player->position.x).c_str());
 	}
 }
