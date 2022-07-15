@@ -39,9 +39,6 @@ public:
 	// Removes the collider memory and removes it from the colliders array
 	void RemoveCollider(Collider* collider);
 
-	// Draws all existing colliders with some transparency
-	void DebugDraw();
-
 private:
 	// All existing colliders in the scene
 	Collider* colliders[MAX_COLLIDERS] = { nullptr };
@@ -49,9 +46,6 @@ private:
 	// The collision matrix. Defines the interaction for two collider types
 	// If set two false, collider 1 will ignore collider 2
 	bool matrix[Collider::Type::MAX][Collider::Type::MAX];
-
-	// Simple debugging flag to draw all colliders
-	bool debug = false;
 
 	friend void ModuleDebug::DebugDraw();
 };

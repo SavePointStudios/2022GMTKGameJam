@@ -123,19 +123,12 @@ Update_Status ModuleCollisions::PreUpdate()
 
 Update_Status ModuleCollisions::Update()
 {
-	if (App->input->keys[SDL_SCANCODE_F1] == KEY_DOWN)
-		debug = !debug;
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
 Update_Status ModuleCollisions::PostUpdate()
 {
 	return Update_Status::UPDATE_CONTINUE;
-}
-
-void ModuleCollisions::DebugDraw()
-{
 }
 
 // Called before quitting
