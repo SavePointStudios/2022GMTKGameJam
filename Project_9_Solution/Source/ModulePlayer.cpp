@@ -1,5 +1,4 @@
 #include "ModulePlayer.h"
-
 #include "Application.h"
 #include "ModuleTextures.h"
 #include "ModuleInput.h"
