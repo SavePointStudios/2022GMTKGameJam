@@ -7,7 +7,7 @@
 #include "ModuleAudio.h"
 
 #include "Breakable.h"
-#include "Breakable_Fence.h"
+#include "Breakable_Chips.h"
 
 #include "Collider.h"
 
@@ -122,7 +122,7 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 		if (breakables[i] == nullptr) {
 			switch (info.type) {
 			case BREAKABLE_TYPE::FENCE:
-				breakables[i] = new Breakable_Fence(info.x, info.y, info.version);
+				breakables[i] = new Breakable_Chips(info.x, info.y, info.version);
 				breakables[i]->texture = breakableTexture;
 				break;
 			}
