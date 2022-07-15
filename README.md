@@ -57,5 +57,5 @@ _Ariadna Sevcik's Github and role_
 + [AriSevcik](https://github.com/AriSevcik)
 
 _Hèctor Garcia's Github and role_
-+ Artist & Designer
++ Artist & Designer 
 + [Neidragon](https://github.com/Neidragon)
