@@ -16,6 +16,7 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 #include "ModuleDebug.h"
+#include "ModuleBreakable.h"
 
 Application::Application()
 {
@@ -35,11 +36,14 @@ Application::Application()
 	modules[8] =	particles =		new ModuleParticles(true);
 	modules[9] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[10] =	collisions =	new ModuleCollisions(true);
-	modules[11] =	fade =			new ModuleFadeToBlack(true);
-	modules[12] =	fonts =			new ModuleFonts(true);
-	modules[13] =	debug =			new ModuleDebug(true);
-	modules[14] =	render =		new ModuleRender(true);
+
+	modules[10] =	breakables =	new ModuleBreakable(false);
+
+	modules[11] =	collisions =	new ModuleCollisions(true);
+	modules[12] =	fade =			new ModuleFadeToBlack(true);
+	modules[13] =	fonts =			new ModuleFonts(true);
+	modules[14] =	debug =			new ModuleDebug(true);
+	modules[15] =	render =		new ModuleRender(true);
 
 }
 

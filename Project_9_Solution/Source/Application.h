@@ -21,6 +21,7 @@ class ModuleFadeToBlack;
 class ModuleFonts;
 class ModuleRender;
 class ModuleDebug;
+class ModuleBreakable;
 
 class Application
 {
@@ -59,6 +60,7 @@ public:
 	SceneIntro* sceneIntro = nullptr;
 	SceneLevel1* sceneLevel_1 = nullptr;
 
+	ModuleBreakable* breakables = nullptr;
 	ModuleEnemies* enemies = nullptr;
 	ModuleParticles* particles = nullptr;
 
