@@ -29,6 +29,9 @@
     <Filter Include="Source Files\Modules\Gameplay\Scenes">
       <UniqueIdentifier>{cfc70708-c5d8-419e-8ce5-dd197698c7d9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Breakables">
+      <UniqueIdentifier>{fb16b0dc-6069-409e-84d9-f4557d8ebd69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -109,6 +112,15 @@
     <ClInclude Include="SceneLevel1.h">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleBreakable.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Fence.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -182,6 +194,15 @@
     </ClCompile>
     <ClCompile Include="SceneLevel1.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleBreakable.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Fence.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
