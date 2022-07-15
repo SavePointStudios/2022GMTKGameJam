@@ -7,6 +7,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
+#include "ModuleBreakable.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -37,8 +38,17 @@ bool SceneLevel1::Start()
 	App->render->camera.x = 0;
 	App->render->camera.y = 0; 
 
+	//App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
+
+	// Breakables ---
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPS, 210, 120);
+
+	App->render->camera.y = 0;
+
+
 	App->player->Enable();
 	App->enemies->Enable();
+	App->breakables->Enable();
 
 	return ret;
 }
@@ -47,8 +57,6 @@ Update_Status SceneLevel1::Update()
 {
 	App->render->camera.x += 0;
 
-
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -56,7 +64,7 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	//App->render->Blit(bgTexture, 0, 0, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -65,6 +73,7 @@ bool SceneLevel1::CleanUp()
 {
 	App->player->Disable();
 	App->enemies->Disable();
+	App->breakables->Disable();
 
 	return true;
 }

@@ -118,11 +118,14 @@
     <ClInclude Include="Breakable.h">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClInclude>
-    <ClInclude Include="Breakable_Fence.h">
+    <ClInclude Include="Breakable_Chips.h">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClInclude>
     <ClInclude Include="ModuleDebug.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleUI.h">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -204,11 +207,14 @@
     <ClCompile Include="Breakable.cpp">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClCompile>
-    <ClCompile Include="Breakable_Fence.cpp">
+    <ClCompile Include="Breakable_Chips.cpp">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClCompile>
     <ClCompile Include="ModuleDebug.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleUI.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

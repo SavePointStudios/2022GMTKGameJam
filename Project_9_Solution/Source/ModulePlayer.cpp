@@ -1,5 +1,4 @@
 #include "ModulePlayer.h"
-
 #include "Application.h"
 #include "Particle.h"
 #include "ModuleTextures.h"
@@ -63,7 +62,9 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
+
 #pragma region WASD
+
 	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 	{
 		position.x -= speed;
@@ -138,6 +139,12 @@ Update_Status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 	{
 		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+		newParticle->collider->AddListener(this);
+		App->audio->PlayFx(laserFx);
+	}
+
+	if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
+		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT_BREAKER);
 		newParticle->collider->AddListener(this);
 		App->audio->PlayFx(laserFx);
 	}
