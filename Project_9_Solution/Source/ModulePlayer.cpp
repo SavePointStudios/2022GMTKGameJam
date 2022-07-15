@@ -103,7 +103,7 @@ Update_Status ModulePlayer::Update()
 		App->particles->laser.speed.y = 5;
 	}
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 	{
 		direction = 1;
 		App->particles->laser.speed.x = 5;
@@ -123,7 +123,7 @@ Update_Status ModulePlayer::Update()
 		}
 	}
 
-	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
+	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
 	{
 		direction = 3;
 		App->particles->laser.speed.x = -5;

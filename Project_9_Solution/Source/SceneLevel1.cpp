@@ -41,7 +41,7 @@ bool SceneLevel1::Start()
 	//App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
 
 	// Breakables ---
-	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPS, 210, 120);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
 
 	App->render->camera.y = 0;
 
@@ -49,6 +49,7 @@ bool SceneLevel1::Start()
 	App->player->Enable();
 	App->enemies->Enable();
 	App->breakables->Enable();
+	App->collisions->Enable();
 
 	return ret;
 }
@@ -74,6 +75,7 @@ bool SceneLevel1::CleanUp()
 	App->player->Disable();
 	App->enemies->Disable();
 	App->breakables->Disable();
+	App->collisions->Disable();
 
 	return true;
 }

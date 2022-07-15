@@ -121,7 +121,7 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (breakables[i] == nullptr) {
 			switch (info.type) {
-			case BREAKABLE_TYPE::CHIPS:
+			case BREAKABLE_TYPE::CHIPSTACK:
 				breakables[i] = new Breakable_Chips(info.x, info.y, info.version);
 				break;
 			}

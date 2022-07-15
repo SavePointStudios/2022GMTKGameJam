@@ -77,8 +77,8 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::ENEMY_SHOT: // magenta
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 255, 255, alpha);
 			break;
-		case Collider::Type::BREAKABLE:
-			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 0, 0, alpha);
+		case Collider::Type::BREAKABLE: //orange
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 100, 0, alpha);
 			break;
 		default:
 			break;
