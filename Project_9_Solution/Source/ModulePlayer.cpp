@@ -82,6 +82,181 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	upAnim.PushBack({ 160, 224, 32, 32 });
 	upAnim.loop = true;
 	upAnim.speed = 0.1f;
+
+	// right special
+	specialRightAnim.PushBack({ 128, 0, 32, 32 });
+	specialRightAnim.PushBack({ 128, 0, 32, 32 });
+	specialRightAnim.PushBack({ 128, 0, 32, 32 });
+	specialRightAnim.PushBack({ 160, 0, 32, 32 });
+	specialRightAnim.PushBack({ 192, 0, 32, 32 });
+	specialRightAnim.PushBack({ 192, 0, 32, 32 });
+	upAnim.loop = false;
+	upAnim.speed = 0.1f;
+
+	// left special
+	specialLeftAnim.PushBack({ 128, 32, 32, 32 });
+	specialLeftAnim.PushBack({ 128, 32, 32, 32 });
+	specialLeftAnim.PushBack({ 128, 32, 32, 32 });
+	specialLeftAnim.PushBack({ 160, 32, 32, 32 });
+	specialLeftAnim.PushBack({ 192, 32, 32, 32 });
+	specialLeftAnim.PushBack({ 192, 32, 32, 32 });
+	upAnim.loop = false;
+	upAnim.speed = 0.1f;
+
+	// down special
+	specialDownAnim.PushBack({ 128, 64, 32, 32 });
+	specialDownAnim.PushBack({ 128, 64, 32, 32 });
+	specialDownAnim.PushBack({ 128, 64, 32, 32 });
+	specialDownAnim.PushBack({ 160, 64, 32, 32 });
+	specialDownAnim.PushBack({ 192, 64, 32, 32 });
+	specialDownAnim.PushBack({ 192, 64, 32, 32 });
+	upAnim.loop = false;
+	upAnim.speed = 0.1f;
+
+	// up special
+	specialUpAnim.PushBack({ 128, 96, 32, 32 });
+	specialUpAnim.PushBack({ 128, 96, 32, 32 });
+	specialUpAnim.PushBack({ 128, 96, 32, 32 });
+	specialUpAnim.PushBack({ 160, 96, 32, 32 });
+	specialUpAnim.PushBack({ 192, 96, 32, 32 });
+	specialUpAnim.PushBack({ 192, 96, 32, 32 });
+	upAnim.loop = false;
+	upAnim.speed = 0.1f;
+
+
+	// idle hand right
+	idleHandAnimRight.PushBack({ 0, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 0, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 160, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 32, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 64, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 96, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 128, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 96, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 64, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 32, 0, 32, 32 });
+	idleHandAnimRight.PushBack({ 160, 0, 32, 32 });
+	idleHandAnimRight.loop = true;
+	idleHandAnimRight.speed = 0.1f;
+
+	// idle hand left
+	idleHandAnimLeft.PushBack({ 0,   32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 0,   32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 160, 32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 32,  32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 64,  32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 96,  32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 128, 32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 96,  32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 64,  32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 32,  32, 32, 32 });
+	idleHandAnimLeft.PushBack({ 160, 32, 32, 32 });
+	idleHandAnimLeft.loop = true;
+	idleHandAnimLeft.speed = 0.1f;
+
+	// idle hand down
+	idleHandAnimDown.PushBack({ 0, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 0, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 160, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 32, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 64, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 96, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 128, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 96, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 64, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 32, 0, 32, 32 });
+	idleHandAnimDown.PushBack({ 160, 0, 32, 32 });
+	idleHandAnimDown.loop = true;
+	idleHandAnimDown.speed = 0.1f;
+
+	// idle hand up
+	idleHandAnimUp.PushBack({ 0,   32, 32, 32 });
+	idleHandAnimUp.PushBack({ 0,   32, 32, 32 });
+	idleHandAnimUp.PushBack({ 160, 32, 32, 32 });
+	idleHandAnimUp.PushBack({ 32,  32, 32, 32 });
+	idleHandAnimUp.PushBack({ 64,  32, 32, 32 });
+	idleHandAnimUp.PushBack({ 96,  32, 32, 32 });
+	idleHandAnimUp.PushBack({ 128, 32, 32, 32 });
+	idleHandAnimUp.PushBack({ 96,  32, 32, 32 });
+	idleHandAnimUp.PushBack({ 64,  32, 32, 32 });
+	idleHandAnimUp.PushBack({ 32,  32, 32, 32 });
+	idleHandAnimUp.PushBack({ 160, 32, 32, 32 });
+	idleHandAnimUp.loop = true;
+	idleHandAnimUp.speed = 0.1f;
+
+	// attack hand right
+	handRightAttackAnim.PushBack({ 0, 64, 32, 32 });
+	handRightAttackAnim.PushBack({ 32, 64, 32, 32 });
+	handRightAttackAnim.PushBack({ 64, 64, 32, 32 });
+	handRightAttackAnim.PushBack({ 96, 64, 32, 32 });
+	handRightAttackAnim.loop = false;
+	handRightAttackAnim.speed = 0.1f;
+
+	// attack hand left
+	handLeftAttackAnim.PushBack({ 0, 96, 32, 32 });
+	handLeftAttackAnim.PushBack({ 32, 96, 32, 32 });
+	handLeftAttackAnim.PushBack({ 64, 96, 32, 32 });
+	handLeftAttackAnim.PushBack({ 96, 96, 32, 32 });
+	handLeftAttackAnim.loop = false;
+	handLeftAttackAnim.speed = 0.1f;
+
+	// attack hand down
+	handDownAttackAnim.PushBack({ 0, 128, 32, 32 });
+	handDownAttackAnim.PushBack({ 32, 128, 32, 32 });
+	handDownAttackAnim.PushBack({ 64, 128, 32, 32 });
+	handDownAttackAnim.PushBack({ 96, 128, 32, 32 });
+	handDownAttackAnim.loop = false;
+	handDownAttackAnim.speed = 0.1f;
+
+	// attack hand up
+	handUpAttackAnim.PushBack({ 0, 160, 32, 32 });
+	handUpAttackAnim.PushBack({ 32, 160, 32, 32 });
+	handUpAttackAnim.PushBack({ 64, 160, 32, 32 });
+	handUpAttackAnim.PushBack({ 96, 160, 32, 32 });
+	handUpAttackAnim.loop = false;
+	handUpAttackAnim.speed = 0.1f;
+
+	// special hand right
+	handRightSpecialAnim.PushBack({ 128, 64, 32, 64 });
+	handRightSpecialAnim.PushBack({ 128, 64, 32, 64 });
+	handRightSpecialAnim.PushBack({ 128, 64, 32, 64 });
+	handRightSpecialAnim.PushBack({ 160, 64, 32, 64 });
+	handRightSpecialAnim.PushBack({ 192, 64, 32, 64 });
+	handRightSpecialAnim.PushBack({ 192, 64, 32, 64 });
+	handRightSpecialAnim.loop = false;
+	handRightSpecialAnim.speed = 0.1f;
+
+	// special hand left
+	handLeftSpecialAnim.PushBack({ 128, 128, 32, 64 });
+	handLeftSpecialAnim.PushBack({ 128, 128, 32, 64 });
+	handLeftSpecialAnim.PushBack({ 128, 128, 32, 64 });
+	handLeftSpecialAnim.PushBack({ 160, 128, 32, 64 });
+	handLeftSpecialAnim.PushBack({ 192, 128, 32, 64 });
+	handLeftSpecialAnim.PushBack({ 192, 128, 32, 64 });
+	handLeftSpecialAnim.loop = false;
+	handLeftSpecialAnim.speed = 0.1f;
+
+	// special hand down
+	handDownSpecialAnim.PushBack({ 0, 192, 32, 64 });
+	handDownSpecialAnim.PushBack({ 0, 192, 32, 64 });
+	handDownSpecialAnim.PushBack({ 0, 192, 32, 64 });
+	handDownSpecialAnim.PushBack({ 32, 192, 32, 64 });
+	handDownSpecialAnim.PushBack({ 64, 192, 32, 64 });
+	handDownSpecialAnim.PushBack({ 64, 192, 32, 64 });
+	handDownSpecialAnim.loop = false;
+	handDownSpecialAnim.speed = 0.1f;
+
+	// special hand up
+	handUpSpecialAnim.PushBack({ 96, 192, 32, 64 });
+	handUpSpecialAnim.PushBack({ 96, 192, 32, 64 });
+	handUpSpecialAnim.PushBack({ 96, 192, 32, 64 });
+	handUpSpecialAnim.PushBack({ 128, 192, 32, 64 });
+	handUpSpecialAnim.PushBack({ 160, 192, 32, 64 });
+	handUpSpecialAnim.PushBack({ 160, 192, 32, 64 });
+	handUpSpecialAnim.loop = false;
+	handUpSpecialAnim.speed = 0.1f;
+
+
 }
 
 ModulePlayer::~ModulePlayer()
