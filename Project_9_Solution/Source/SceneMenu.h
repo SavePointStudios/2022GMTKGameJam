@@ -36,7 +36,9 @@ public:
 	uint selectHover = 0;
 	uint selected = 0;
 
-	bool hasSelected = false;
+private:
+  bool hasSelected = false;
+
 };
 
 #endif
