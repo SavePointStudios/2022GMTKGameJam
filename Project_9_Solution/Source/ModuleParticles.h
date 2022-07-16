@@ -53,13 +53,13 @@ public:
 	Particle* AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 public:
-	//Template particle for an explosion
-	Particle explosion;
+	//Template particle for an diceHability
+	Particle diceHability;
 
-	//Template particle for a laser
-	Particle laser;
+	//Template particle for a diceBasicAttack
+	Particle diceBasicAttack;
 
-	//Template particle for a laser
+	//Template particle for a diceBasicAttack
 	Particle cardAttackMelee;
 
 private:

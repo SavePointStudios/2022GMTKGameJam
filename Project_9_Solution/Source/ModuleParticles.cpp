@@ -22,23 +22,19 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	//texture = App->textures->Load("Assets/Sprites/particles.png");
+	texture = App->textures->Load("Assets/Sprites/Hand_CHaracter_Spritesheet.png");
 
 	// Explosion particle
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
+	diceHability.anim.PushBack({192, 0, 64, 32});
+	diceHability.anim.PushBack({192, 32, 64, 32});
+	diceHability.anim.loop = true;
+	diceHability.speed.x = 5;
+	diceHability.anim.speed = 0.1f;
+	diceBasicAttack.lifetime = 180;
 
-	laser.anim.PushBack({ 232, 103, 16, 12 });
-	laser.anim.PushBack({ 249, 103, 16, 12 });
-	laser.speed.x = 5;
-	laser.lifetime = 180;
-	laser.anim.speed = 0.2f;
+	diceBasicAttack.anim.PushBack({ 225, 65, 13, 13 });
+	diceBasicAttack.speed.x = 5;
+	diceBasicAttack.lifetime = 180;
 
 	cardAttackMelee.anim.PushBack({ 456, 453, 32, 64 });
 	cardAttackMelee.lifetime = 10;
