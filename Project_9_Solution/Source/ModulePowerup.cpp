@@ -29,6 +29,18 @@ bool ModulePowerup::Start() {
 	return true;
 }
 
+Update_Status ModulePowerup::PreUpdate() {
+	// Remove all enemies scheduled for deletion
+	for (uint i = 0; i < MAX_POWERUPS; ++i) {
+		if (powerUps[i] != nullptr && powerUps[i]->pendingToDelete) {
+			delete powerUps[i];
+			powerUps[i] = nullptr;
+		}
+	}
+
+	return Update_Status::UPDATE_CONTINUE;
+}
+
 Update_Status ModulePowerup::Update() {
 	HandlePowerupsSpawn();
 

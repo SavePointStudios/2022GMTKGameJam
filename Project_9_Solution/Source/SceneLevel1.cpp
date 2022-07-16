@@ -43,7 +43,8 @@ bool SceneLevel1::Start()
 
 	// Breakables ---
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
-
+	App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 210, 120, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 400, 120, 1);
 	// Powerups ---
 	App->powerups->AddPowerup(POWERUP_TYPE::DICE, 210, 180);
 	App->render->camera.y = 0;

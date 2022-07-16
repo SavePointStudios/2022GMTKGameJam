@@ -78,6 +78,7 @@
     <ClInclude Include="Application.h" />
     <ClInclude Include="Breakable.h" />
     <ClInclude Include="Breakable_Chips.h" />
+    <ClInclude Include="Breakable_Door.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_BaseCard.h" />
@@ -113,6 +114,7 @@
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Breakable.cpp" />
     <ClCompile Include="Breakable_Chips.cpp" />
+    <ClCompile Include="Breakable_Door.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_BaseCard.cpp" />
