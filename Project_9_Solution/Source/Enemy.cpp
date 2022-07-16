@@ -5,6 +5,9 @@
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
+#include "ModulePlayer.h"
+
+#include <math.h>
 
 Enemy::Enemy(int x, int y) : position(x, y)
 {
@@ -24,6 +27,8 @@ const Collider* Enemy::GetCollider() const
 
 void Enemy::Update()
 {
+	lookAtPlayer();
+
 	if (currentAnim != nullptr)
 		currentAnim->Update();
 
@@ -35,6 +40,19 @@ void Enemy::Draw()
 {
 	if (currentAnim != nullptr)
 		App->render->Blit(texture, position.x, position.y, &(currentAnim->GetCurrentFrame()));
+}
+
+void Enemy::lookAtPlayer()
+{
+	distance.x = App->player->position.x - this->position.x;
+	distance.y = App->player->position.y - this->position.y;
+
+	alpha = atan2(distance.y, distance.x);
+
+	degrees = alpha / (M_PI / 180.0f);
+
+	if (degrees < 0)
+		degrees += 360.0f;
 }
 
 void Enemy::OnCollision(Collider* collider)

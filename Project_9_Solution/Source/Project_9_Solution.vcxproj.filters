@@ -88,7 +88,7 @@
     <ClInclude Include="Enemy.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BrownShip.h">
+    <ClInclude Include="Enemy_BaseCard.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Mech.h">
@@ -177,7 +177,7 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BrownShip.cpp">
+    <ClCompile Include="Enemy_BaseCard.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_Mech.cpp">

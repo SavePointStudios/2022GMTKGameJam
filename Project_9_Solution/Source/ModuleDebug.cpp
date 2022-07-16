@@ -13,6 +13,8 @@
 #include <string>
 using namespace std;
 
+#include <math.h>
+
 ModuleDebug::ModuleDebug(bool startEnabled) : Module(startEnabled) {
 	debug = false;
 }
@@ -89,15 +91,15 @@ void ModuleDebug::DebugDraw() {
 	//App->fonts->BlitText(0, 0, 0, "ola q tal");
 
 	//Pa cuando tengamos enemigos
-	/*for (size_t i = 0; i < MAX_ENEMIES; i++) {
+	for (size_t i = 0; i < MAX_ENEMIES; i++) {
 		if (App->enemies->enemies[i] != nullptr) {
-			App->render->DrawLine(App->enemies->enemies[i]->position.x + 16,
+			App->render->DrawLine(App->enemies->enemies[i]->position.x + 32,
 				App->enemies->enemies[i]->position.y + 32,
-				App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI / 180)),
+				App->enemies->enemies[i]->position.x + 32 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI / 180)),
 				App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->degrees * (M_PI / 180)),
 				0, 255, 0, 255);
 		}
-	}*/
+	}
 
 	//Camera limits debug
 
@@ -134,10 +136,17 @@ void ModuleDebug::DebugDraw() {
 	if (variables) {
 		//Ejemplo del debug de las variables
 		//App->fonts->BlitText(0, 0, 0, "-GOD MODE");
-		App->fonts->BlitText(0, 0, 0, std::to_string(App->player->position.x).c_str());
-		App->fonts->BlitText(0, 10, 0, std::to_string(App->player->position.y).c_str());
+		App->fonts->BlitText(10, 0, 0, std::to_string(App->player->position.x).c_str());
+		App->fonts->BlitText(10, 10, 0, std::to_string(App->player->position.y).c_str());
 
-		App->fonts->BlitText(0, 30, 0, std::to_string(App->player->collider->rect.x).c_str());
-		App->fonts->BlitText(0, 40, 0, std::to_string(App->player->collider->rect.y).c_str());
+		App->fonts->BlitText(10, 30, 0, std::to_string(App->player->collider->rect.x).c_str());
+		App->fonts->BlitText(10, 40, 0, std::to_string(App->player->collider->rect.y).c_str());
+
+
+		App->fonts->BlitText(10, 60, 0, std::to_string(App->enemies->enemies[0]->alpha).c_str());
+		App->fonts->BlitText(10, 70, 0, std::to_string(App->enemies->enemies[0]->degrees).c_str());
+
+
+		App->fonts->BlitText(10, 80, 0, std::to_string(sin(App->enemies->enemies[0]->alpha)).c_str());
 	}
 }

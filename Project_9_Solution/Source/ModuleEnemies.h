@@ -2,6 +2,7 @@
 #define __MODULE_ENEMIES_H__
 
 #include "Module.h"
+#include "ModuleDebug.h"
 
 #define MAX_ENEMIES 100
 
@@ -10,6 +11,7 @@ enum class Enemy_Type
 	NO_TYPE,
 	REDBIRD,
 	BROWNSHIP,
+	BASECARD,
 	MECH,
 };
 
@@ -80,6 +82,8 @@ private:
 
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;
+
+	friend void ModuleDebug::DebugDraw();
 };
 
 #endif // __MODULE_ENEMIES_H__

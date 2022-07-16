@@ -26,22 +26,20 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	//bgTexture = App->textures->Load("Assets/Sprites/background.png");
+	bgTexture = App->textures->Load("Assets/Sprites/map_scratch.png");
 	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
 	//Bottomside collider
 	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
 
 	// Enemies ---
-	//App->enemies->AddEnemy(Enemy_Type::REDBIRD, 600, 80);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 0, 0);
 
 	App->render->camera.x = 0;
-	App->render->camera.y = 0; 
-
-	//App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
+	App->render->camera.y = 0;
 
 	// Breakables ---
-	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
+	//App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
 
 	App->render->camera.y = 0;
 
@@ -65,7 +63,7 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	//App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, 0, 0, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }

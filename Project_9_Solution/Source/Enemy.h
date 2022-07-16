@@ -27,6 +27,9 @@ public:
 	// Called from ModuleEnemies' Update
 	virtual void Draw();
 
+	//Calculates the angle towards the player
+	void lookAtPlayer();
+
 	// Collision response
 	virtual void OnCollision(Collider* collider);
 
@@ -39,6 +42,13 @@ public:
 
 	// The enemy's texture
 	SDL_Texture* texture = nullptr;
+
+	//Used to calculate angle to the player
+	float alpha;
+	float degrees;
+
+	// The distance in pixels to the player
+	iPoint distance;
 
 	// Sound fx when destroyed
 	int destroyedFx = 0;
