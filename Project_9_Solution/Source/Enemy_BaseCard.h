@@ -17,6 +17,13 @@ public:
 
 	void initAnimations();
 
+
+	// Sound effects indices
+	uint dieFx = 0;
+	uint getHitFx = 0;
+	uint walkFx = 0;
+	uint meleeAttackFx = 0;
+
 private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies

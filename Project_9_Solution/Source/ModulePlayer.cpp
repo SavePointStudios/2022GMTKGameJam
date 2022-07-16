@@ -44,8 +44,11 @@ bool ModulePlayer::Start()
 	//texture = App->textures->Load("Assets/Sprites/ship.png");
 	currentAnimation = &idleAnim;
 
-	//laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	basicAttackFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav");
+	specialAttackFx = App->audio->LoadFx("Assets/Fx/Dice/");
+	walkFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav");
+	getHitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav");
+	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Death.wav");
 
 	position.x = 150;
 	position.y = 120;
@@ -140,13 +143,13 @@ Update_Status ModulePlayer::Update()
 	{
 		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
 		newParticle->collider->AddListener(this);
-		App->audio->PlayFx(laserFx);
+		App->audio->PlayFx(basicAttackFx);
 	}
 
 	if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
 		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT_BREAKER);
 		newParticle->collider->AddListener(this);
-		App->audio->PlayFx(laserFx);
+		App->audio->PlayFx(basicAttackFx);
 	}
 
 	// If no up/down movement detected, set the current animation back to idle
@@ -190,7 +193,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
-		App->audio->PlayFx(explosionFx);
+		App->audio->PlayFx(dieFx);
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 60);
 
 		destroyed = true;
