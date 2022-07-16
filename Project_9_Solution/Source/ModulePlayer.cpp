@@ -53,6 +53,8 @@ bool ModulePlayer::Start()
 
 	destroyed = false;
 
+	lifePlayer = 1;
+
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
