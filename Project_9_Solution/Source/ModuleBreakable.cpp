@@ -29,6 +29,18 @@ bool ModuleBreakable::Start() {
 	return true;
 }
 
+Update_Status ModuleBreakable::PreUpdate() {
+	// Remove all enemies scheduled for deletion
+	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
+		if (breakables[i] != nullptr && breakables[i]->pendingToDelete) {
+			delete breakables[i];
+			breakables[i] = nullptr;
+		}
+	}
+
+	return Update_Status::UPDATE_CONTINUE;
+}
+
 Update_Status ModuleBreakable::Update() {
 	HandleBreakablesSpawn();
 

@@ -21,7 +21,7 @@ public:
 	iPoint position;
 	SDL_Texture* texture = nullptr;
 	int pickUpFx = 0;
-
+	bool pendingToDelete = false;
 protected:
 	Animation* currentAnim = nullptr;
 	Animation animation;
