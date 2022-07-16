@@ -28,6 +28,7 @@ void Breakable_CardBox::Update() {
 }
 
 void Breakable_CardBox::OnCollision(Collider* collider) {
-	// would be good to show wood particles dropping
-	// destroyed playfx
+	//App->particles->AddParticle();
+	Breakable::OnCollision(collider);
+	
 }

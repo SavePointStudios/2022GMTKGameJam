@@ -15,6 +15,8 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	void updateMovement();
+	void startAttack();
 	void attack();
 
 	void initAnimations();
@@ -28,6 +30,10 @@ private:
 	int startTimer = 0;
 	int currentTime = 0;
 	bool attacking = false;
+
+	ushort attackdir = 0;
+
+	int movSpeed = 2;
 };
 
 #endif // __ENEMY_BASECARD_H__

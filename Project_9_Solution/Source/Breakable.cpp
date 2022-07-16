@@ -33,5 +33,5 @@ void Breakable::Draw() {
 }
 
 void Breakable::OnCollision(Collider* collider) {
-
+	App->audio->PlayFx(destroyedFx);
 }

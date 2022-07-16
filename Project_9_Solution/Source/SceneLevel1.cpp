@@ -27,7 +27,7 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/map_base.png");
+	bgTexture = App->textures->Load("Assets/Sprites/map_scratch.png");
 	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
 	//Colliders
@@ -77,7 +77,7 @@ bool SceneLevel1::Start()
 
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::BASECARD, 0, 0);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;

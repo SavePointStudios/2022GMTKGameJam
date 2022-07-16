@@ -32,5 +32,6 @@ void Breakable_Door::Update() {
 }
 
 void Breakable_Door::OnCollision(Collider* collider) {
-	// would be good to show wood particles dropping
+	//App->particles->AddParticle();
+	Breakable::OnCollision(collider);
 }
