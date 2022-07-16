@@ -67,7 +67,7 @@ Update_Status SceneMenu::Update() {
 			//App->fade->FadeToBlack(this, (Module*)App->sceneCredits, 90);
 			break;
 		case 2:
-			Update_Status::UPDATE_STOP;
+			return Update_Status::UPDATE_STOP;
 		default:
 			break;
 		}
