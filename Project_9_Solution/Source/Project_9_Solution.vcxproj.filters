@@ -32,6 +32,9 @@
     <Filter Include="Source Files\Entities\Breakables">
       <UniqueIdentifier>{fb16b0dc-6069-409e-84d9-f4557d8ebd69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Powerups">
+      <UniqueIdentifier>{e635bc74-dee5-45c9-9678-ae7775e6cea9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -88,7 +91,7 @@
     <ClInclude Include="Enemy.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_BrownShip.h">
+    <ClInclude Include="Enemy_BaseCard.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Mech.h">
@@ -118,11 +121,38 @@
     <ClInclude Include="Breakable.h">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClInclude>
-    <ClInclude Include="Breakable_Fence.h">
+    <ClInclude Include="Breakable_Chips.h">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClInclude>
     <ClInclude Include="ModuleDebug.h">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="ModuleUI.h">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup_Dice.h">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerup.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Door.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Goblet.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Table.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_CardBox.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -174,7 +204,7 @@
     <ClCompile Include="Enemy.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_BrownShip.cpp">
+    <ClCompile Include="Enemy_BaseCard.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_Mech.cpp">
@@ -204,11 +234,38 @@
     <ClCompile Include="Breakable.cpp">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClCompile>
-    <ClCompile Include="Breakable_Fence.cpp">
+    <ClCompile Include="Breakable_Chips.cpp">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClCompile>
     <ClCompile Include="ModuleDebug.cpp">
       <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleUI.cpp">
+      <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup_Dice.cpp">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerup.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Door.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Goblet.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Table.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_CardBox.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

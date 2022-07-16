@@ -5,7 +5,9 @@
 #include "ModuleInput.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
+#include "ModuleUI.h"
 #include "ModulePlayer.h"
+#include "SceneMenu.h"
 #include "SceneIntro.h"
 #include "SceneLevel1.h"
 #include "ModuleParticles.h"
@@ -15,6 +17,9 @@
 #include "ModuleFonts.h"
 #include "ModuleRender.h"
 #include "ModuleDebug.h"
+#include "ModuleBreakable.h"
+#include "ModulePowerup.h"
+#include "SDL/include/SDL.h"
 
 Application::Application()
 {
@@ -26,18 +31,24 @@ Application::Application()
 	modules[1] =	input =			new ModuleInput(true);
 	modules[2] =	textures =		new ModuleTextures(true);
 	modules[3] =	audio =			new ModuleAudio(true);
+	 
+	modules[4] =	fonts =			new ModuleFonts(true);
+	modules[5] =	ui =			new ModuleUI(false);
+	modules[6] =	sceneMenu =		new SceneMenu(true);
+	modules[7] =	sceneIntro =	new SceneIntro(false);
+	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[9] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[10] =	particles =		new ModuleParticles(true);
+	modules[11] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[4] =	sceneIntro =	new SceneIntro(true);
-	modules[5] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[6] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[7] =	particles =		new ModuleParticles(true);
-	modules[8] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
-	modules[9] =	collisions =	new ModuleCollisions(true);
-	modules[10] =	fade =			new ModuleFadeToBlack(true);
-	modules[11] =	fonts =			new ModuleFonts(true);
-	modules[12] =	debug =			new ModuleDebug(true);
-	modules[13] =	render =		new ModuleRender(true);
+	modules[12] =	breakables =	new ModuleBreakable(false);
+	modules[13] =	powerups =		new ModulePowerup(false);
+	modules[14] =	collisions =	new ModuleCollisions(true);
+	modules[15] =	fade =			new ModuleFadeToBlack(true);
+	modules[16] =	debug =			new ModuleDebug(true);
+	modules[17] =	render =		new ModuleRender(true);
+
 }
 
 Application::~Application()
@@ -78,6 +89,8 @@ Update_Status Application::Update()
 
 	for (int i = 0; i < NUM_MODULES && ret == Update_Status::UPDATE_CONTINUE; ++i)
 		ret = modules[i]->IsEnabled() ? modules[i]->PostUpdate() : Update_Status::UPDATE_CONTINUE;
+
+	SDL_Delay((int)(1000 / 60));
 
 	return ret;
 }

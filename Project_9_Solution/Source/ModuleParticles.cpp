@@ -40,6 +40,9 @@ bool ModuleParticles::Start()
 	laser.lifetime = 180;
 	laser.anim.speed = 0.2f;
 
+	cardAttackMelee.anim.PushBack({ 456, 453, 32, 64 });
+	cardAttackMelee.lifetime = 10;
+
 	return true;
 }
 

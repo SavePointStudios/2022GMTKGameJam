@@ -77,10 +77,14 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Breakable.h" />
-    <ClInclude Include="Breakable_Fence.h" />
+    <ClInclude Include="Breakable_CardBox.h" />
+    <ClInclude Include="Breakable_Chips.h" />
+    <ClInclude Include="Breakable_Door.h" />
+    <ClInclude Include="Breakable_Goblet.h" />
+    <ClInclude Include="Breakable_Table.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Enemy_BrownShip.h" />
+    <ClInclude Include="Enemy_BaseCard.h" />
     <ClInclude Include="Enemy_Mech.h" />
     <ClInclude Include="Enemy_RedBird.h" />
     <ClInclude Include="ModuleAudio.h" />
@@ -91,6 +95,10 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleParticles.h" />
+    <ClInclude Include="ModulePowerup.h" />
+    <ClInclude Include="ModuleUI.h" />
+    <ClInclude Include="Powerup.h" />
+    <ClInclude Include="Powerup_Dice.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -104,14 +112,19 @@
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="SceneMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Breakable.cpp" />
-    <ClCompile Include="Breakable_Fence.cpp" />
+    <ClCompile Include="Breakable_CardBox.cpp" />
+    <ClCompile Include="Breakable_Chips.cpp" />
+    <ClCompile Include="Breakable_Door.cpp" />
+    <ClCompile Include="Breakable_Goblet.cpp" />
+    <ClCompile Include="Breakable_Table.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Enemy_BrownShip.cpp" />
+    <ClCompile Include="Enemy_BaseCard.cpp" />
     <ClCompile Include="Enemy_Mech.cpp" />
     <ClCompile Include="Enemy_RedBird.cpp" />
     <ClCompile Include="Globals.cpp" />
@@ -123,6 +136,10 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModulePowerup.cpp" />
+    <ClCompile Include="ModuleUI.cpp" />
+    <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="Powerup_Dice.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
@@ -134,6 +151,7 @@
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Path.cpp" />
+    <ClCompile Include="SceneMenu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
