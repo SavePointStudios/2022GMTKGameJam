@@ -17,6 +17,7 @@
 #include "ModuleRender.h"
 #include "ModuleDebug.h"
 #include "ModuleBreakable.h"
+#include "ModulePowerup.h"
 
 Application::Application()
 {
@@ -38,12 +39,12 @@ Application::Application()
 
 
 	modules[10] =	breakables =	new ModuleBreakable(false);
-
-	modules[11] =	collisions =	new ModuleCollisions(true);
-	modules[12] =	fade =			new ModuleFadeToBlack(true);
-	modules[13] =	fonts =			new ModuleFonts(true);
-	modules[14] =	debug =			new ModuleDebug(true);
-	modules[15] =	render =		new ModuleRender(true);
+	modules[11] =	powerups =		new ModulePowerup(false);
+	modules[12] =	collisions =	new ModuleCollisions(true);
+	modules[13] =	fade =			new ModuleFadeToBlack(true);
+	modules[14] =	fonts =			new ModuleFonts(true);
+	modules[15] =	debug =			new ModuleDebug(true);
+	modules[16] =	render =		new ModuleRender(true);
 
 }
 

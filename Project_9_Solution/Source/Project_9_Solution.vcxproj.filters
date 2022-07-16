@@ -32,6 +32,9 @@
     <Filter Include="Source Files\Entities\Breakables">
       <UniqueIdentifier>{fb16b0dc-6069-409e-84d9-f4557d8ebd69}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Entities\Powerups">
+      <UniqueIdentifier>{e635bc74-dee5-45c9-9678-ae7775e6cea9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -127,6 +130,15 @@
     <ClInclude Include="ModuleUI.h">
       <Filter>Source Files\Modules\Core</Filter>
     </ClInclude>
+    <ClInclude Include="Powerup.h">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="Powerup_Dice.h">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClInclude>
+    <ClInclude Include="ModulePowerup.h">
+      <Filter>Source Files\Modules\Gameplay</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -215,6 +227,15 @@
     </ClCompile>
     <ClCompile Include="ModuleUI.cpp">
       <Filter>Source Files\Modules\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup.cpp">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="Powerup_Dice.cpp">
+      <Filter>Source Files\Entities\Powerups</Filter>
+    </ClCompile>
+    <ClCompile Include="ModulePowerup.cpp">
+      <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
