@@ -348,6 +348,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		
 	}
 
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::UP_WALL)
+	{
+		position.y += 3;
+	}
+	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOWN_WALL)
+	{
+		position.y -= 3;
+	}
+	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::RIGHT_WALL)
+	{
+		position.x -= 3;
+	}
+	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::LEFT_WALL)
+	{
+		position.x += 3;
+	}
+
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
 	{
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
