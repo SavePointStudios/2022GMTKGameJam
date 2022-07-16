@@ -148,5 +148,7 @@ void ModuleDebug::DebugDraw() {
 
 
 		App->fonts->BlitText(10, 80, 0, std::to_string(sin(App->enemies->enemies[0]->alpha)).c_str());
+
+		App->fonts->BlitText(10, 100, 0, std::to_string(sqrt(pow(App->enemies->enemies[0]->distance.x,2)+ pow(App->enemies->enemies[0]->distance.y, 2))).c_str());
 	}
 }

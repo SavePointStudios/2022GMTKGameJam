@@ -15,9 +15,11 @@ void Enemy_BaseCard::Update()
 {
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
-
-	position.x += 2 * cos(alpha);
-	position.y += 2 * sin(alpha);
+	if (sqrt(pow(distance.x, 2) + pow(distance.y, 2)) > 100)
+	{
+		position.x += 2 * cos(alpha);
+		position.y += 2 * sin(alpha);
+	}
 
 	Enemy::Update();
 }
