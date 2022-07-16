@@ -30,7 +30,7 @@ bool SceneMenu::Start() {
 	// SFX Loading
 	selectHover = App->audio->LoadFx("Assets/Fx/Menu/Hover.wav");
 	selected = App->audio->LoadFx("Assets/Fx/Menu/Select.wav");
-
+	hasSelected = false;
 	selection = 0;
 	return ret;
 }
@@ -44,26 +44,33 @@ Update_Status SceneMenu::Update() {
 	App->fonts->BlitText(50, 100, 0, "credits");
 	App->fonts->BlitText(50, 125, 0, "exit");
 
-	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_DOWN && !hasSelected) {
 		if (selection == 2) {
 			selection = 0;
 		} else {
 			selection++;
 		}
-		App->audio->PlayFx(selectHover);
+		if (!hasSelected) {
+			App->audio->PlayFx(selectHover);
+		}
 	}
-	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN) {
+	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN && !hasSelected) {
 		if (selection == 0) {
 			selection = 2;
 		} else {
 			selection--;
 		}
-		App->audio->PlayFx(selectHover);
+		if (!hasSelected) {
+			App->audio->PlayFx(selectHover);
+		}
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) {
-		App->audio->PlayFx(selected);
-
+		if (!hasSelected) {
+			hasSelected = !hasSelected;
+			App->audio->PlayFx(selected);
+		}
+		
 		switch (selection) {
 		case 0:
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);

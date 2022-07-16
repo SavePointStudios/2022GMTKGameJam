@@ -35,6 +35,8 @@ public:
 	// Selection SFx
 	uint selectHover = 0;
 	uint selected = 0;
+
+	bool hasSelected = false;
 };
 
 #endif
