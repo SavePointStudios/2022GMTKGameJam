@@ -142,6 +142,15 @@
     <ClInclude Include="Breakable_Door.h">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClInclude>
+    <ClInclude Include="Breakable_Goblet.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_Table.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
+    <ClInclude Include="Breakable_CardBox.h">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -241,6 +250,15 @@
       <Filter>Source Files\Modules\Gameplay</Filter>
     </ClCompile>
     <ClCompile Include="Breakable_Door.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Goblet.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_Table.cpp">
+      <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="Breakable_CardBox.cpp">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClCompile>
   </ItemGroup>

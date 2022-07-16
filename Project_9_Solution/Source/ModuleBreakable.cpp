@@ -9,6 +9,9 @@
 #include "Breakable.h"
 #include "Breakable_Chips.h"
 #include "Breakable_Door.h"
+#include "Breakable_CardBox.h"
+#include "Breakable_Goblet.h"
+#include "Breakable_Table.h"
 
 #include "Collider.h"
 
@@ -139,6 +142,15 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 				break;
 			case BREAKABLE_TYPE::DOOR:
 				breakables[i] = new Breakable_Door(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::CARDBOX:
+				breakables[i] = new Breakable_CardBox(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::GOBLET:
+				breakables[i] = new Breakable_Goblet(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::TABLE:
+				breakables[i] = new Breakable_Table(info.x, info.y, info.version);
 				break;
 			}
 			breakables[i]->texture = breakableTexture;
