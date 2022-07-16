@@ -85,8 +85,10 @@ public:
 	bool rollTheDice = false;
 
 	// Sound effects indices
-	uint laserFx = 0;
-	uint explosionFx = 0;
+	uint shootFx = 0;
+	uint specialLoadFx = 0;
+	uint dieFx = 0;
+	uint hitFx = 0;
 
 	// Font variables
 	int Font = -1;

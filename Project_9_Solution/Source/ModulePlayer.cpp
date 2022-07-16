@@ -98,8 +98,10 @@ bool ModulePlayer::Start()
 	diceTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
 	currentAnimation = &idleAnimRight;
 
-	//laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	shootFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav");
+	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav");
+	hitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav");
+	specialLoadFx = App->audio->LoadFx("Assets/Fx/Dice/Special Loading.wav");
 
 	position.x = 150;
 	position.y = 120;
@@ -133,7 +135,7 @@ Update_Status ModulePlayer::Update()
 		if (habilityDelay <= 0) {
 			Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT_BREAKER);
 			newParticle->collider->AddListener(this);
-			App->audio->PlayFx(laserFx);
+			App->audio->PlayFx(shootFx);
 
 			//End hability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
 			stateHability = false;
@@ -271,7 +273,7 @@ Update_Status ModulePlayer::Update()
 		{
 			Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
 			newParticle->collider->AddListener(this);
-			App->audio->PlayFx(laserFx);
+			App->audio->PlayFx(shootFx);
 		}
 
 		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
@@ -373,7 +375,7 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
-		App->audio->PlayFx(explosionFx);
+		App->audio->PlayFx(dieFx);
 
 		lifePlayer--;
 	}

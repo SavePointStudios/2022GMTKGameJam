@@ -23,7 +23,7 @@ bool SceneMenu::Start() {
 	bool ret = true;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
-	//App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Menu.ogg", 1.0f);
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	fontId = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 
