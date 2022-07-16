@@ -78,8 +78,8 @@ void Enemy::OnCollision(Collider* collider)
 
 	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)
 	{
-		/*App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-		App->audio->PlayFx(destroyedFx);*/
+		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
+		App->audio->PlayFx(destroyedFx);
 
 		SetToDelete();
 	}

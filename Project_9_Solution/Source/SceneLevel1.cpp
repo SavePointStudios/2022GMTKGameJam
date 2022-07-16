@@ -80,7 +80,7 @@ bool SceneLevel1::Start()
 
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::BASECARD, 115, 660);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
