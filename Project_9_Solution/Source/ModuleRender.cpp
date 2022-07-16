@@ -51,6 +51,10 @@ Update_Status ModuleRender::PreUpdate()
 	//Clear rendering target
 	SDL_RenderClear(renderer);
 
+	if (WIN_FULLSCREEN_DESKTOP) {
+		SDL_RenderSetLogicalSize(renderer, SCREEN_WIDTH * SCREEN_SIZE, SCREEN_HEIGHT * SCREEN_SIZE);
+	}
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 
