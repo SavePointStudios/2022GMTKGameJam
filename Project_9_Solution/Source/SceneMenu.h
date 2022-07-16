@@ -37,7 +37,8 @@ public:
 	uint selected = 0;
 
 private:
-	bool alreadySelected;//so that it just sounds one time
+  bool hasSelected = false;
+
 };
 
 #endif
