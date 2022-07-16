@@ -11,6 +11,7 @@
 
 Enemy::Enemy(int x, int y) : position(x, y)
 {
+	position.x = 424; position.y = 242; //provisional so that it spawns inside the map
 	spawnPos = position;
 }
 
@@ -44,7 +45,7 @@ void Enemy::Draw()
 
 void Enemy::lookAtPlayer()
 {
-	distance.x = App->player->position.x + 16 - this->position.x - 16;
+   	distance.x = App->player->position.x + 16 - this->position.x - 16;
 	distance.y = App->player->position.y + 16 - this->position.y - 32;
 
 	alpha = atan2(distance.y, distance.x);
@@ -57,10 +58,30 @@ void Enemy::lookAtPlayer()
 
 void Enemy::OnCollision(Collider* collider)
 {
-	App->particles->AddParticle(App->particles->explosion, position.x, position.y);
-	App->audio->PlayFx(destroyedFx);
+	if (collider->type == Collider::Type::UP_WALL)
+	{
+		position.y += 2   ;
+	}
+	else if (collider->type == Collider::Type::DOWN_WALL)
+	{
+		position.y -= 1;
+	}
+	else if (collider->type == Collider::Type::RIGHT_WALL)
+	{
+		position.x -= 1;
+	}
+	else if (collider->type == Collider::Type::LEFT_WALL)
+	{
+		position.x += 2;
+	}
 
-	SetToDelete();
+	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)
+	{
+		App->particles->AddParticle(App->particles->explosion, position.x, position.y);
+		App->audio->PlayFx(destroyedFx);
+
+		SetToDelete();
+	}
 }
 
 void Enemy::SetToDelete()
