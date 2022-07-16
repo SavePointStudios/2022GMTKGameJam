@@ -8,6 +8,7 @@
 
 #include "Breakable.h"
 #include "Breakable_Chips.h"
+#include "Breakable_Door.h"
 
 #include "Collider.h"
 
@@ -123,6 +124,9 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 			switch (info.type) {
 			case BREAKABLE_TYPE::CHIPSTACK:
 				breakables[i] = new Breakable_Chips(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::DOOR:
+				breakables[i] = new Breakable_Door(info.x, info.y, info.version);
 				break;
 			}
 			breakables[i]->texture = breakableTexture;

@@ -7,7 +7,8 @@
 
 enum class BREAKABLE_TYPE {
 	NO_TYPE,
-	CHIPSTACK
+	CHIPSTACK,
+	DOOR
 };
 
 struct BreakableSpawnpoint {
