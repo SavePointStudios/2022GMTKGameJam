@@ -12,7 +12,10 @@ struct Collider
 	enum Type
 	{
 		NONE = -1,
-		WALL,
+		UP_WALL,
+		DOWN_WALL,
+		LEFT_WALL,
+		RIGHT_WALL,
 		PLAYER,
 		ENEMY,
 		PLAYER_SHOT,

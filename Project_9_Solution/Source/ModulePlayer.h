@@ -70,6 +70,27 @@ public:
 	Animation upAnim;
 	Animation downAnim;
 
+	Animation specialLeftAnim;
+	Animation specialRightAnim;
+	Animation specialUpAnim;
+	Animation specialDownAnim;
+
+	Animation idleHandAnimRight;
+	Animation idleHandAnimLeft;
+	Animation idleHandAnimDown;
+	Animation idleHandAnimUp;
+
+	Animation handRightAttackAnim;
+	Animation handLeftAttackAnim;
+	Animation handDownAttackAnim;
+	Animation handUpAttackAnim;
+
+	Animation handRightSpecialAnim;
+	Animation handLeftSpecialAnim;
+	Animation handDownSpecialAnim;
+	Animation handUpSpecialAnim;
+
+
 	// The player's collider
 	Collider* collider = nullptr;
 
@@ -85,8 +106,10 @@ public:
 	bool rollTheDice = false;
 
 	// Sound effects indices
-	uint laserFx = 0;
-	uint explosionFx = 0;
+	uint shootFx = 0;
+	uint specialLoadFx = 0;
+	uint dieFx = 0;
+	uint hitFx = 0;
 
 	// Font variables
 	int Font = -1;

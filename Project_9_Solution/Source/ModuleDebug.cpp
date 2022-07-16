@@ -64,7 +64,16 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::NONE: // white (Ejemplo de caja debug)
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-		case Collider::Type::WALL: // blue
+		case Collider::Type::UP_WALL: // blue
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::DOWN_WALL: // blue
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::RIGHT_WALL: // blue
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::LEFT_WALL: // blue
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 		case Collider::Type::PLAYER: // green
