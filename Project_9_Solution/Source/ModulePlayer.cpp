@@ -328,18 +328,115 @@ Update_Status ModulePlayer::Update()
 	else if (stateBasicAttack) {
 		basicAttackDelay--;
 
+#pragma region WASD
+
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
+		{
+			position.x -= speed;
+
+			switch (direction)
+			{
+			case 0:
+				currentDiceAnimation = &upAnim;
+				break;
+			case 1:
+				currentDiceAnimation = &leftAnim;
+				break;
+			case 2:
+				currentDiceAnimation = &downAnim;
+				break;
+			case 3:
+				currentDiceAnimation = &rightAnim;
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
+		{
+			position.x += speed;
+
+			switch (direction)
+			{
+			case 0:
+				currentDiceAnimation = &upAnim;
+				break;
+			case 1:
+				currentDiceAnimation = &leftAnim;
+				break;
+			case 2:
+				currentDiceAnimation = &downAnim;
+				break;
+			case 3:
+				currentDiceAnimation = &rightAnim;
+				break;
+			default:
+				break;
+			}
+		}
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
+		{
+			position.y += speed;
+
+			switch (direction)
+			{
+			case 0:
+				currentDiceAnimation = &upAnim;
+				break;
+			case 1:
+				currentDiceAnimation = &leftAnim;
+				break;
+			case 2:
+				currentDiceAnimation = &downAnim;
+				break;
+			case 3:
+				currentDiceAnimation = &rightAnim;
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
+		{
+			position.y -= speed;
+
+			switch (direction)
+			{
+			case 0:
+				currentDiceAnimation = &upAnim;
+				break;
+			case 1:
+				currentDiceAnimation = &leftAnim;
+				break;
+			case 2:
+				currentDiceAnimation = &downAnim;
+				break;
+			case 3:
+				currentDiceAnimation = &rightAnim;
+				break;
+			default:
+				break;
+			}
+		}
+#pragma endregion
+
 		if (basicAttackDelay == 0) {
 			iPoint shotSpawn = position;
 			switch (direction)
 			{
 			case 0:
-				shotSpawn.y -= 20;
+				shotSpawn.y += 10;
+				shotSpawn.x += 15;
 				break;
 			case 1:
-				shotSpawn.x -= 20;
+				shotSpawn.y += 10;
+				shotSpawn.x += 15;
 				break;
 			case 2:
-				shotSpawn.y += 60;
+				shotSpawn.y += 15;
+				shotSpawn.x += 5;
 				break;
 			case 3:
 				shotSpawn.y += 10;
