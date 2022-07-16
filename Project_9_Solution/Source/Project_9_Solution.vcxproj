@@ -97,6 +97,7 @@
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleParticles.h" />
     <ClInclude Include="ModulePowerup.h" />
+    <ClInclude Include="ModuleQK.h" />
     <ClInclude Include="ModuleUI.h" />
     <ClInclude Include="Powerup.h" />
     <ClInclude Include="Powerup_Dice.h" />
@@ -138,6 +139,7 @@
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
     <ClCompile Include="ModulePowerup.cpp" />
+    <ClCompile Include="ModuleQK.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="Powerup_Dice.cpp" />

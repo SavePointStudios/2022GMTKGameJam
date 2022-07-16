@@ -154,6 +154,9 @@
     <ClInclude Include="SceneMenu.h">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
+    <ClInclude Include="ModuleQK.h">
+      <Filter>Source Files\Entities\Enemies</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -266,6 +269,9 @@
     </ClCompile>
     <ClCompile Include="SceneMenu.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClCompile>
+    <ClCompile Include="ModuleQK.cpp">
+      <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
