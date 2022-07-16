@@ -3,6 +3,7 @@
 
 #include "SDL/include/SDL_rect.h"
 #define MAX_FRAMES 25
+//#include "Enemy_BaseCard.h"
 
 class Animation
 {
@@ -18,6 +19,8 @@ private:
 	int totalFrames = 0;
 	int loopCount = 0;
 	int pingpongDirection = 1;
+
+	friend class Enemy_BaseCard;
 
 public:
 
