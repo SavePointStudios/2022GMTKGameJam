@@ -105,8 +105,9 @@ void ModuleBreakable::HandleBreakablesSpawn() {
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
 		if (spawnQueue[i].type != BREAKABLE_TYPE::NO_TYPE) {
 			// Spawn a new breakable if the screen has reached a spawn position
-			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN && 
-				spawnQueue[i].y < App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
+			if (spawnQueue[i].y * SCREEN_SIZE > App->render->camera.y - SPAWN_MARGIN &&
+				spawnQueue[i].x * SCREEN_SIZE >= App->render->camera.x - SPAWN_MARGIN &&
+				spawnQueue[i].x * SCREEN_SIZE <= App->render->camera.x + App->render->camera.w + SPAWN_MARGIN) {
 				LOG("Spawning breakable at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnBreakable(spawnQueue[i]);
@@ -115,6 +116,9 @@ void ModuleBreakable::HandleBreakablesSpawn() {
 		}
 	}
 }
+
+//spawnQueue[i].y* SCREEN_SIZE > App->render->camera.y* SCREEN_SIZE - SPAWN_MARGIN &&
+//spawnQueue[i].y * SCREEN_SIZE < (App->render->camera.y + App->render->camera.h)* SCREEN_SIZE + SPAWN_MARGIN
 
 void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 	// Find an empty slot in the breakables array

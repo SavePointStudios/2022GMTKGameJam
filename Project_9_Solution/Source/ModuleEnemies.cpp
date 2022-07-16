@@ -26,8 +26,9 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/enemies.png");
-	//enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	texture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
+	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+
 
 	return true;
 }
@@ -116,8 +117,9 @@ void ModuleEnemies::HandleEnemiesSpawn()
 		if (spawnQueue[i].type != Enemy_Type::NO_TYPE)
 		{
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN &&
-				spawnQueue[i].y < App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
+			if (spawnQueue[i].y * SCREEN_SIZE > App->render->camera.y - SPAWN_MARGIN &&
+				spawnQueue[i].x * SCREEN_SIZE >= App->render->camera.x - SPAWN_MARGIN &&
+				spawnQueue[i].x * SCREEN_SIZE <= App->render->camera.x + App->render->camera.w + SPAWN_MARGIN) {
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnEnemy(spawnQueue[i]);
@@ -149,7 +151,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_BaseCard(info.x, info.y);
 					break;
 			}
-			//enemies[i]->texture = texture;
+			enemies[i]->texture = texture;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}
