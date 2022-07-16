@@ -21,7 +21,6 @@ bool SceneMenu::Start() {
 	LOG("Loading background assets");
 
 	bool ret = true;
-	alreadySelected = false;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
 	App->audio->PlayMusic("Assets/Music/Menu.ogg", 1.0f);
