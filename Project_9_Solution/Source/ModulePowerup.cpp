@@ -49,7 +49,6 @@ Update_Status ModulePowerup::Update() {
 			powerUps[i]->Update();
 	}
 
-	HandlePowerupsDespawn();
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -94,26 +93,12 @@ void ModulePowerup::HandlePowerupsSpawn() {
 	for (uint i = 0; i < MAX_POWERUPS; ++i) {
 		if (spawnQueue[i].type != POWERUP_TYPE::NO_TYPE) {
 			// Spawn a new powerup if the screen has reached a spawn position
-			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN) {
+			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN &&
+				spawnQueue[i].y < App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
 				LOG("Spawning powerup at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnPowerup(spawnQueue[i]);
 				spawnQueue[i].type = POWERUP_TYPE::NO_TYPE; // Removing the newly spawned powerup from the queue
-			}
-		}
-	}
-}
-
-void ModulePowerup::HandlePowerupsDespawn() {
-	// Iterate existing powerups
-	for (uint i = 0; i < MAX_POWERUPS; ++i) {
-		if (powerUps[i] != nullptr) {
-			// Delete the powerup when it has reached the end of the screen
-			if (powerUps[i]->position.y > App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
-				LOG("DeSpawning powerup at %d. ", powerUps[i]->position.x * SCREEN_SIZE);
-
-				delete powerUps[i];
-				powerUps[i] = nullptr;
 			}
 		}
 	}

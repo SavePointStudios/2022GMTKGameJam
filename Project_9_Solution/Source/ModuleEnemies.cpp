@@ -11,8 +11,7 @@
 #include "Enemy_Basecard.h"
 #include "Enemy_Mech.h"
 
-#define SPAWN_MARGIN 50
-
+#define SPAWN_MARGIN	80
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
@@ -28,7 +27,7 @@ ModuleEnemies::~ModuleEnemies()
 bool ModuleEnemies::Start()
 {
 	texture = App->textures->Load("Assets/Sprites/enemies.png");
-	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	//enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	return true;
 }
@@ -58,8 +57,6 @@ Update_Status ModuleEnemies::Update()
 		if(enemies[i] != nullptr)
 			enemies[i]->Update();
 	}
-
-	HandleEnemiesDespawn();
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -119,30 +116,12 @@ void ModuleEnemies::HandleEnemiesSpawn()
 		if (spawnQueue[i].type != Enemy_Type::NO_TYPE)
 		{
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].x * SCREEN_SIZE < App->render->camera.x + (App->render->camera.w * SCREEN_SIZE) + SPAWN_MARGIN)
-			{
+			if (spawnQueue[i].y > App->render->camera.y - SPAWN_MARGIN &&
+				spawnQueue[i].y < App->render->camera.y + App->render->camera.h + SPAWN_MARGIN) {
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
 
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = Enemy_Type::NO_TYPE; // Removing the newly spawned enemy from the queue
-			}
-		}
-	}
-}
-
-void ModuleEnemies::HandleEnemiesDespawn()
-{
-	// Iterate existing enemies
-	for (uint i = 0; i < MAX_ENEMIES; ++i)
-	{
-		if (enemies[i] != nullptr)
-		{
-			// Delete the enemy when it has reached the end of the screen
-			if (enemies[i]->position.x * SCREEN_SIZE < (App->render->camera.x) - SPAWN_MARGIN)
-			{
-				LOG("DeSpawning enemy at %d", enemies[i]->position.x * SCREEN_SIZE);
-
-				enemies[i]->SetToDelete();
 			}
 		}
 	}
