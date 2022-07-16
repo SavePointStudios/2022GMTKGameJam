@@ -1,13 +1,13 @@
-#ifndef __BREAKABLE_CHIPS_H__
-#define __BREAKABLE_CHIPS_H__
+#ifndef __BREAKABLE_TABLE_H__
+#define __BREAKABLE_TABLE_H__
 
 #include "Breakable.h"
 
-class Breakable_Chips : public Breakable {
+class Breakable_Table : public Breakable {
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and the collider
-	Breakable_Chips(int x, int y, unsigned short version);
+	Breakable_Table(int x, int y, unsigned short version);
 
 	void Update() override;
 
@@ -15,4 +15,4 @@ public:
 
 };
 
-#endif // __BREAKABLE_CHIPS_H__
+#endif // __BREAKABLE_TABLE_H__

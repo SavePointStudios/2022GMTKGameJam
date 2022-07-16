@@ -29,6 +29,8 @@ public:
 	// Loads the necessary textures for the powerups
 	bool Start() override;
 
+	Update_Status PreUpdate() override;
+
 	// Called at the middle of the application loop
 	// Processes new input and handles powerup movement
 	Update_Status Update() override;

@@ -77,7 +77,11 @@
     <ClInclude Include="Animation.h" />
     <ClInclude Include="Application.h" />
     <ClInclude Include="Breakable.h" />
+    <ClInclude Include="Breakable_CardBox.h" />
     <ClInclude Include="Breakable_Chips.h" />
+    <ClInclude Include="Breakable_Door.h" />
+    <ClInclude Include="Breakable_Goblet.h" />
+    <ClInclude Include="Breakable_Table.h" />
     <ClInclude Include="Collider.h" />
     <ClInclude Include="Enemy.h" />
     <ClInclude Include="Enemy_BaseCard.h" />
@@ -108,11 +112,16 @@
     <ClInclude Include="p2Point.h" />
     <ClInclude Include="Particle.h" />
     <ClInclude Include="Path.h" />
+    <ClInclude Include="SceneMenu.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Breakable.cpp" />
+    <ClCompile Include="Breakable_CardBox.cpp" />
     <ClCompile Include="Breakable_Chips.cpp" />
+    <ClCompile Include="Breakable_Door.cpp" />
+    <ClCompile Include="Breakable_Goblet.cpp" />
+    <ClCompile Include="Breakable_Table.cpp" />
     <ClCompile Include="Collider.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Enemy_BaseCard.cpp" />
@@ -142,6 +151,7 @@
     <ClCompile Include="Module.cpp" />
     <ClCompile Include="Particle.cpp" />
     <ClCompile Include="Path.cpp" />
+    <ClCompile Include="SceneMenu.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

@@ -33,6 +33,9 @@ public:
 	void OnCollision(Collider* c1, Collider* c2) override;
 
 public:
+	//Life unit points
+	int lifePlayer = 1;
+	
 	// Position of the player in the map
 	iPoint position;
 
@@ -41,6 +44,13 @@ public:
 	
 	// The speed in which we move the player (pixels per frame)
 	int speed = 3;
+
+	//DAMAGES
+	//Basic attack damage
+	int basicAttack = 25;
+
+	//Hability damage
+	int hability = 50;
 
 	// The player spritesheet loaded into an SDL_Texture
 	SDL_Texture* texture = nullptr;
@@ -57,17 +67,26 @@ public:
 	// The player's collider
 	Collider* collider = nullptr;
 
+	//STATES
+
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
+
+	//A flag  to detetct when thw player is throwing his hability
+	bool stateHability = false;
+
+	//A flag  to detetct when thw player is throwing his hability
+	bool rollTheDice = false;
 
 	// Sound effects indices
 	uint laserFx = 0;
 	uint explosionFx = 0;
 
-	// Font score index
-	uint score = 000;
-	int scoreFont = -1;
-	char scoreText[10] = { "\0" };
+	// Font variables
+	int Font = -1;
+	char Text[10] = { "\0" };
+
+	int habilityDelay = 100;
 
 };
 

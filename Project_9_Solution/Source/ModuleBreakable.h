@@ -7,7 +7,11 @@
 
 enum class BREAKABLE_TYPE {
 	NO_TYPE,
-	CHIPSTACK
+	CHIPSTACK,
+	DOOR,
+	CARDBOX,
+	GOBLET,
+	TABLE
 };
 
 struct BreakableSpawnpoint {
@@ -30,6 +34,8 @@ public:
 	// Called when the module is activated
 	// Loads the necessary textures for the enemies
 	bool Start() override;
+
+	Update_Status PreUpdate() override;
 
 	// Called at the middle of the application loop
 	// Handles all enemies logic and spawning/despawning

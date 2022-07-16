@@ -11,6 +11,7 @@
 #include "ModuleFonts.h"
 
 #include <stdio.h>
+#include <time.h>
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
@@ -55,104 +56,139 @@ bool ModulePlayer::Start()
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	scoreFont = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
+	Font = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
 
 	return ret;
 }
 
 Update_Status ModulePlayer::Update()
 {
+	if (stateHability) {
+		if (rollTheDice == false) {
+			srand(time(NULL));
 
+			hability *= 1 + rand() % ((lifePlayer + 1) - 1);
+
+			rollTheDice = true;
+		}
+
+		habilityDelay--;
+		
+		if (habilityDelay <= 0) {
+			Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT_BREAKER);
+			newParticle->collider->AddListener(this);
+			App->audio->PlayFx(laserFx);
+
+			//End hability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
+			stateHability = false;
+			lifePlayer--;
+			hability = 50;
+			rollTheDice = false;
+			habilityDelay = 100;
+		}
+	}
+	else if (!destroyed) {
 #pragma region WASD
 
-	if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
-	{
-		position.x -= speed;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
-	{
-		position.x += speed;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
-	{
-		position.y += speed;
-		if (currentAnimation != &downAnim)
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
+			position.x -= speed;
 		}
-	}
 
-	if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
-	{
-		position.y -= speed;
-		if (currentAnimation != &upAnim)
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
 		{
-			upAnim.Reset();
-			currentAnimation = &upAnim;
+			position.x += speed;
 		}
-	}
+
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
+		{
+			position.y += speed;
+			if (currentAnimation != &downAnim)
+			{
+				downAnim.Reset();
+				currentAnimation = &downAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
+		{
+			position.y -= speed;
+			if (currentAnimation != &upAnim)
+			{
+				upAnim.Reset();
+				currentAnimation = &upAnim;
+			}
+		}
 #pragma endregion
 
-	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
-	{
-		direction = 0;
-		App->particles->laser.speed.x = 0;
-		App->particles->laser.speed.y = 5;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
-	{
-		direction = 1;
-		App->particles->laser.speed.x = 5;
-		App->particles->laser.speed.y = 0;
-	}
-
-	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
-	{
-		direction = 2;
-		App->particles->laser.speed.x = 0;
-		App->particles->laser.speed.y = -5;
-
-		if (currentAnimation != &downAnim)
+		if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_REPEAT)
 		{
-			downAnim.Reset();
-			currentAnimation = &downAnim;
+			direction = 0;
+			App->particles->laser.speed.x = 0;
+			App->particles->laser.speed.y = 5;
 		}
-	}
 
-	if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
-	{
-		direction = 3;
-		App->particles->laser.speed.x = -5;
-		App->particles->laser.speed.y = 0;
-
-		if (currentAnimation != &upAnim)
+		if (App->input->keys[SDL_SCANCODE_LEFT] == Key_State::KEY_REPEAT)
 		{
-			upAnim.Reset();
-			currentAnimation = &upAnim;
+			direction = 1;
+			App->particles->laser.speed.x = 5;
+			App->particles->laser.speed.y = 0;
 		}
+
+		if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_REPEAT)
+		{
+			direction = 2;
+			App->particles->laser.speed.x = 0;
+			App->particles->laser.speed.y = -5;
+
+			if (currentAnimation != &downAnim)
+			{
+				downAnim.Reset();
+				currentAnimation = &downAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
+		{
+			direction = 3;
+			App->particles->laser.speed.x = -5;
+			App->particles->laser.speed.y = 0;
+
+			if (currentAnimation != &upAnim)
+			{
+				upAnim.Reset();
+				currentAnimation = &upAnim;
+			}
+		}
+
+		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+		{
+			Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+			newParticle->collider->AddListener(this);
+			App->audio->PlayFx(laserFx);
+		}
+
+		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
+			stateHability = true;
+		}
+
+		// If no up/down movement detected, set the current animation back to idle
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE
+			&& App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE)
+			currentAnimation = &idleAnim;
+
 	}
 
-	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
+	if (App->input->keys[SDL_SCANCODE_Q] == Key_State::KEY_DOWN)
 	{
-		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
-		newParticle->collider->AddListener(this);
-		App->audio->PlayFx(laserFx);
+		lifePlayer++;
 	}
+  
+  if (lifePlayer <= 0 && !destroyed) {
+		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 60);
 
-	if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
-		Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT_BREAKER);
-		newParticle->collider->AddListener(this);
-		App->audio->PlayFx(laserFx);
+		destroyed = true;
 	}
-
-	// If no up/down movement detected, set the current animation back to idle
-	if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE
-		&& App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE)
-		currentAnimation = &idleAnim;
 
 	collider->SetPos(position.x, position.y);
 
@@ -169,12 +205,14 @@ Update_Status ModulePlayer::PostUpdate()
 		App->render->Blit(texture, position.x, position.y, &rect);
 	}
 
-	// Draw UI (score) --------------------------------------
-	sprintf_s(scoreText, 10, "%7d", score);
+	// Draw UI (life) --------------------------------------
+	sprintf_s(Text, 10, "%7d", lifePlayer);
 
-    //Blit the text of the score in at the bottom of the screen
-	App->fonts->BlitText(58, 248, scoreFont, scoreText);
+    //Blit the text of the life in at the bottom of the screen
+	App->fonts->BlitText(58, 248, Font, Text);
 
+	sprintf_s(Text, 10, "%7d", hability);
+	App->fonts->BlitText(58, 228, Font, Text);
 	
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -184,6 +222,11 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 {
 	if (c1 == collider && destroyed == false)
 	{
+		
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
+	{
 		App->particles->AddParticle(App->particles->explosion, position.x, position.y, Collider::Type::NONE, 9);
 		App->particles->AddParticle(App->particles->explosion, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
 		App->particles->AddParticle(App->particles->explosion, position.x - 7, position.y + 12, Collider::Type::NONE, 40);
@@ -191,13 +234,12 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->particles->AddParticle(App->particles->explosion, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
 
 		App->audio->PlayFx(explosionFx);
-		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneIntro, 60);
 
-		destroyed = true;
+		lifePlayer--;
 	}
 
 	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
 	{
-		score += 23;
+		lifePlayer++;
 	}
 }
