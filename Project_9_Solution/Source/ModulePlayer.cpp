@@ -271,6 +271,7 @@ bool ModulePlayer::Start()
 	diceTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
 	currentAnimation = &idleAnimRight;
 
+
 	shootFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav");
 	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav");
 	hitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav");
@@ -283,6 +284,9 @@ bool ModulePlayer::Start()
 
 	lifePlayer = 1;
 	direction = 3;
+
+	App->particles->laser.speed.x = -5;
+	App->particles->laser.speed.y = 0;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
@@ -444,7 +448,25 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 		{
-			Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+			iPoint shotSpawn = position;
+			switch (direction)
+			{
+			case 0:
+				shotSpawn.y -= 20;
+				break;
+			case 1:
+				shotSpawn.x -= 20;
+				break;
+			case 2:
+				shotSpawn.y += 60;
+				break;
+			case 3:
+				shotSpawn.x += 20;
+				break;
+			default:
+				break;
+			}
+			Particle* newParticle = App->particles->AddParticle(App->particles->laser, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT);
 			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(shootFx);
 		}
@@ -556,5 +578,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
 	{
 		lifePlayer++;
+		if (lifePlayer > 6) { lifePlayer = 6; }
 	}
 }

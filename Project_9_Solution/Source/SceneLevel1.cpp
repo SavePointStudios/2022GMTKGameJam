@@ -79,7 +79,7 @@ bool SceneLevel1::Start()
 
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500);
+	//App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
@@ -87,18 +87,19 @@ bool SceneLevel1::Start()
 	//App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
 
 	// Breakables ---
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
+	/*App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 210, 120, 0);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 400, 120, 1);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 400, 190, 0);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 430, 190, 1);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::TABLE, 430, 250, 0);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::TABLE, 430, 250, 1);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 1);
-	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 1);*/
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 210, -200, 1);
 
 	// Powerups ---
-	App->powerups->AddPowerup(POWERUP_TYPE::DICE, 210, 180);
+	//App->powerups->AddPowerup(POWERUP_TYPE::DICE, 210, 180);
 	App->render->camera.y = 0;
 
 
