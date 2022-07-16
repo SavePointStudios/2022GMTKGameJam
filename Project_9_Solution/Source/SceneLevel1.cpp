@@ -34,7 +34,7 @@ bool SceneLevel1::Start()
 	//App->collisions->AddCollider({ 0, 224, 3930, 16 }, Collider::Type::WALL);
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::BASECARD, 0, 0);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
