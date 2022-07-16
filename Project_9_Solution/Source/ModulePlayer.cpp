@@ -109,6 +109,9 @@ bool ModulePlayer::Start()
 	lifePlayer = 1;
 	direction = 3;
 
+	App->particles->laser.speed.x = -5;
+	App->particles->laser.speed.y = 0;
+
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
@@ -269,7 +272,25 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
 		{
-			Particle* newParticle = App->particles->AddParticle(App->particles->laser, position.x + 20, position.y, Collider::Type::PLAYER_SHOT);
+			iPoint shotSpawn = position;
+			switch (direction)
+			{
+			case 0:
+				shotSpawn.y -= 20;
+				break;
+			case 1:
+				shotSpawn.x -= 20;
+				break;
+			case 2:
+				shotSpawn.y += 60;
+				break;
+			case 3:
+				shotSpawn.x += 20;
+				break;
+			default:
+				break;
+			}
+			Particle* newParticle = App->particles->AddParticle(App->particles->laser, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT);
 			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(laserFx);
 		}
@@ -363,5 +384,6 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
 	{
 		lifePlayer++;
+		if (lifePlayer > 6) { lifePlayer = 6; }
 	}
 }
