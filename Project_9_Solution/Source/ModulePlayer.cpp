@@ -99,7 +99,7 @@ bool ModulePlayer::Start()
 	currentAnimation = &idleAnimRight;
 
 	//laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
-	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	//explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 	position.x = 150;
 	position.y = 120;

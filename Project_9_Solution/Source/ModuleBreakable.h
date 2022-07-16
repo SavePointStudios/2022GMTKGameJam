@@ -59,9 +59,6 @@ public:
 	// Iterates the queue and checks for camera position
 	void HandleBreakablesSpawn();
 
-	// Destroys any enemies that have moved outside the camera limits
-	void HandleBreakablesDespawn();
-
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnBreakable(const BreakableSpawnpoint& info);
