@@ -101,10 +101,13 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 
-	//A flag  to detetct when thw player is throwing his hability
+	//A flag  to detetct when thw player is throwing his diceHability
 	bool stateHability = false;
 
-	//A flag  to detetct when thw player is throwing his hability
+	//A flag  to detetct when thw player is throwing his diceHability
+	bool stateBasicAttack = false;
+
+	//A flag  to detetct when thw player is throwing his diceHability
 	bool rollTheDice = false;
 
 	// Sound effects indices
@@ -118,6 +121,7 @@ public:
 	char Text[10] = { "\0" };
 
 	int habilityDelay = 100;
+	int basicAttackDelay = 20;
 
 };
 

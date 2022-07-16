@@ -22,6 +22,7 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
+  
 	baseCardTexture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
 	handTexture = App->textures->Load("Assets/Sprites/Hand_Character_Spritesheet.png");
 

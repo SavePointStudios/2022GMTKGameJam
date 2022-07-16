@@ -54,6 +54,7 @@ public:
 
 public:
 	//Template particle for an diceHability
+  
 	Particle diceAbility;
 
 	//Template particle for a diceBasicAttack
