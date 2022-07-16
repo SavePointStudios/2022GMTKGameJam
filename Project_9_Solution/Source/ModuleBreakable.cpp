@@ -8,6 +8,10 @@
 
 #include "Breakable.h"
 #include "Breakable_Chips.h"
+#include "Breakable_Door.h"
+#include "Breakable_CardBox.h"
+#include "Breakable_Goblet.h"
+#include "Breakable_Table.h"
 
 #include "Collider.h"
 
@@ -26,6 +30,18 @@ bool ModuleBreakable::Start() {
 	breakableTexture = App->textures->Load("Assets/Sprites/enemies.png");
 
 	return true;
+}
+
+Update_Status ModuleBreakable::PreUpdate() {
+	// Remove all enemies scheduled for deletion
+	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
+		if (breakables[i] != nullptr && breakables[i]->pendingToDelete) {
+			delete breakables[i];
+			breakables[i] = nullptr;
+		}
+	}
+
+	return Update_Status::UPDATE_CONTINUE;
 }
 
 Update_Status ModuleBreakable::Update() {
@@ -123,6 +139,18 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 			switch (info.type) {
 			case BREAKABLE_TYPE::CHIPSTACK:
 				breakables[i] = new Breakable_Chips(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::DOOR:
+				breakables[i] = new Breakable_Door(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::CARDBOX:
+				breakables[i] = new Breakable_CardBox(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::GOBLET:
+				breakables[i] = new Breakable_Goblet(info.x, info.y, info.version);
+				break;
+			case BREAKABLE_TYPE::TABLE:
+				breakables[i] = new Breakable_Table(info.x, info.y, info.version);
 				break;
 			}
 			breakables[i]->texture = breakableTexture;

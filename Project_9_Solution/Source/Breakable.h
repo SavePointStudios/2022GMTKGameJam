@@ -35,7 +35,7 @@ public:
 
 	// The breakable's texture
 	SDL_Texture* texture = nullptr;
-
+	bool pendingToDelete = false;
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
