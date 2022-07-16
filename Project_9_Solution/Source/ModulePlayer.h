@@ -40,10 +40,10 @@ public:
 	iPoint position;
 
 	// Direction of the player in the map
-	int direction = 0;
+	int direction = 3;
 	
 	// The speed in which we move the player (pixels per frame)
-	int speed = 3;
+	int speed = 2;
 
 	//DAMAGES
 	//Basic attack damage
@@ -53,14 +53,20 @@ public:
 	int hability = 50;
 
 	// The player spritesheet loaded into an SDL_Texture
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* diceTexture = nullptr;
 	
 	// The pointer to the current player animation
 	// It will be switched depending on the player's movement direction
 	Animation* currentAnimation = nullptr;
 
 	// A set of animations
-	Animation idleAnim;
+	Animation idleAnimRight;
+	Animation idleAnimLeft;
+	Animation idleAnimDown;
+	Animation idleAnimUp;
+
+	Animation leftAnim;
+	Animation rightAnim;
 	Animation upAnim;
 	Animation downAnim;
 
