@@ -8,6 +8,7 @@
 #include "ModuleEnemies.h"
 #include "ModulePlayer.h"
 #include "ModuleBreakable.h"
+#include "ModulePowerup.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -40,14 +41,17 @@ bool SceneLevel1::Start()
 
 	//App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
 
-	// Breakables ---
+	// Breakables ---e
 	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
 
+	// Powerups ---
+	App->powerups->AddPowerup(POWERUP_TYPE::DICE, 210, 180);
 	App->render->camera.y = 0;
 
 
 	App->player->Enable();
 	App->enemies->Enable();
+	App->powerups->Enable();
 	App->breakables->Enable();
 	App->collisions->Enable();
 
@@ -75,7 +79,8 @@ bool SceneLevel1::CleanUp()
 	App->player->Disable();
 	App->enemies->Disable();
 	App->breakables->Disable();
+	App->powerups->Disable();
 	App->collisions->Disable();
-
+	
 	return true;
 }

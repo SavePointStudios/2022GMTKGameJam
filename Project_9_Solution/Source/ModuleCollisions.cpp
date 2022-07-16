@@ -18,6 +18,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::WALL][Collider::Type::PLAYER_SHOT_BREAKER] = true;
 	matrix[Collider::Type::WALL][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::WALL][Collider::Type::BREAKABLE] = false;
+	matrix[Collider::Type::WALL][Collider::Type::POWERUP] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER] = false;
@@ -26,6 +27,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::BREAKABLE] = false;
+	matrix[Collider::Type::PLAYER][Collider::Type::POWERUP] = true;
 	
 	matrix[Collider::Type::ENEMY][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER] = true;
@@ -34,6 +36,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::PLAYER_SHOT_BREAKER] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE] = true;
+	matrix[Collider::Type::ENEMY][Collider::Type::POWERUP] = false;
 	
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER] = false;
@@ -42,6 +45,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BREAKABLE] = true;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::POWERUP] = false;
 
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::WALL] = false;
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::PLAYER] = false;
@@ -50,6 +54,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::BREAKABLE] = true;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::POWERUP] = false;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER] = true;
@@ -58,7 +63,8 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::PLAYER_SHOT_BREAKER] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BREAKABLE] = true;
-	
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::POWERUP] = false;
+
 	matrix[Collider::Type::BREAKABLE][Collider::Type::WALL] = false;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER] = false;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY] = true;
@@ -66,7 +72,17 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BREAKABLE][Collider::Type::PLAYER_SHOT_BREAKER] = true;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::BREAKABLE] = false;
-	
+	matrix[Collider::Type::BREAKABLE][Collider::Type::POWERUP] = false;
+
+	matrix[Collider::Type::POWERUP][Collider::Type::WALL] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::PLAYER_SHOT_BREAKER] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::BREAKABLE] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::POWERUP] = false;
+
 }
 
 // Destructor
@@ -89,7 +105,7 @@ Update_Status ModuleCollisions::PreUpdate()
 
 	Collider* c1;
 	Collider* c2;
-
+	 
 	for(uint i = 0; i < MAX_COLLIDERS; ++i)
 	{
 		// skip empty colliders

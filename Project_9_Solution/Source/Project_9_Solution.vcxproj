@@ -91,7 +91,10 @@
     <ClInclude Include="ModuleFadeToBlack.h" />
     <ClInclude Include="ModuleFonts.h" />
     <ClInclude Include="ModuleParticles.h" />
+    <ClInclude Include="ModulePowerup.h" />
     <ClInclude Include="ModuleUI.h" />
+    <ClInclude Include="Powerup.h" />
+    <ClInclude Include="Powerup_Dice.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -124,7 +127,10 @@
     <ClCompile Include="ModuleFadeToBlack.cpp" />
     <ClCompile Include="ModuleFonts.cpp" />
     <ClCompile Include="ModuleParticles.cpp" />
+    <ClCompile Include="ModulePowerup.cpp" />
     <ClCompile Include="ModuleUI.cpp" />
+    <ClCompile Include="Powerup.cpp" />
+    <ClCompile Include="Powerup_Dice.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ModuleInput.cpp" />
