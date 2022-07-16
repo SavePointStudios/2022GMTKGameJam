@@ -151,6 +151,9 @@
     <ClInclude Include="Breakable_CardBox.h">
       <Filter>Source Files\Entities\Breakables</Filter>
     </ClInclude>
+    <ClInclude Include="SceneMenu.h">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Module.cpp">
@@ -260,6 +263,9 @@
     </ClCompile>
     <ClCompile Include="Breakable_CardBox.cpp">
       <Filter>Source Files\Entities\Breakables</Filter>
+    </ClCompile>
+    <ClCompile Include="SceneMenu.cpp">
+      <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>
