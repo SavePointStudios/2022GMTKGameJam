@@ -23,11 +23,14 @@ bool SceneMenu::Start() {
 	bool ret = true;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
-	//App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Menu.ogg", 1.0f);
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	fontId = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
+	fontId = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 
-	
+	// SFX Loading
+	selectHover = App->audio->LoadFx("Assets/Fx/Menu/Hover.wav");
+	selected = App->audio->LoadFx("Assets/Fx/Menu/Select.wav");
+
 	selection = 0;
 	return ret;
 }
@@ -36,7 +39,7 @@ Update_Status SceneMenu::Update() {
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	App->fonts->BlitText(250, 25, 0, "just dice");
+	App->fonts->BlitText(250, 25, 0, "just dice"); // need to change game title
 	App->fonts->BlitText(50, 75, 0, "start");
 	App->fonts->BlitText(50, 100, 0, "credits");
 	App->fonts->BlitText(50, 125, 0, "exit");
@@ -47,7 +50,7 @@ Update_Status SceneMenu::Update() {
 		} else {
 			selection++;
 		}
-		
+		App->audio->PlayFx(selectHover);
 	}
 	if (App->input->keys[SDL_SCANCODE_UP] == Key_State::KEY_DOWN) {
 		if (selection == 0) {
@@ -55,9 +58,12 @@ Update_Status SceneMenu::Update() {
 		} else {
 			selection--;
 		}
+		App->audio->PlayFx(selectHover);
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) {
+		App->audio->PlayFx(selected);
+
 		switch (selection) {
 		case 0:
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);

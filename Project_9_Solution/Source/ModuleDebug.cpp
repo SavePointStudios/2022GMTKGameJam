@@ -64,7 +64,16 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::NONE: // white (Ejemplo de caja debug)
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255, 255, alpha);
 			break;
-		case Collider::Type::WALL: // blue
+		case Collider::Type::UP_WALL: // blue
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::DOWN_WALL: // blue
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::RIGHT_WALL: // blue
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
+			break;
+		case Collider::Type::LEFT_WALL: // blue
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 0, 0, 255, alpha);
 			break;
 		case Collider::Type::PLAYER: // green
@@ -149,8 +158,8 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(10, 40, 0, std::to_string(App->player->collider->rect.y).c_str());
 
 
-		App->fonts->BlitText(10, 60, 0, std::to_string(App->enemies->enemies[0]->alpha).c_str());
-		App->fonts->BlitText(10, 70, 0, std::to_string(App->enemies->enemies[0]->degrees).c_str());
+		//App->fonts->BlitText(10, 60, 0, std::to_string(App->enemies->enemies[0]->alpha).c_str());
+		//App->fonts->BlitText(10, 70, 0, std::to_string(App->enemies->enemies[0]->degrees).c_str());
 
 		//App->fonts->BlitText(10, 100, 0, std::to_string(sqrt(pow(App->enemies->enemies[0]->distance.x,2)+ pow(App->enemies->enemies[0]->distance.y, 2))).c_str());
 		App->fonts->BlitText(10, 110, 0, std::to_string(App->enemies->enemies[0]->distance.x).c_str());
