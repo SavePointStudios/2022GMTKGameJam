@@ -15,12 +15,19 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
+	void attack();
+
 	void initAnimations();
 
 private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
 	Animation walk;
+
+	//Timers for the attack
+	int startTimer = 0;
+	int currentTime = 0;
+	bool attacking = false;
 };
 
 #endif // __ENEMY_BASECARD_H__
