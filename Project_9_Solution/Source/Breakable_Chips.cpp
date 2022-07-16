@@ -27,6 +27,6 @@ void Breakable_Chips::Update() {
 }
 
 void Breakable_Chips::OnCollision(Collider* collider) {
-	// would be good to show chips particles dropping
-	// destroyed play fx
+	//App->particles->AddParticle();
+	Breakable::OnCollision(collider);
 }

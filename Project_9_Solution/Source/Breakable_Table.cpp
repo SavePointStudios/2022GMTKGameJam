@@ -29,5 +29,6 @@ void Breakable_Table::Update() {
 }
 
 void Breakable_Table::OnCollision(Collider* collider) {
-	// would be good to show wood particles dropping
+	//App->particles->AddParticle();
+	Breakable::OnCollision(collider);
 }
