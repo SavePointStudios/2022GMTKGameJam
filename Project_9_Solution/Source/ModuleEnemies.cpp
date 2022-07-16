@@ -26,8 +26,9 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/enemies.png");
-	//enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+	texture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
+	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
+
 
 	return true;
 }
@@ -149,7 +150,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 					enemies[i] = new Enemy_BaseCard(info.x, info.y);
 					break;
 			}
-			//enemies[i]->texture = texture;
+			enemies[i]->texture = texture;
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}

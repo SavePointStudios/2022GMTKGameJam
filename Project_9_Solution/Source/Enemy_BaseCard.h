@@ -3,6 +3,7 @@
 
 #include "Enemy.h"
 #include "Path.h"
+#include "ModuleDebug.h"
 
 class Enemy_BaseCard : public Enemy
 {
@@ -24,7 +25,12 @@ public:
 private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	Animation walk;
+	Animation walkRight, attackRight;
+	Animation walkLeft, attackLeft;
+	Animation walkUp, attackUp;
+	Animation walkDown, attackDown;
+
+	Path path; //(Needed)
 
 	//Timers for the attack
 	int startTimer = 0;
@@ -33,7 +39,7 @@ private:
 
 	ushort attackdir = 0;
 
-	int movSpeed = 2;
+	int movSpeed = 1;
 };
 
 #endif // __ENEMY_BASECARD_H__
