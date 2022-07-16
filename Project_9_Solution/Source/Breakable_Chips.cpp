@@ -14,7 +14,6 @@ Breakable_Chips::Breakable_Chips(int x, int y, unsigned short version) : Breakab
 	case 1:
 		animation.PushBack({ 0,96,32,32 });
 		break;
-	
 	default:
 		animation.PushBack({ 5,72,21,22 });
 		break;
@@ -29,4 +28,5 @@ void Breakable_Chips::Update() {
 
 void Breakable_Chips::OnCollision(Collider* collider) {
 	// would be good to show chips particles dropping
+	// destroyed play fx
 }
