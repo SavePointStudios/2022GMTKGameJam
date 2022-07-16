@@ -99,9 +99,9 @@ void ModuleDebug::DebugDraw() {
 	//Pa cuando tengamos enemigos
 	for (size_t i = 0; i < MAX_ENEMIES; i++) {
 		if (App->enemies->enemies[i] != nullptr) {
-			App->render->DrawLine(App->enemies->enemies[i]->position.x + 32,
+			App->render->DrawLine(App->enemies->enemies[i]->position.x + 16,
 				App->enemies->enemies[i]->position.y + 32,
-				App->enemies->enemies[i]->position.x + 32 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI / 180)),
+				App->enemies->enemies[i]->position.x + 16 + 20 * cos(App->enemies->enemies[i]->degrees * (M_PI / 180)),
 				App->enemies->enemies[i]->position.y + 32 + 20 * sin(App->enemies->enemies[i]->degrees * (M_PI / 180)),
 				0, 255, 0, 255);
 		}
@@ -152,9 +152,8 @@ void ModuleDebug::DebugDraw() {
 		App->fonts->BlitText(10, 60, 0, std::to_string(App->enemies->enemies[0]->alpha).c_str());
 		App->fonts->BlitText(10, 70, 0, std::to_string(App->enemies->enemies[0]->degrees).c_str());
 
-
-		App->fonts->BlitText(10, 80, 0, std::to_string(sin(App->enemies->enemies[0]->alpha)).c_str());
-
-		App->fonts->BlitText(10, 100, 0, std::to_string(sqrt(pow(App->enemies->enemies[0]->distance.x,2)+ pow(App->enemies->enemies[0]->distance.y, 2))).c_str());
+		//App->fonts->BlitText(10, 100, 0, std::to_string(sqrt(pow(App->enemies->enemies[0]->distance.x,2)+ pow(App->enemies->enemies[0]->distance.y, 2))).c_str());
+		App->fonts->BlitText(10, 110, 0, std::to_string(App->enemies->enemies[0]->distance.x).c_str());
+		App->fonts->BlitText(10, 120, 0, std::to_string(App->enemies->enemies[0]->distance.y).c_str());
 	}
 }

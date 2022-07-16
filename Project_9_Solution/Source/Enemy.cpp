@@ -44,8 +44,8 @@ void Enemy::Draw()
 
 void Enemy::lookAtPlayer()
 {
-	distance.x = App->player->position.x - this->position.x;
-	distance.y = App->player->position.y - this->position.y;
+	distance.x = App->player->position.x + 16 - this->position.x - 16;
+	distance.y = App->player->position.y + 16 - this->position.y - 32;
 
 	alpha = atan2(distance.y, distance.x);
 
