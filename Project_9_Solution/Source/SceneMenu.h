@@ -31,6 +31,10 @@ public:
 	SDL_Texture* bgTexture = nullptr;
 	int selection;
 	int fontId;
+
+	// Selection SFx
+	uint selectHover = 0;
+	uint selected = 0;
 };
 
 #endif
