@@ -21,6 +21,7 @@ bool SceneMenu::Start() {
 	LOG("Loading background assets");
 
 	bool ret = true;
+	alreadySelected = false;
 
 	//bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
 	App->audio->PlayMusic("Assets/Music/Menu.ogg", 1.0f);
@@ -62,7 +63,12 @@ Update_Status SceneMenu::Update() {
 	}
 
 	if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN) {
-		App->audio->PlayFx(selected);
+		
+		if (alreadySelected == false)
+		{
+			App->audio->PlayFx(selected);
+			alreadySelected = true;
+		}
 
 		switch (selection) {
 		case 0:
