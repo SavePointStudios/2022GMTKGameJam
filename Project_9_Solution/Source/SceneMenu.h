@@ -35,6 +35,9 @@ public:
 	// Selection SFx
 	uint selectHover = 0;
 	uint selected = 0;
+
+private:
+	bool alreadySelected;//so that it just sounds one time
 };
 
 #endif
