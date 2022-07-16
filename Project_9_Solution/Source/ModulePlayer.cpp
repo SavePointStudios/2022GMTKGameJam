@@ -112,7 +112,7 @@ bool ModulePlayer::Start()
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	Font = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
+	Font = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 
 	return ret;
 }
@@ -304,6 +304,7 @@ Update_Status ModulePlayer::Update()
 	if (App->input->keys[SDL_SCANCODE_Q] == Key_State::KEY_DOWN)
 	{
 		lifePlayer++;
+		if (lifePlayer > 6) { lifePlayer = 6; }
 	}
   
   if (lifePlayer <= 0 && !destroyed) {
