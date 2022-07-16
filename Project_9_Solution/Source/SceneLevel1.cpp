@@ -45,6 +45,13 @@ bool SceneLevel1::Start()
 	//App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 210, 120, 0);
 	App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 400, 120, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 400, 190, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 430, 190, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::TABLE, 430, 250, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::TABLE, 430, 250, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 1);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 1);
+
 	// Powerups ---
 	App->powerups->AddPowerup(POWERUP_TYPE::DICE, 210, 180);
 	App->render->camera.y = 0;
