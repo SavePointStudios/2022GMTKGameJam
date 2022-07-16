@@ -52,12 +52,14 @@ public:
 	//Hability damage
 	int hability = 50;
 
-	// The player spritesheet loaded into an SDL_Texture
+	// The spritesheets loaded into an SDL_Texture
 	SDL_Texture* diceTexture = nullptr;
+	SDL_Texture* diceHandTexture = nullptr;
 	
-	// The pointer to the current player animation
-	// It will be switched depending on the player's movement direction
-	Animation* currentAnimation = nullptr;
+	// The pointer to the current animation
+	// It will be switched depending on the movement direction
+	Animation* currentDiceAnimation = nullptr;
+	Animation* currentDiceHandAnimation = nullptr;
 
 	// A set of animations
 	Animation idleAnimRight;
@@ -69,6 +71,27 @@ public:
 	Animation rightAnim;
 	Animation upAnim;
 	Animation downAnim;
+
+	Animation specialLeftAnim;
+	Animation specialRightAnim;
+	Animation specialUpAnim;
+	Animation specialDownAnim;
+
+	Animation idleHandAnimRight;
+	Animation idleHandAnimLeft;
+	Animation idleHandAnimDown;
+	Animation idleHandAnimUp;
+
+	Animation handRightAttackAnim;
+	Animation handLeftAttackAnim;
+	Animation handDownAttackAnim;
+	Animation handUpAttackAnim;
+
+	Animation handRightSpecialAnim;
+	Animation handLeftSpecialAnim;
+	Animation handDownSpecialAnim;
+	Animation handUpSpecialAnim;
+
 
 	// The player's collider
 	Collider* collider = nullptr;
@@ -85,8 +108,10 @@ public:
 	bool rollTheDice = false;
 
 	// Sound effects indices
-	uint laserFx = 0;
-	uint explosionFx = 0;
+	uint shootFx = 0;
+	uint specialLoadFx = 0;
+	uint dieFx = 0;
+	uint hitFx = 0;
 
 	// Font variables
 	int Font = -1;

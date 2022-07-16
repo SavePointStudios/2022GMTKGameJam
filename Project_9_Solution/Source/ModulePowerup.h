@@ -50,9 +50,6 @@ public:
 	// Iterates the queue and checks for camera position
 	void HandlePowerupsSpawn();
 
-	// Destroys any powerups that have moved outside the camera limits
-	void HandlePowerupsDespawn();
-
 private:
 	// Spawns a new powerup using the data from the queue
 	void SpawnPowerup(const PowerupSpawnpoint& info);
