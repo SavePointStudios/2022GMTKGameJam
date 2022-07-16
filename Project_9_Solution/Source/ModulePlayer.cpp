@@ -51,7 +51,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	rightAnim.PushBack({ 128, 128, 32, 32 });
 	rightAnim.PushBack({ 160, 128, 32, 32 });
 	rightAnim.loop = true;
-	rightAnim.speed = 0.1f;
+	rightAnim.speed = 0.2f;
 
 	// Move left
 	leftAnim.PushBack({ 0, 160, 32, 32 });
@@ -61,7 +61,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	leftAnim.PushBack({ 128, 160, 32, 32 });
 	leftAnim.PushBack({ 160, 160, 32, 32 });
 	leftAnim.loop = true;
-	leftAnim.speed = 0.1f;
+	leftAnim.speed = 0.2f;
 
 	// Move down
 	downAnim.PushBack({ 0, 192, 32, 32 });
@@ -71,7 +71,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	downAnim.PushBack({ 128, 192, 32, 32 });
 	downAnim.PushBack({ 160, 192, 32, 32 });
 	downAnim.loop = true;
-	downAnim.speed = 0.1f;
+	downAnim.speed = 0.2f;
 
 	// move upwards
 	upAnim.PushBack({ 0, 224, 32, 32 });
@@ -81,7 +81,7 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	upAnim.PushBack({ 128, 224, 32, 32 });
 	upAnim.PushBack({ 160, 224, 32, 32 });
 	upAnim.loop = true;
-	upAnim.speed = 0.1f;
+	upAnim.speed = 0.2f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -350,19 +350,19 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::UP_WALL)
 	{
-		position.y += 3;
+		position.y += speed;
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::DOWN_WALL)
 	{
-		position.y -= 3;
+		position.y -= speed;
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::RIGHT_WALL)
 	{
-		position.x -= 3;
+		position.x -= speed;
 	}
 	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::LEFT_WALL)
 	{
-		position.x += 3;
+		position.x += speed;
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
