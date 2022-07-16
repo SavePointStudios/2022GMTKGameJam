@@ -22,26 +22,31 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-	//texture = App->textures->Load("Assets/Sprites/particles.png");
+	baseCardTexture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
+	handTexture = App->textures->Load("Assets/Sprites/Hand_Character_Spritesheet.png");
 
 	// Explosion particle
-	explosion.anim.PushBack({274, 296, 33, 30});
-	explosion.anim.PushBack({313, 296, 33, 30});
-	explosion.anim.PushBack({346, 296, 33, 30});
-	explosion.anim.PushBack({382, 296, 33, 30});
-	explosion.anim.PushBack({419, 296, 33, 30});
-	explosion.anim.PushBack({457, 296, 33, 30});
-	explosion.anim.loop = false;
-	explosion.anim.speed = 0.3f;
+	diceAbility.anim.PushBack({ 192, 0, 64, 32 });
+	diceAbility.anim.PushBack({ 192, 32, 64, 32 });
+	diceAbility.anim.loop = true;
+	diceAbility.speed.x = 5;
+	diceAbility.anim.speed = 0.1f;
+	diceBasicAttack.lifetime = 180;
 
-	laser.anim.PushBack({ 232, 103, 16, 12 });
-	laser.anim.PushBack({ 249, 103, 16, 12 });
-	laser.speed.x = 5;
-	laser.lifetime = 180;
-	laser.anim.speed = 0.2f;
+	diceBasicAttack.anim.PushBack({ 225, 65, 13, 13 });
+	diceBasicAttack.speed.x = 5;
+	diceBasicAttack.lifetime = 180;
 
-	cardAttackMelee.anim.PushBack({ 456, 453, 32, 64 });
+	cardAttackMelee.anim.PushBack({ 768, 576, 32, 64 });
 	cardAttackMelee.lifetime = 10;
+
+	cardDeath.anim.PushBack({ 768, 0, 32, 64 });
+	cardDeath.anim.PushBack({ 800, 0, 32, 64 });
+	cardDeath.anim.PushBack({ 832, 0, 32, 64 });
+	cardDeath.anim.PushBack({ 864, 0, 32, 64 });
+	cardDeath.lifetime = 180;
+	cardDeath.anim.speed = 0.2;
+	cardDeath.anim.loop = false;
 
 	return true;
 }
@@ -119,7 +124,10 @@ Update_Status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			App->render->Blit(texture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			if (isShot)
+				App->render->Blit(baseCardTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			if (isBaseCard)
+				App->render->Blit(handTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
 

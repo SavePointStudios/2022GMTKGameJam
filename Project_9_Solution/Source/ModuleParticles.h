@@ -53,18 +53,23 @@ public:
 	Particle* AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 public:
-	//Template particle for an explosion
-	Particle explosion;
+	//Template particle for an diceHability
+	Particle diceAbility;
 
-	//Template particle for a laser
-	Particle laser;
+	//Template particle for a diceBasicAttack
+	Particle diceBasicAttack;
 
-	//Template particle for a laser
+	//Template particle for a diceBasicAttack
 	Particle cardAttackMelee;
+	Particle cardDeath;
 
 private:
 	// Particles spritesheet loaded into an SDL Texture
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* handTexture = nullptr;
+	SDL_Texture* baseCardTexture = nullptr;
+
+	bool isShot = false;
+	bool isBaseCard = false;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
