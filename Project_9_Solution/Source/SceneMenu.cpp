@@ -26,7 +26,9 @@ bool SceneMenu::Start() {
 	//App->audio->PlayMusic("Assets/Music/introTitle.ogg", 1.0f);
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	fontId = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
-
+	
+	// menu Music
+	App->audio->PlayMusic("Assets/Music/Menu.ogg");
 	
 	selection = 0;
 	return ret;
