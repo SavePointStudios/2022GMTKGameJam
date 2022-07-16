@@ -19,6 +19,7 @@ struct Collider
 		PLAYER_SHOT_BREAKER,
 		ENEMY_SHOT,
 		BREAKABLE,
+		POWERUP,
 		MAX
 	};
 
