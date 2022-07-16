@@ -52,12 +52,14 @@ public:
 	//Hability damage
 	int hability = 50;
 
-	// The player spritesheet loaded into an SDL_Texture
+	// The spritesheets loaded into an SDL_Texture
 	SDL_Texture* diceTexture = nullptr;
+	SDL_Texture* diceHandTexture = nullptr;
 	
-	// The pointer to the current player animation
-	// It will be switched depending on the player's movement direction
-	Animation* currentAnimation = nullptr;
+	// The pointer to the current animation
+	// It will be switched depending on the movement direction
+	Animation* currentDiceAnimation = nullptr;
+	Animation* currentDiceHandAnimation = nullptr;
 
 	// A set of animations
 	Animation idleAnimRight;

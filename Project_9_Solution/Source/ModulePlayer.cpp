@@ -17,29 +17,29 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
 	// idle animation right
 	idleAnimRight.PushBack({ 0, 0, 32, 32 });
-	idleAnimRight.PushBack({ 33, 0, 32, 32 });
-	idleAnimRight.PushBack({ 65, 0, 32, 32 });
+	idleAnimRight.PushBack({ 32, 0, 32, 32 });
+	idleAnimRight.PushBack({ 64, 0, 32, 32 });
 	idleAnimRight.loop = true;
 	idleAnimRight.speed = 0.1f;
 
 	// idle animation left
-	idleAnimLeft.PushBack({ 0, 33, 32, 32 });
-	idleAnimLeft.PushBack({ 33, 33, 32, 32 });
-	idleAnimLeft.PushBack({ 65, 33, 32, 32 });
+	idleAnimLeft.PushBack({ 0, 32, 32, 32 });
+	idleAnimLeft.PushBack({ 32, 32, 32, 32 });
+	idleAnimLeft.PushBack({ 64, 32, 32, 32 });
 	idleAnimLeft.loop = true;
 	idleAnimLeft.speed = 0.1f;
 
 	// idle animation down
-	idleAnimDown.PushBack({ 0, 65, 32, 32 });
-	idleAnimDown.PushBack({ 33, 65, 32, 32 });
-	idleAnimDown.PushBack({ 65, 65, 32, 32 });
+	idleAnimDown.PushBack({ 0, 64, 32, 32 });
+	idleAnimDown.PushBack({ 32, 64, 32, 32 });
+	idleAnimDown.PushBack({ 64, 64, 32, 32 });
 	idleAnimDown.loop = true;
 	idleAnimDown.speed = 0.1f;
 
 	// idle animation up
-	idleAnimUp.PushBack({ 0, 97, 32, 32 });
-	idleAnimUp.PushBack({ 33, 97, 32, 32 });
-	idleAnimUp.PushBack({ 65, 97, 32, 32 });
+	idleAnimUp.PushBack({ 0, 96, 32, 32 });
+	idleAnimUp.PushBack({ 32, 96, 32, 32 });
+	idleAnimUp.PushBack({ 64, 96, 32, 32 });
 	idleAnimUp.loop = true;
 	idleAnimUp.speed = 0.1f;
 
@@ -269,7 +269,10 @@ bool ModulePlayer::Start()
 	bool ret = true;
 
 	diceTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
-	currentAnimation = &idleAnimRight;
+	currentDiceAnimation = &idleAnimRight;
+
+	diceHandTexture = App->textures->Load("Assets/Sprites/Hand_Character_Spritesheet.png");
+	currentDiceHandAnimation = &idleHandAnimRight;
 
 	shootFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav");
 	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav");
@@ -328,16 +331,20 @@ Update_Status ModulePlayer::Update()
 			switch (direction)
 			{
 			case 0:
-				currentAnimation = &upAnim;
+				currentDiceAnimation = &upAnim;
+				currentDiceHandAnimation = &idleHandAnimUp;
 				break;
 			case 1:
-				currentAnimation = &leftAnim;
+				currentDiceAnimation = &leftAnim;
+				currentDiceHandAnimation = &idleHandAnimLeft;
 				break;
 			case 2:
-				currentAnimation = &downAnim;
+				currentDiceAnimation = &downAnim;
+				currentDiceHandAnimation = &idleHandAnimDown;
 				break;
 			case 3:
-				currentAnimation = &rightAnim;
+				currentDiceAnimation = &rightAnim;
+				currentDiceHandAnimation = &idleHandAnimRight;
 				break;
 			default:
 				break;
@@ -351,22 +358,25 @@ Update_Status ModulePlayer::Update()
 			switch (direction)
 			{
 			case 0:
-				currentAnimation = &upAnim;
+				currentDiceAnimation = &upAnim;
+				currentDiceHandAnimation = &idleHandAnimUp;
 				break;
 			case 1:
-				currentAnimation = &leftAnim;
+				currentDiceAnimation = &leftAnim;
+				currentDiceHandAnimation = &idleHandAnimLeft;
 				break;
 			case 2:
-				currentAnimation = &downAnim;
+				currentDiceAnimation = &downAnim;
+				currentDiceHandAnimation = &idleHandAnimDown;
 				break;
 			case 3:
-				currentAnimation = &rightAnim;
+				currentDiceAnimation = &rightAnim;
+				currentDiceHandAnimation = &idleHandAnimRight;
 				break;
 			default:
 				break;
 			}
 		}
-
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 		{
 			position.y += speed;
@@ -374,16 +384,20 @@ Update_Status ModulePlayer::Update()
 			switch (direction)
 			{
 			case 0:
-				currentAnimation = &upAnim;
+				currentDiceAnimation = &upAnim;
+				currentDiceHandAnimation = &idleHandAnimUp;
 				break;
 			case 1:
-				currentAnimation = &leftAnim;
+				currentDiceAnimation = &leftAnim;
+				currentDiceHandAnimation = &idleHandAnimLeft;
 				break;
 			case 2:
-				currentAnimation = &downAnim;
+				currentDiceAnimation = &downAnim;
+				currentDiceHandAnimation = &idleHandAnimDown;
 				break;
 			case 3:
-				currentAnimation = &rightAnim;
+				currentDiceAnimation = &rightAnim;
+				currentDiceHandAnimation = &idleHandAnimRight;
 				break;
 			default:
 				break;
@@ -397,16 +411,20 @@ Update_Status ModulePlayer::Update()
 			switch (direction)
 			{
 			case 0:
-				currentAnimation = &upAnim;
+				currentDiceAnimation = &upAnim;
+				currentDiceHandAnimation = &idleHandAnimUp;
 				break;
 			case 1:
-				currentAnimation = &leftAnim;
+				currentDiceAnimation = &leftAnim;
+				currentDiceHandAnimation = &idleHandAnimLeft;
 				break;
 			case 2:
-				currentAnimation = &downAnim;
+				currentDiceAnimation = &downAnim;
+				currentDiceHandAnimation = &idleHandAnimDown;
 				break;
 			case 3:
-				currentAnimation = &rightAnim;
+				currentDiceAnimation = &rightAnim;
+				currentDiceHandAnimation = &idleHandAnimRight;
 				break;
 			default:
 				break;
@@ -458,16 +476,20 @@ Update_Status ModulePlayer::Update()
 			switch (direction)
 			{
 			case 0:
-				currentAnimation = &idleAnimUp;
+				currentDiceAnimation = &idleAnimUp;
+				currentDiceHandAnimation = &idleHandAnimUp;
 				break;
 			case 1:
-				currentAnimation = &idleAnimLeft;
+				currentDiceAnimation = &idleAnimLeft;
+				currentDiceHandAnimation = &idleHandAnimLeft;
 				break;
 			case 2:
-				currentAnimation = &idleAnimDown;
+				currentDiceAnimation = &idleAnimDown;
+				currentDiceHandAnimation = &idleHandAnimDown;
 				break;
 			case 3:
-				currentAnimation = &idleAnimRight;
+				currentDiceAnimation = &idleAnimRight;
+				currentDiceHandAnimation = &idleHandAnimRight;
 				break;
 			default:
 				break;
@@ -482,7 +504,7 @@ Update_Status ModulePlayer::Update()
 		if (lifePlayer > 6) { lifePlayer = 6; }
 	}
   
-  if (lifePlayer <= 0 && !destroyed) {
+	if (lifePlayer <= 0 && !destroyed) {
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 60);
 
 		destroyed = true;
@@ -490,7 +512,8 @@ Update_Status ModulePlayer::Update()
 
 	collider->SetPos(position.x, position.y);
 
-	currentAnimation->Update();
+	currentDiceAnimation->Update();
+	currentDiceHandAnimation->Update();
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -499,8 +522,11 @@ Update_Status ModulePlayer::PostUpdate()
 {
 	if (!destroyed)
 	{
-		SDL_Rect rect = currentAnimation->GetCurrentFrame();
+		SDL_Rect rect = currentDiceAnimation->GetCurrentFrame();
 		App->render->Blit(diceTexture, position.x, position.y, &rect);
+
+		SDL_Rect rect2 = currentDiceHandAnimation->GetCurrentFrame();
+		App->render->Blit(diceHandTexture, position.x-20, position.y, &rect2);
 	}
 
 	// Draw UI (life) --------------------------------------
