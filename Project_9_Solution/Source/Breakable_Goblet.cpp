@@ -26,6 +26,6 @@ void Breakable_Goblet::Update() {
 }
 
 void Breakable_Goblet::OnCollision(Collider* collider) {
-	// would be good to show wood/metal/plastic particles dropping
-	// play fx
+	//App->particles->AddParticle();
+	Breakable::OnCollision(collider);
 }

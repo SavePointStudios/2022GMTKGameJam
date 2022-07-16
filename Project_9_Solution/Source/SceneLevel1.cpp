@@ -27,7 +27,7 @@ bool SceneLevel1::Start()
 
 	bool ret = true;
 
-	bgTexture = App->textures->Load("Assets/Sprites/map_base.png");
+	bgTexture = App->textures->Load("Assets/Sprites/map_scratch.png");
 	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 
 	//Colliders

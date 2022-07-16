@@ -27,7 +27,6 @@ bool SceneMenu::Start() {
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	fontId = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
 
-	
 	selection = 0;
 	return ret;
 }
@@ -36,7 +35,7 @@ Update_Status SceneMenu::Update() {
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	App->fonts->BlitText(250, 25, 0, "just dice");
+	App->fonts->BlitText(250, 25, 0, "just dice"); // need to change game title
 	App->fonts->BlitText(50, 75, 0, "start");
 	App->fonts->BlitText(50, 100, 0, "credits");
 	App->fonts->BlitText(50, 125, 0, "exit");
