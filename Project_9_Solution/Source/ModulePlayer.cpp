@@ -15,20 +15,73 @@
 
 ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 {
-	// idle animation - just one sprite
-	idleAnim.PushBack({ 66, 1, 32, 14 });
+	// idle animation right
+	idleAnimRight.PushBack({ 0, 0, 32, 32 });
+	idleAnimRight.PushBack({ 33, 0, 32, 32 });
+	idleAnimRight.PushBack({ 65, 0, 32, 32 });
+	idleAnimRight.loop = true;
+	idleAnimRight.speed = 0.1f;
 
-	// move upwards
-	upAnim.PushBack({ 100, 1, 32, 14 });
-	upAnim.PushBack({ 132, 0, 32, 14 });
-	upAnim.loop = false;
-	upAnim.speed = 0.1f;
+	// idle animation left
+	idleAnimLeft.PushBack({ 0, 33, 32, 32 });
+	idleAnimLeft.PushBack({ 33, 33, 32, 32 });
+	idleAnimLeft.PushBack({ 65, 33, 32, 32 });
+	idleAnimLeft.loop = true;
+	idleAnimLeft.speed = 0.1f;
+
+	// idle animation down
+	idleAnimDown.PushBack({ 0, 65, 32, 32 });
+	idleAnimDown.PushBack({ 33, 65, 32, 32 });
+	idleAnimDown.PushBack({ 65, 65, 32, 32 });
+	idleAnimDown.loop = true;
+	idleAnimDown.speed = 0.1f;
+
+	// idle animation up
+	idleAnimUp.PushBack({ 0, 97, 32, 32 });
+	idleAnimUp.PushBack({ 33, 97, 32, 32 });
+	idleAnimUp.PushBack({ 65, 97, 32, 32 });
+	idleAnimUp.loop = true;
+	idleAnimUp.speed = 0.1f;
+
+	// Move right
+	rightAnim.PushBack({ 0,  128, 32, 32 });
+	rightAnim.PushBack({ 32, 128, 32, 32 });
+	rightAnim.PushBack({ 64, 128, 32, 32 });
+	rightAnim.PushBack({ 96, 128, 32, 32 });
+	rightAnim.PushBack({ 128, 128, 32, 32 });
+	rightAnim.PushBack({ 160, 128, 32, 32 });
+	rightAnim.loop = true;
+	rightAnim.speed = 0.1f;
+
+	// Move left
+	leftAnim.PushBack({ 0, 160, 32, 32 });
+	leftAnim.PushBack({ 32, 160, 32, 32 });
+	leftAnim.PushBack({ 64, 160, 32, 32 });
+	leftAnim.PushBack({ 96, 160, 32, 32 });
+	leftAnim.PushBack({ 128, 160, 32, 32 });
+	leftAnim.PushBack({ 160, 160, 32, 32 });
+	leftAnim.loop = true;
+	leftAnim.speed = 0.1f;
 
 	// Move down
-	downAnim.PushBack({ 33, 1, 32, 14 });
-	downAnim.PushBack({ 0, 1, 32, 14 });
-	downAnim.loop = false;
+	downAnim.PushBack({ 0, 192, 32, 32 });
+	downAnim.PushBack({ 32, 192, 32, 32 });
+	downAnim.PushBack({ 64, 192, 32, 32 });
+	downAnim.PushBack({ 96, 192, 32, 32 });
+	downAnim.PushBack({ 128, 192, 32, 32 });
+	downAnim.PushBack({ 160, 192, 32, 32 });
+	downAnim.loop = true;
 	downAnim.speed = 0.1f;
+
+	// move upwards
+	upAnim.PushBack({ 0, 224, 32, 32 });
+	upAnim.PushBack({ 32, 224, 32, 32 });
+	upAnim.PushBack({ 64, 224, 32, 32 });
+	upAnim.PushBack({ 96, 224, 32, 32 });
+	upAnim.PushBack({ 128, 224, 32, 32 });
+	upAnim.PushBack({ 160, 224, 32, 32 });
+	upAnim.loop = true;
+	upAnim.speed = 0.1f;
 }
 
 ModulePlayer::~ModulePlayer()
@@ -42,8 +95,8 @@ bool ModulePlayer::Start()
 
 	bool ret = true;
 
-	//texture = App->textures->Load("Assets/Sprites/ship.png");
-	currentAnimation = &idleAnim;
+	diceTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
+	currentAnimation = &idleAnimRight;
 
 	//laserFx = App->audio->LoadFx("Assets/Fx/laser.wav");
 	explosionFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
@@ -54,11 +107,12 @@ bool ModulePlayer::Start()
 	destroyed = false;
 
 	lifePlayer = 1;
+	direction = 3;
 
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
-	Font = App->fonts->Load("Assets/Fonts/rtype_font3.png", lookupTable, 2);
+	Font = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 
 	return ret;
 }
@@ -95,30 +149,92 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 		{
 			position.x -= speed;
+
+			switch (direction)
+			{
+			case 0:
+				currentAnimation = &upAnim;
+				break;
+			case 1:
+				currentAnimation = &leftAnim;
+				break;
+			case 2:
+				currentAnimation = &downAnim;
+				break;
+			case 3:
+				currentAnimation = &rightAnim;
+				break;
+			default:
+				break;
+			}
 		}
 
 		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT)
 		{
 			position.x += speed;
+
+			switch (direction)
+			{
+			case 0:
+				currentAnimation = &upAnim;
+				break;
+			case 1:
+				currentAnimation = &leftAnim;
+				break;
+			case 2:
+				currentAnimation = &downAnim;
+				break;
+			case 3:
+				currentAnimation = &rightAnim;
+				break;
+			default:
+				break;
+			}
 		}
 
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 		{
 			position.y += speed;
-			if (currentAnimation != &downAnim)
+
+			switch (direction)
 			{
-				downAnim.Reset();
+			case 0:
+				currentAnimation = &upAnim;
+				break;
+			case 1:
+				currentAnimation = &leftAnim;
+				break;
+			case 2:
 				currentAnimation = &downAnim;
+				break;
+			case 3:
+				currentAnimation = &rightAnim;
+				break;
+			default:
+				break;
 			}
 		}
 
 		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
 		{
 			position.y -= speed;
-			if (currentAnimation != &upAnim)
+
+			switch (direction)
 			{
-				upAnim.Reset();
+			case 0:
 				currentAnimation = &upAnim;
+				break;
+			case 1:
+				currentAnimation = &leftAnim;
+				break;
+			case 2:
+				currentAnimation = &downAnim;
+				break;
+			case 3:
+				currentAnimation = &rightAnim;
+				break;
+			default:
+				break;
 			}
 		}
 #pragma endregion
@@ -142,12 +258,6 @@ Update_Status ModulePlayer::Update()
 			direction = 2;
 			App->particles->laser.speed.x = 0;
 			App->particles->laser.speed.y = -5;
-
-			if (currentAnimation != &downAnim)
-			{
-				downAnim.Reset();
-				currentAnimation = &downAnim;
-			}
 		}
 
 		if (App->input->keys[SDL_SCANCODE_RIGHT] == Key_State::KEY_REPEAT)
@@ -155,12 +265,6 @@ Update_Status ModulePlayer::Update()
 			direction = 3;
 			App->particles->laser.speed.x = -5;
 			App->particles->laser.speed.y = 0;
-
-			if (currentAnimation != &upAnim)
-			{
-				upAnim.Reset();
-				currentAnimation = &upAnim;
-			}
 		}
 
 		if (App->input->keys[SDL_SCANCODE_SPACE] == Key_State::KEY_DOWN)
@@ -175,15 +279,32 @@ Update_Status ModulePlayer::Update()
 		}
 
 		// If no up/down movement detected, set the current animation back to idle
-		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE
-			&& App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE)
-			currentAnimation = &idleAnim;
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_IDLE) {
+			switch (direction)
+			{
+			case 0:
+				currentAnimation = &idleAnimUp;
+				break;
+			case 1:
+				currentAnimation = &idleAnimLeft;
+				break;
+			case 2:
+				currentAnimation = &idleAnimDown;
+				break;
+			case 3:
+				currentAnimation = &idleAnimRight;
+				break;
+			default:
+				break;
+			}
+		}
 
 	}
 
 	if (App->input->keys[SDL_SCANCODE_Q] == Key_State::KEY_DOWN)
 	{
 		lifePlayer++;
+		if (lifePlayer > 6) { lifePlayer = 6; }
 	}
   
   if (lifePlayer <= 0 && !destroyed) {
@@ -204,7 +325,7 @@ Update_Status ModulePlayer::PostUpdate()
 	if (!destroyed)
 	{
 		SDL_Rect rect = currentAnimation->GetCurrentFrame();
-		App->render->Blit(texture, position.x, position.y, &rect);
+		App->render->Blit(diceTexture, position.x, position.y, &rect);
 	}
 
 	// Draw UI (life) --------------------------------------

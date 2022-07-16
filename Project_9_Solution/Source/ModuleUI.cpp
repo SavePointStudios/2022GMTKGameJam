@@ -33,9 +33,8 @@ bool ModuleUI::Start()
 
 	//uiSprites = App->textures->Load("Assets/Spriteswind/Sprites/UI/UISpriteSheetFinal.png");
 
-	char lookupTable1[] = { "0123456789" };
-
-	ScoreFont = App->fonts->Load("Assets/Fonts/Score.png", lookupTable1, 1);
+	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
+	ScoreFont = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 
 	//winnerRefereeSFX = App->audio->LoadFx("Assets/Sound_Effects(SFX)wind/Referee/WinnerReferee.wav");
 

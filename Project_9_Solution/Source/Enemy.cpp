@@ -58,6 +58,7 @@ void Enemy::lookAtPlayer()
 
 void Enemy::OnCollision(Collider* collider)
 {
+
 	if (collider->type == Collider::Type::UP_WALL)
 	{
 		position.y += 2   ;
@@ -82,6 +83,7 @@ void Enemy::OnCollision(Collider* collider)
 
 		SetToDelete();
 	}
+
 }
 
 void Enemy::SetToDelete()
