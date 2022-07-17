@@ -4,6 +4,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
+#include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
 
 #include "ModuleFonts.h"
@@ -13,7 +14,7 @@ using namespace std;
 Enemy_BaseCard::Enemy_BaseCard(int x, int y) : Enemy(x, y)
 {
 	initAnimations();
-	
+	healthPoints = NUMHEALTH;
 	collider = App->collisions->AddCollider({0, 0, 32, 64}, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
@@ -31,6 +32,12 @@ void Enemy_BaseCard::Update()
 	if (attacking)
 		attack();
 
+	if (healthPoints <= 0) {
+		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
+		App->audio->PlayFx(destroyedFx);
+
+		SetToDelete();
+	}
 	Enemy::Update();
 }
 
