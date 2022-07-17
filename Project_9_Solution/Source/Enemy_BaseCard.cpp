@@ -28,15 +28,23 @@ void Enemy_BaseCard::Update()
 {
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
-	
-	if ((distance.x > 30 || distance.x < -30 || distance.y > 30 || distance.y < -30) && !attacking)
-		updateMovement();
 
-	else if (!attacking)
-		startAttack();
+	if (spread)
+	{
+		position.x += 2 * cos(beta);
+		position.y += 2 * sin(beta);
+	}
+	else if (App->debug->GetChase())
+	{
+		if ((distance.x > 30 || distance.x < -30 || distance.y > 30|| distance.y < -30) && !attacking)
+			updateMovement();
 
-	if (attacking)
-		attack();
+		else if (!attacking)
+			startAttack();
+
+		if (attacking)
+			attack();
+	}
 
 	
 	Enemy::Update();
@@ -80,10 +88,11 @@ void Enemy_BaseCard::attack()
 {
 	currentTime = SDL_GetTicks();
 
-	if (currentTime - startTimer >= 1000 && currentTime - startTimer <= 1100)
-	{
 
+	if (currentTime - startTimer >= 500 && currentTime - startTimer <= 600)
+	{
 		App->audio->PlayFx(attackFx);
+
 		//Down
 		if (degrees > 45 && degrees < 135)
 		{
@@ -113,7 +122,7 @@ void Enemy_BaseCard::attack()
 		}
 	}
 
-	if (attacking && currentTime - startTimer > 1200)
+	if (attacking && currentTime - startTimer > 700)
 	{
 		switch (attackdir)
 		{

@@ -11,7 +11,6 @@
 
 Enemy::Enemy(int x, int y) : position(x, y)
 {
-	position.x = 424; position.y = 242; //provisional so that it spawns inside the map
 	spawnPos = position;
 }
 

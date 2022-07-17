@@ -34,6 +34,7 @@ bool SceneLevel1::Start()
 	App->audio->PlayMusic("Assets/Music/Stage1.ogg", 1.0f); // music that plays in the first room
 	//App->audio->PlayMusic("Assets/Music/Stage2.ogg", 1.0f); // music that plays in the second room
 	//App->audio->PlayMusic("Assets/Music/Final boss.ogg", 1.0f); // music that plays in the final boss fight room
+	//App->audio->PlayMusic("Assets/Music/All enemies killed.ogg", 1.0f); // ambiance that plays when you kill a room boss
 
 	//Colliders
 

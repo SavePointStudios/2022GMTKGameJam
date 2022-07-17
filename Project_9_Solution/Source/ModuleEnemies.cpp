@@ -1,26 +1,23 @@
 #include "ModuleEnemies.h"
-
 #include "Application.h"
-
 #include "ModuleRender.h"
 #include "ModuleTextures.h"
 #include "ModuleAudio.h"
-
 #include "Enemy.h"
 #include "Enemy_Basecard.h"
 #include "Enemy_Boss.h"
+#include "Enemy_QK.h"
 
 #define SPAWN_MARGIN	80
 
 ModuleEnemies::ModuleEnemies(bool startEnabled) : Module(startEnabled)
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 		enemies[i] = nullptr;
 }
 
 ModuleEnemies::~ModuleEnemies()
 {
-
 }
 
 bool ModuleEnemies::Start()
@@ -29,10 +26,10 @@ bool ModuleEnemies::Start()
 	bossTexture = App->textures->Load("Assets/Sprites/AceClubs-Sheet.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
+	QK_midboss = App->textures->Load("Assets / Sprites / midboss.png");
 
 	return true;
 }
-
 
 Update_Status ModuleEnemies::PreUpdate()
 {
@@ -45,7 +42,6 @@ Update_Status ModuleEnemies::PreUpdate()
 			enemies[i] = nullptr;
 		}
 	}
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -55,7 +51,7 @@ Update_Status ModuleEnemies::Update()
 
 	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr)
+		if (enemies[i] != nullptr)
 			enemies[i]->Update();
 	}
 
@@ -69,7 +65,6 @@ Update_Status ModuleEnemies::PostUpdate()
 		if (enemies[i] != nullptr)
 			enemies[i]->Draw();
 	}
-
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -78,15 +73,14 @@ bool ModuleEnemies::CleanUp()
 {
 	LOG("Freeing all enemies");
 
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr)
+		if (enemies[i] != nullptr)
 		{
 			delete enemies[i];
 			enemies[i] = nullptr;
 		}
 	}
-
 	return true;
 }
 
@@ -94,9 +88,9 @@ bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y)
 {
 	bool ret = false;
 
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(spawnQueue[i].type == Enemy_Type::NO_TYPE)
+		if (spawnQueue[i].type == Enemy_Type::NO_TYPE)
 		{
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
@@ -105,10 +99,8 @@ bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y)
 			break;
 		}
 	}
-
 	return ret;
 }
-
 void ModuleEnemies::HandleEnemiesSpawn()
 {
 	// Iterate all the enemies queue
@@ -121,14 +113,12 @@ void ModuleEnemies::HandleEnemiesSpawn()
 				spawnQueue[i].x * SCREEN_SIZE >= App->render->camera.x - SPAWN_MARGIN &&
 				spawnQueue[i].x * SCREEN_SIZE <= App->render->camera.x + App->render->camera.w + SPAWN_MARGIN) {
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
-
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = Enemy_Type::NO_TYPE; // Removing the newly spawned enemy from the queue
 			}
 		}
 	}
 }
-
 void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 {
 	// Find an empty slot in the enemies array
@@ -138,17 +128,19 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 		{
 			switch (info.type)
 			{
-				case Enemy_Type::BASECARD:
-					enemies[i] = new Enemy_BaseCard(info.x, info.y);
-					break;
-				case Enemy_Type::BOSS:
-					enemies[i] = new Enemy_Boss(info.x, info.y);
-					break;
+			case Enemy_Type::BASECARD:
+				enemies[i] = new Enemy_BaseCard(info.x, info.y);
+				enemies[i]->texture = baseCardTexture;
+				break;
+			case Enemy_Type::BOSS:
+				enemies[i] = new Enemy_Boss(info.x, info.y);
+				enemies[i]->texture = bossTexture;
+				break;
+			case Enemy_Type::QK:
+				enemies[i] = new Enemy_QK(info.x, info.y);
+				enemies[i]->texture = QK_midboss;
+				break;
 			}
-			if(info.type == Enemy_Type::BOSS)
-			enemies[i]->texture = bossTexture;
-			else
-			enemies[i]->texture = baseCardTexture;
 
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
@@ -158,13 +150,12 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 
 void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 {
-	for(uint i = 0; i < MAX_ENEMIES; ++i)
+	for (uint i = 0; i < MAX_ENEMIES; ++i)
 	{
-		if(enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
+		if (enemies[i] != nullptr && enemies[i]->GetCollider() == c1)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 			if (enemies[i]->healthPoints <= 0) {
-				enemies[i]->deathAnimation();
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}

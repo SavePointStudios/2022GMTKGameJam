@@ -9,8 +9,8 @@ Particle::Particle()
 }
 
 Particle::Particle(const Particle& p) : anim(p.anim), position(p.position), speed(p.speed),
-										frameCount(p.frameCount), lifetime(p.lifetime), 
-										isBaseCard(p.isBaseCard), isShot(p.isShot)
+										frameCount(p.frameCount), lifetime(p.lifetime),
+										isBaseCard(p.isBaseCard), isShot(p.isShot), isQK_Shot(p.isQK_Shot)
 {
 
 }
