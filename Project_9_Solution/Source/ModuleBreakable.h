@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-#define MAX_BREAKABLES		170
+#define MAX_BREAKABLES		200
 
 enum class BREAKABLE_TYPE {
 	NO_TYPE,

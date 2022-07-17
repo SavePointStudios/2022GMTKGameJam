@@ -18,19 +18,3 @@ bool Collider::Intersects(const SDL_Rect& r) const
 			rect.y < r.y + r.h &&
 			rect.h + rect.y > r.y);
 }
-
-void Collider::AddListener(Module* listener)
-{
-	for (int i = 0; i < MAX_LISTENERS; ++i)
-	{
-		if (listeners[i] == nullptr)
-		{
-			listeners[i] = listener;
-			break;
-		}
-
-		//Simple security check to avoid adding the same listener twice
-		else if (listeners[i] == listener)
-			break;
-	}
-}
