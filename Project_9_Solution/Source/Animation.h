@@ -21,6 +21,7 @@ private:
 	int pingpongDirection = 1;
 
 	friend class Enemy_BaseCard;
+	friend class Enemy_Boss;
 
 public:
 

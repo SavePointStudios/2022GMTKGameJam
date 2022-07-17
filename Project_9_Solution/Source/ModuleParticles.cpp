@@ -21,6 +21,7 @@ bool ModuleParticles::Start()
 	baseCardTexture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
 	handTexture = App->textures->Load("Assets/Sprites/Hand_Character_Spritesheet.png");
 	QK_Sword = App->textures->Load("Assets/Sprites/midboss_Attack");
+	boss = App->textures->Load("Assets/Sprites/AceClubs-Sheet.png");
 
 	// Explosion particle
 	diceAbilityRight.anim.PushBack({ 192, 0, 64, 32 });
@@ -78,6 +79,26 @@ bool ModuleParticles::Start()
 	QK_SwordAttack.speed.x = 5;
 	QK_SwordAttack.lifetime = 180;
 	QK_SwordAttack.isQK_Shot = true;
+
+	bossAttackUp.anim.PushBack({ 576, 128, 32, 32 });
+	bossAttackUp.speed.y = 5;
+	bossAttackUp.lifetime = 180;
+	bossAttackUp.isBossShot = true;
+
+	bossAttackDown.anim.PushBack({ 608, 128, 32, 32 });
+	bossAttackDown.speed.y = -5;
+	bossAttackDown.lifetime = 180;
+	bossAttackDown.isBossShot = true;
+
+	bossAttackLeft.anim.PushBack({ 608, 160, 32, 32 });
+	bossAttackLeft.speed.x = 5;
+	bossAttackLeft.lifetime = 180;
+	bossAttackLeft.isBossShot = true;
+
+	bossAttackRight.anim.PushBack({ 576, 160, 32, 32 });
+	bossAttackRight.speed.x = -5;
+	bossAttackRight.lifetime = 180;
+	bossAttackRight.isBossShot = true;
 
 	return true;
 }
@@ -160,6 +181,9 @@ Update_Status ModuleParticles::PostUpdate()
 
 			else if (particle->isQK_Shot)
 				App->render->Blit(QK_Sword, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+
+			else if (particle->isBossShot)
+				App->render->Blit(boss, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
 

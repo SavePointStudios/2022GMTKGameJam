@@ -120,6 +120,13 @@ Update_Status SceneLevel1::Update()
 {
 	App->render->camera.x += 0;
 
+	if ((App->player->position.x < 840 && App->player->position.y > 1620) && !bossHasSpawned)
+	{
+		bossHasSpawned = true;
+		App->enemies->AddEnemy(Enemy_Type::BOSS, 400, 1600);
+	}
+	
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 

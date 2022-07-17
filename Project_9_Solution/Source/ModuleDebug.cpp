@@ -50,6 +50,11 @@ Update_Status ModuleDebug::Update() {
 			App->player->lifePlayer++;
 			if (App->player->lifePlayer > 6) { App->player->lifePlayer = 6; }
 		}
+		if (App->input->keys[SDL_SCANCODE_T] == KEY_DOWN)
+		{
+			App->player->position.x = 1045;
+			App->player->position.y = 1695;
+		}
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -178,18 +183,18 @@ void ModuleDebug::DebugDraw() {
 		//Ejemplo del debug de las variables
 		//App->fonts->BlitText(0, 0, 0, "-GOD MODE");
 		App->fonts->BlitText(10, 0, 0, std::to_string(App->player->position.x).c_str());
-		App->fonts->BlitText(10, 10, 0, std::to_string(App->player->position.y).c_str());
+		App->fonts->BlitText(10, 20, 0, std::to_string(App->player->position.y).c_str());
 
-		App->fonts->BlitText(10, 30, 0, std::to_string(App->player->collider->rect.x).c_str());
-		App->fonts->BlitText(10, 40, 0, std::to_string(App->player->collider->rect.y).c_str());
+		App->fonts->BlitText(10, 50, 0, std::to_string(App->player->collider->rect.x).c_str());
+		App->fonts->BlitText(10, 70, 0, std::to_string(App->player->collider->rect.y).c_str());
 
 
 		//App->fonts->BlitText(10, 60, 0, std::to_string(App->enemies->enemies[0]->alpha).c_str());
 		//App->fonts->BlitText(10, 70, 0, std::to_string(App->enemies->enemies[0]->degrees).c_str());
 
 		//App->fonts->BlitText(10, 100, 0, std::to_string(sqrt(pow(App->enemies->enemies[0]->distance.x,2)+ pow(App->enemies->enemies[0]->distance.y, 2))).c_str());
-		App->fonts->BlitText(10, 110, 0, std::to_string(App->enemies->enemies[0]->distance.x).c_str());
-		App->fonts->BlitText(10, 120, 0, std::to_string(App->enemies->enemies[0]->distance.y).c_str());
+		//App->fonts->BlitText(10, 110, 0, std::to_string(App->enemies->enemies[0]->distance.x).c_str());
+		//App->fonts->BlitText(10, 120, 0, std::to_string(App->enemies->enemies[0]->distance.y).c_str());
 	}
 
 	//Spawn Basic enemies debug

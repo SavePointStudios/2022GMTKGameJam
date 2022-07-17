@@ -57,6 +57,7 @@ public:
 	bool isShot = false;
 	bool isQK_Shot = false;
 	bool isBaseCard = false;
+	bool isBossShot = false;
 };
 
 #endif //__PARTICLE_H__
