@@ -870,27 +870,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE) {
-		switch (movementPlayer)
-		{
-		case 0:
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT) {
 			//Up
-			position.y += speed;
-			break;
-		case 1:
-			//Left
-			position.x += speed;
-			break;
-		case 2:
-			//Down
-			position.y -= speed;
-			break;
-		case 3:
-			//Right
-			position.x -= speed;
-			break;
-		default:
-			break;
+			position.y += speed + 1;
 		}
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) {
+			//Left
+			position.x += speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) {
+			//Down
+			position.y -= speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) {
+			//Right
+			position.x -= speed + 1;
+		}
+
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
