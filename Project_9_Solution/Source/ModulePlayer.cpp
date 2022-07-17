@@ -669,12 +669,6 @@ Update_Status ModulePlayer::Update()
 		}
 
 	}
-
-	if (App->input->keys[SDL_SCANCODE_Q] == Key_State::KEY_DOWN)
-	{
-		lifePlayer++;
-		if (lifePlayer > 6) { lifePlayer = 6; }
-	}
   
 	if (lifePlayer <= 0 && !destroyed) {
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 60);
@@ -749,11 +743,5 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		App->audio->PlayFx(dieFx);
 
 		lifePlayer--;
-	}
-
-	if (c1->type == Collider::Type::PLAYER_SHOT && c2->type == Collider::Type::ENEMY)
-	{
-		lifePlayer++;
-		if (lifePlayer > 6) { lifePlayer = 6; }
 	}
 }
