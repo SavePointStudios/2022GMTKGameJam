@@ -61,6 +61,8 @@ public:
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();
 
+	void SpreadEnemies();
+
 private:
 	// Spawns a new enemy using the data from the queue
 	void SpawnEnemy(const EnemySpawnpoint& info);

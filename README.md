@@ -44,12 +44,16 @@ _Ethan Martin's Github and role_
 + Code & Quality Assurance
 + [Ethanm-0371](https://github.com/Ethanm-0371)
 
+_Jan Neto's Github and role_
++ Code & Quality Assurance
++ [JanNetoLlorens](https://github.com/JanNetoLlorens)
+
 _Adrián Ponce's Github and role_
 +  Artist & Designer
 + [AdrianGPJ](https://github.com/AdrianGPJ)
 
 _Júlia Serra's Github and role_
-+ Code
++ Artist & Designer
 + [softdrawss](https://github.com/softdrawss)
 
 _Ariadna Sevcik's Github and role_
@@ -59,3 +63,7 @@ _Ariadna Sevcik's Github and role_
 _Hèctor Garcia's Github and role_
 + Artist & Designer 
 + [Neidragon](https://github.com/Neidragon)
+
+_Luis González's Github and role_
++ Artist & Designer 
++ [punto16](https://github.com/punto16)
