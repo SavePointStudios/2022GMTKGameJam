@@ -70,6 +70,9 @@ public:
 	//Template particle for a QK_BasicAttack
 	Particle QK_SwordAttack;
 
+	//Template
+	Particle deathAnimBoss;
+
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* handTexture = nullptr;
