@@ -380,28 +380,24 @@ Update_Status ModulePlayer::Update()
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityUp, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 1:
 				shotSpawn.y -= 32;
 				shotSpawn.x -= 50;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityLeft, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 2:
 				shotSpawn.y += 10;
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityDown, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 3:
 				shotSpawn.y -= 20;
 				shotSpawn.x += 20;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityRight, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			default:
 				break;
@@ -540,7 +536,6 @@ Update_Status ModulePlayer::Update()
 				break;
 			}
 			Particle* newParticle = App->particles->AddParticle(App->particles->diceBasicAttack, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT);
-			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(shootFx);
 		}
 
