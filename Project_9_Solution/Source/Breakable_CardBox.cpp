@@ -7,21 +7,13 @@
 #include "ModulePlayer.h"
 
 Breakable_CardBox::Breakable_CardBox(int x, int y, unsigned short version) : Breakable(x, y) {
-	collider = App->collisions->AddCollider({ 0, 0, 48, 24 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
-	//destroyedFx = App->audio->LoadFx();
+	collider = App->collisions->AddCollider({ 0, 0, 32, 32 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
+
 	switch (version) {
-		// in case if we want different cardboxes with diff texture
-	case 1:
-		animation.PushBack({ 0,96,32,32 });
-		break;
 	default:
-		// default
-		animation.PushBack({ 5,72,21,22 });
+		animation.PushBack({ 96,0,32,32 });
 		break;
 	}
-
-	// Fx
-	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/card box break.wav");
 
 	currentAnim = &animation;
 }

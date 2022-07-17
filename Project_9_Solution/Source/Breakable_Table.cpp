@@ -5,11 +5,9 @@
 #include "ModuleAudio.h"
 
 Breakable_Table::Breakable_Table(int x, int y, unsigned short version) : Breakable(x, y) {
+	collider = App->collisions->AddCollider({ 0, 0, 48, 24 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
 
-	//destroyedFx = App->audio->LoadFx();
 	switch (version) {
-		collider = App->collisions->AddCollider({ 0, 0, 48, 24 }, Collider::Type::BREAKABLE, (Module*)App->breakables);
-		// in case if we want different table with diff texture
 	case 1:
 		// horizontal
 		animation.PushBack({ 0,64,32,32 });
@@ -21,8 +19,7 @@ Breakable_Table::Breakable_Table(int x, int y, unsigned short version) : Breakab
 		break;
 	}
 
-	// Fx
-	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/table break.wav");
+	destroyedFx = App->audio->LoadFx("Assets/Fx/Props/table break.wav");
 
 	currentAnim = &animation;
 }

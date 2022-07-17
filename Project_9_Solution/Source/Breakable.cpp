@@ -33,5 +33,6 @@ void Breakable::Draw() {
 }
 
 void Breakable::OnCollision(Collider* collider) {
-	App->audio->PlayFx(destroyedFx);
+	if (collider->type == Collider::Type::PLAYER_SHOT_BREAKER)
+		App->audio->PlayFx(destroyedFx);
 }

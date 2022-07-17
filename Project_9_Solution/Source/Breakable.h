@@ -36,6 +36,7 @@ public:
 	// The breakable's texture
 	SDL_Texture* texture = nullptr;
 	bool pendingToDelete = false;
+	int destroyedFx = -1;
 protected:
 	// A ptr to the current animation
 	Animation* currentAnim = nullptr;
@@ -46,7 +47,7 @@ protected:
 	// The breakable's collider
 	Collider* collider = nullptr;
 
-	int destroyedFx = -1;
+	
 
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;
