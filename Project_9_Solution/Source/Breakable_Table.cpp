@@ -21,6 +21,9 @@ Breakable_Table::Breakable_Table(int x, int y, unsigned short version) : Breakab
 		break;
 	}
 
+	// Fx
+	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/table break.wav");
+
 	currentAnim = &animation;
 }
 
