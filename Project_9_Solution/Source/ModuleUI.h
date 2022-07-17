@@ -39,6 +39,17 @@ public:
 	char scoreText[10] = { "\0" };
 	int ScoreFont = -1;
 
+	SDL_Texture* lifeBarTexture = nullptr;
+	Animation* currentLifeBarAnimation = nullptr;
+
+	Animation ceroLifeAnim;
+	Animation oneLifeAnim;
+	Animation twoLifeAnim;
+	Animation threeLifeAnim;
+	Animation fourLifeAnim;
+	Animation fiveLifeAnim;
+	Animation sixLifeAnim;
+
 private:
 
 	//SFX

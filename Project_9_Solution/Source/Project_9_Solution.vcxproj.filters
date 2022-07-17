@@ -94,12 +94,6 @@
     <ClInclude Include="Enemy_BaseCard.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
-    <ClInclude Include="Enemy_Mech.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
-    <ClInclude Include="Enemy_RedBird.h">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClInclude>
     <ClInclude Include="Path.h">
       <Filter>Source Files\Utils</Filter>
     </ClInclude>
@@ -154,7 +148,7 @@
     <ClInclude Include="SceneMenu.h">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClInclude>
-    <ClInclude Include="ModuleQK.h">
+    <ClInclude Include="Enemy_QK.h">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClInclude>
     <ClInclude Include="Enemy_Boss.h">
@@ -213,12 +207,6 @@
     <ClCompile Include="Enemy_BaseCard.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
-    <ClCompile Include="Enemy_Mech.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
-    <ClCompile Include="Enemy_RedBird.cpp">
-      <Filter>Source Files\Entities\Enemies</Filter>
-    </ClCompile>
     <ClCompile Include="Path.cpp">
       <Filter>Source Files\Utils</Filter>
     </ClCompile>
@@ -273,7 +261,7 @@
     <ClCompile Include="SceneMenu.cpp">
       <Filter>Source Files\Modules\Gameplay\Scenes</Filter>
     </ClCompile>
-    <ClCompile Include="ModuleQK.cpp">
+    <ClCompile Include="Enemy_QK.cpp">
       <Filter>Source Files\Entities\Enemies</Filter>
     </ClCompile>
     <ClCompile Include="Enemy_Boss.cpp">
