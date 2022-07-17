@@ -558,6 +558,8 @@ Update_Status ModulePlayer::Update()
 		{
 			position.x -= speed;
 
+			movementPlayer = 1;
+
 			switch (direction)
 			{
 			case 0:
@@ -585,6 +587,8 @@ Update_Status ModulePlayer::Update()
 		{
 			position.x += speed;
 
+			movementPlayer = 3;
+
 			switch (direction)
 			{
 			case 0:
@@ -610,6 +614,8 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 		{
 			position.y += speed;
+
+			movementPlayer = 2;
 
 			switch (direction)
 			{
@@ -637,6 +643,8 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
 		{
 			position.y -= speed;
+
+			movementPlayer = 0;
 
 			switch (direction)
 			{
@@ -745,6 +753,8 @@ Update_Status ModulePlayer::Update()
 
 		// If no up/down movement detected, set the current animation back to idle
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_IDLE) {
+			movementPlayer = 4;
+			
 			switch (direction)
 			{
 			case 0:
@@ -857,6 +867,30 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	else if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::LEFT_WALL)
 	{
 		position.x += speed;
+	}
+
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE) {
+		switch (movementPlayer)
+		{
+		case 0:
+			//Up
+			position.y += speed;
+			break;
+		case 1:
+			//Left
+			position.x += speed;
+			break;
+		case 2:
+			//Down
+			position.y -= speed;
+			break;
+		case 3:
+			//Right
+			position.x -= speed;
+			break;
+		default:
+			break;
+		}
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
