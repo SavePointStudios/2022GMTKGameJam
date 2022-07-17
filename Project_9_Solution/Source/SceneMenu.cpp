@@ -29,7 +29,7 @@ bool SceneMenu::Start() {
 
 	bgTexture = App->textures->Load("Assets/Scenes/0.png");
 	playerTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
-
+	logo = App->textures->Load("Assets/Sprites/logoGame.png");
 	App->audio->PlayMusic("Assets/Music/Menu minor.ogg", 1.0f); // Take minor out if we want the "happy" version
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	fontId = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
@@ -101,7 +101,7 @@ Update_Status SceneMenu::PostUpdate() {
 
 	App->render->Blit(bgTexture, App->render->camera.x, App->render->camera.y, NULL);
 
-	App->fonts->BlitText(250, 25, 0, "just dice"); // need to change game title
+	App->fonts->BlitText(50, 25, 0, "no time to dice"); // need to change game title
 	App->fonts->BlitText(50, 75, 0, "start");
 	App->fonts->BlitText(50, 125, 0, "credits");
 	App->fonts->BlitText(50, 175, 0, "exit");
