@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "ModuleBreakable.h"
 #include "ModulePowerup.h"
+#include "ModuleUI.h"
 
 SceneLevel1::SceneLevel1(bool startEnabled) : Module(startEnabled)
 {
@@ -108,6 +109,7 @@ bool SceneLevel1::Start()
 	App->powerups->Enable();
 	App->breakables->Enable();
 	App->collisions->Enable();
+	App->ui->Enable();
 
 	return ret;
 }
@@ -135,6 +137,7 @@ bool SceneLevel1::CleanUp()
 	App->breakables->Disable();
 	App->powerups->Disable();
 	App->collisions->Disable();
+	App->ui->Disable();
 	
 	return true;
 }
