@@ -85,7 +85,7 @@ void Enemy_Boss::attack()
 }
 
 void Enemy_Boss::deathAnimation() {
-
+	App->particles->AddParticle(App->particles->deathAnimBoss, position.x, position.y + 32, Collider::Type::BOSS);
 }
 
 void Enemy_Boss::initAnimations()
@@ -104,19 +104,6 @@ void Enemy_Boss::initAnimations()
 	spinAnim.PushBack({ 576,0,64,96 });
 	spinAnim.speed = 0.2f;
 	spinAnim.loop = false;
-
-	deathAnim.PushBack({ 0,96,64,96 });
-	deathAnim.PushBack({ 64,96,64,96 });
-	deathAnim.PushBack({ 128,96,64,96 });
-	deathAnim.PushBack({ 192,96,64,96 });
-	deathAnim.PushBack({ 256,96,64,96 });
-	deathAnim.PushBack({ 320,96,64,96 });
-	deathAnim.PushBack({ 384,96,64,96 });
-	deathAnim.PushBack({ 448,96,64,96 });
-	deathAnim.PushBack({ 512,96,64,96 });
-	deathAnim.PushBack({ 576,96,64,96 });
-	deathAnim.speed = 0.2f;
-
 
 	currentAnim = &idleAnim;
 }

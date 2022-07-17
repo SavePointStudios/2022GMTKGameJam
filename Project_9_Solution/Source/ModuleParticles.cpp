@@ -64,8 +64,10 @@ bool ModuleParticles::Start()
 	diceBasicAttack.speed.x = 5;
 	diceBasicAttack.lifetime = 180;
 	diceBasicAttack.isShot = true;
+
 	cardAttackMelee.anim.PushBack({ 768, 576, 32, 64 });
 	cardAttackMelee.lifetime = 10;
+
 	cardDeath.anim.PushBack({ 768, 0, 32, 64 });
 	cardDeath.anim.PushBack({ 800, 0, 32, 64 });
 	cardDeath.anim.PushBack({ 832, 0, 32, 64 });
@@ -79,6 +81,21 @@ bool ModuleParticles::Start()
 	QK_SwordAttack.speed.x = 5;
 	QK_SwordAttack.lifetime = 180;
 	QK_SwordAttack.isQK_Shot = true;
+
+
+	deathAnimBoss.anim.PushBack({ 0,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 64,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 128,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 192,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 256,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 320,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 384,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 448,96,64,96 });
+	deathAnimBoss.anim.PushBack({ 512,96,64,96 });
+	deathAnimBoss.anim.speed = 0.2f;
+	deathAnimBoss.lifetime = 70;
+	deathAnimBoss.anim.loop = false;
+	deathAnimBoss.isBossShot = true;
 
 	bossAttackUp.anim.PushBack({ 576, 128, 32, 32 });
 	bossAttackUp.speed.y = 5;

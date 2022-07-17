@@ -100,6 +100,8 @@ bool SceneLevel1::Start()
 	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1480, 700, 9);
 	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1550, 700, 3);
 	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1620, 700, 2);
+	App->enemies->AddEnemy(Enemy_Type::QK, 1700, 736);
+
 
 	// 3rd room
 	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1960, 870, 6);

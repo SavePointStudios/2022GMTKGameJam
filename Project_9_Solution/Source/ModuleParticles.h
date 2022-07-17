@@ -70,6 +70,9 @@ public:
 	//Template particle for a QK_BasicAttack
 	Particle QK_SwordAttack;
 
+
+	//Template
+	Particle deathAnimBoss;
 	Particle bossAttackUp;
 	Particle bossAttackDown;
 	Particle bossAttackLeft;
