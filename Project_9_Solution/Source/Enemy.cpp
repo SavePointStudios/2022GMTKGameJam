@@ -6,7 +6,7 @@
 #include "ModuleAudio.h"
 #include "ModuleRender.h"
 #include "ModulePlayer.h"
-
+#include "Globals.h"
 #include <math.h>
 
 Enemy::Enemy(int x, int y) : position(x, y)
@@ -58,32 +58,27 @@ void Enemy::lookAtPlayer()
 
 void Enemy::OnCollision(Collider* collider)
 {
-
-	if (collider->type == Collider::Type::UP_WALL)
-	{
-		position.y += 2   ;
-	}
-	else if (collider->type == Collider::Type::DOWN_WALL)
-	{
+	switch (collider->type) {
+	case Collider::Type::UP_WALL:
+		position.y += 2;
+		break;
+	case Collider::Type::DOWN_WALL:
 		position.y -= 1;
-	}
-	else if (collider->type == Collider::Type::RIGHT_WALL)
-	{
+		break;
+	case Collider::Type::RIGHT_WALL:
 		position.x -= 1;
-	}
-	else if (collider->type == Collider::Type::LEFT_WALL)
-	{
+		break;
+	case Collider::Type::LEFT_WALL:
 		position.x += 2;
+		break;
+	case Collider::Type::PLAYER_SHOT:
+		healthPoints -= App->player->basicAttack;
+		break;
+	case Collider::Type::PLAYER_SHOT_BREAKER:
+		healthPoints -= App->player->hability;
+		break;
 	}
-
-	if (collider->type == Collider::Type::PLAYER_SHOT || collider->type == Collider::Type::PLAYER)
-	{
-		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
-		App->audio->PlayFx(destroyedFx);
-
-		SetToDelete();
-	}
-
+	
 }
 
 void Enemy::SetToDelete()
