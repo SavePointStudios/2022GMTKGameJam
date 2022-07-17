@@ -52,6 +52,10 @@ public:
 
 	// A flag for the particle removal. Important! We do not delete objects instantly
 	bool pendingToDelete = false;
+
+	//To choose sprites
+	bool isShot = false;
+	bool isBaseCard = false;
 };
 
 #endif //__PARTICLE_H__
