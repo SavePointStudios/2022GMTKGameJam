@@ -103,6 +103,7 @@
     <ClInclude Include="ModuleUI.h" />
     <ClInclude Include="Powerup.h" />
     <ClInclude Include="Powerup_Dice.h" />
+    <ClInclude Include="SceneCredits.h" />
     <ClInclude Include="SceneIntro.h" />
     <ClInclude Include="SceneLevel1.h" />
     <ClInclude Include="ModuleInput.h" />
@@ -147,6 +148,7 @@
     <ClCompile Include="ModuleUI.cpp" />
     <ClCompile Include="Powerup.cpp" />
     <ClCompile Include="Powerup_Dice.cpp" />
+    <ClCompile Include="SceneCredits.cpp" />
     <ClCompile Include="SceneIntro.cpp" />
     <ClCompile Include="SceneLevel1.cpp" />
     <ClCompile Include="ModuleInput.cpp" />

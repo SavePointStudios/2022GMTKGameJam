@@ -29,7 +29,18 @@ public:
 
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
-	SDL_Texture* bgTexture = nullptr;
+	SDL_Texture* scene0 = nullptr;
+	SDL_Texture* scene1 = nullptr;
+	SDL_Texture* scene2 = nullptr;
+	SDL_Texture* scene3 = nullptr;
+	SDL_Texture* scene4 = nullptr;
+	SDL_Texture* scene5 = nullptr;
+	SDL_Texture* scene6 = nullptr;
+	SDL_Texture* scene7 = nullptr;
+
+	int currentScene = 0;
+	
+	// 9 ~ 11 boss kill
 };
 
 #endif

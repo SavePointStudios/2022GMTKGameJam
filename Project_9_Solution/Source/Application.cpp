@@ -9,6 +9,7 @@
 #include "ModulePlayer.h"
 #include "SceneMenu.h"
 #include "SceneIntro.h"
+#include "SceneCredits.h"
 #include "SceneLevel1.h"
 #include "ModuleParticles.h"
 #include "ModuleEnemies.h"
@@ -36,18 +37,19 @@ Application::Application()
 	modules[5] =	ui =			new ModuleUI(false);
 	modules[6] =	sceneMenu =		new SceneMenu(true);
 	modules[7] =	sceneIntro =	new SceneIntro(false);
-	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
-	modules[9] =	player =		new ModulePlayer(false);	//Player starts disabled
-	modules[10] =	particles =		new ModuleParticles(true);
-	modules[11] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
+	modules[8] =	sceneCredits =	new SceneCredits(false);
+	modules[9] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
+	modules[10] =	player =		new ModulePlayer(false);	//Player starts disabled
+	modules[11] =	particles =		new ModuleParticles(true);
+	modules[12] =	enemies =		new ModuleEnemies(false);	//Enemies start disabled
 
 
-	modules[12] =	breakables =	new ModuleBreakable(false);
-	modules[13] =	powerups =		new ModulePowerup(false);
-	modules[14] =	collisions =	new ModuleCollisions(true);
-	modules[15] =	fade =			new ModuleFadeToBlack(true);
-	modules[16] =	debug =			new ModuleDebug(true);
-	modules[17] =	render =		new ModuleRender(true);
+	modules[13] =	breakables =	new ModuleBreakable(false);
+	modules[14] =	powerups =		new ModulePowerup(false);
+	modules[15] =	collisions =	new ModuleCollisions(true);
+	modules[16] =	fade =			new ModuleFadeToBlack(true);
+	modules[17] =	debug =			new ModuleDebug(true);
+	modules[18] =	render =		new ModuleRender(true);
 
 }
 
