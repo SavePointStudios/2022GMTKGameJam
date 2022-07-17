@@ -34,8 +34,10 @@ private:
 	Animation attackDown;
 
 	Path path; //(Needed)
-	Animation *idleAnimation;
-	Animation *shot;
+	Animation idleAnimation;
+	Animation shot;
+
+	Animation* currentAnim;
 
 	iPoint shotSpawn = position;
 	iPoint shotPos = position;

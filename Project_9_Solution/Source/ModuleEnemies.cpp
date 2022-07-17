@@ -26,7 +26,7 @@ bool ModuleEnemies::Start()
 	bossTexture = App->textures->Load("Assets/Sprites/AceClubs-Sheet.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
-	QK_midboss = App->textures->Load("Assets / Sprites / midboss.png");
+	QK_midboss = App->textures->Load("Assets/Sprites/midboss.png");
 
 	return true;
 }

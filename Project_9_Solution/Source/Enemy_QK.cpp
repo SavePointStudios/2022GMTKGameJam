@@ -132,14 +132,22 @@ void Enemy_QK::QKtrackPlayer()
 void Enemy_QK::QKinitAnimations()
 {
 	//Front
-	/*idleAnimation.PushBack({ 9, 3, 126, 57 });
-	idleAnimation.PushBack({ 7, 67, 130, 55 });
-	idleAnimation.PushBack({ 7, 129, 126, 57 });
+	idleAnimation.PushBack({ 5, 1, 122, 59 });
+	idleAnimation.PushBack({ 5, 65, 128, 59 });
+	idleAnimation.PushBack({ 5, 127, 124, 59 });
 	idleAnimation.PushBack({ 5, 194, 130, 59 });
 	idleAnimation.speed = 0.1f;
 	idleAnimation.loop = true;
 
-	currentAnim = &idleAnimation;*/
+	// Die
+	shot.PushBack({ 6, 257, 137, 63 });
+	shot.PushBack({ 5, 321, 137, 63 });
+	shot.PushBack({ 147, 256, 137, 64 });
+	shot.PushBack({ 149, 320, 137, 64 });
+	idleAnimation.speed = 0.1f;
+	idleAnimation.loop = true;
+
+	currentAnim = &idleAnimation;
 }
 
 void Enemy_QK::deathAnimation() {}
