@@ -88,7 +88,7 @@ void Enemy_BaseCard::attack()
 	currentTime = SDL_GetTicks();
 
 
-	if (currentTime - startTimer >= 500 && currentTime - startTimer <= 600)	{
+	if (currentTime - startTimer >= 500 && currentTime - startTimer <= 600)
 	{
 		App->audio->PlayFx(attackFx);
 
