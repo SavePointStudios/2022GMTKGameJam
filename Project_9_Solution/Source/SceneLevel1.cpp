@@ -29,10 +29,11 @@ bool SceneLevel1::Start()
 	bool ret = true;
 
 	bgTexture = App->textures->Load("Assets/Sprites/map_base.png");
-	//App->audio->PlayMusic("Assets/Music/stage1.ogg", 1.0f);
 	
-	// Music loads but doesnt play ingame
-	//App->audio->PlayMusic("Assets/Music/Stage1.ogg", 1.0f);
+	// Room 1 Music
+	App->audio->PlayMusic("Assets/Music/Stage1.ogg", 1.0f); // music that plays in the first room
+	//App->audio->PlayMusic("Assets/Music/Stage2.ogg", 1.0f); // music that plays in the second room
+	//App->audio->PlayMusic("Assets/Music/Final boss.ogg", 1.0f); // music that plays in the final boss fight room
 
 	//Colliders
 
