@@ -85,7 +85,7 @@ void Enemy_Boss::attack()
 }
 
 void Enemy_Boss::deathAnimation() {
-
+	App->particles->AddParticle(App->particles->deathAnimBoss, position.x, position.y + 32, Collider::Type::BOSS);
 }
 
 void Enemy_Boss::initAnimations()

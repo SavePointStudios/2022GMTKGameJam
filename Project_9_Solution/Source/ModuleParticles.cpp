@@ -92,7 +92,6 @@ bool ModuleParticles::Start()
 	deathAnimBoss.anim.PushBack({ 384,96,64,96 });
 	deathAnimBoss.anim.PushBack({ 448,96,64,96 });
 	deathAnimBoss.anim.PushBack({ 512,96,64,96 });
-	deathAnimBoss.anim.PushBack({ 576,96,64,96 });
 	deathAnimBoss.anim.speed = 0.2f;
 	deathAnimBoss.lifetime = 70;
 	deathAnimBoss.anim.loop = false;
