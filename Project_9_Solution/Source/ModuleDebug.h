@@ -26,6 +26,8 @@ public:
 	// Draws all existing colliders with some transparency
 	void DebugDraw();
 
+	bool GetChase() { return chase; }
+
 private:
 
 	int debugBox = 250;
@@ -36,6 +38,8 @@ private:
 
 	bool variables = false;
 	bool camLimits = false;
+	bool spawnBasic = false;
+	bool chase = true;
 };
 
 #endif // __MODULE_DEBUG_H__
