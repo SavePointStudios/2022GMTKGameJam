@@ -51,6 +51,9 @@ protected:
 	// Original spawn position. Stored for movement calculations
 	iPoint spawnPos;
 
+	// Sound effect indices
+	// uint destroyedFx = 0;
+
 };
 
 #endif // __BREAKABLE_H__

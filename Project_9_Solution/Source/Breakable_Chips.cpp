@@ -18,7 +18,10 @@ Breakable_Chips::Breakable_Chips(int x, int y, unsigned short version) : Breakab
 		animation.PushBack({ 5,72,21,22 });
 		break;
 	}
-
+	
+	// Fx
+	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/chip break.wav");
+	
 	currentAnim = &animation;
 }
 

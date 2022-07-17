@@ -20,6 +20,9 @@ Breakable_CardBox::Breakable_CardBox(int x, int y, unsigned short version) : Bre
 		break;
 	}
 
+	// Fx
+	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/card box break.wav");
+
 	currentAnim = &animation;
 }
 

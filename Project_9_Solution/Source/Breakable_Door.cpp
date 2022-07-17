@@ -23,7 +23,10 @@ Breakable_Door::Breakable_Door(int x, int y, unsigned short version) : Breakable
 		animation.PushBack({ 5,72,21,22 });
 		break;
 	}
-
+	
+	// Fx
+	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/door break.wav");
+	
 	currentAnim = &animation;
 }
 

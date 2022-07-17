@@ -18,6 +18,9 @@ Breakable_Goblet::Breakable_Goblet(int x, int y, unsigned short version) : Break
 		break;
 	}
 
+	// Fx
+	// destroyedFx = App->audio->LoadFx("Assets/Fx/Props/cubilete break.wav");
+
 	currentAnim = &animation;
 }
 
