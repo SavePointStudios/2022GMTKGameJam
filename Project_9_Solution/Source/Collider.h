@@ -23,6 +23,7 @@ struct Collider
 		ENEMY_SHOT,
 		BREAKABLE,
 		POWERUP,
+		BOSS,
 		MAX
 	};
 

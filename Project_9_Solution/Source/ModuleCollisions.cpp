@@ -18,6 +18,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::UP_WALL][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::UP_WALL][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::UP_WALL][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::UP_WALL][Collider::Type::BOSS] = false;
 
 
 	matrix[Collider::Type::DOWN_WALL][Collider::Type::PLAYER] = true; 
@@ -27,6 +28,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::DOWN_WALL][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::DOWN_WALL][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::DOWN_WALL][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::DOWN_WALL][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::RIGHT_WALL][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::RIGHT_WALL][Collider::Type::ENEMY] = true;
@@ -35,6 +37,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::RIGHT_WALL][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::RIGHT_WALL][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::RIGHT_WALL][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::RIGHT_WALL][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::LEFT_WALL][Collider::Type::PLAYER] = true;
 	matrix[Collider::Type::LEFT_WALL][Collider::Type::ENEMY] = true;
@@ -43,6 +46,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::LEFT_WALL][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::LEFT_WALL][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::LEFT_WALL][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::LEFT_WALL][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::PLAYER][Collider::Type::UP_WALL] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::DOWN_WALL] = true;
@@ -55,6 +59,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::PLAYER][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::PLAYER][Collider::Type::POWERUP] = true;
+	matrix[Collider::Type::PLAYER][Collider::Type::BOSS] = false;
 	
 	matrix[Collider::Type::ENEMY][Collider::Type::UP_WALL] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::DOWN_WALL] = true;
@@ -67,6 +72,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::ENEMY][Collider::Type::BREAKABLE] = true;
 	matrix[Collider::Type::ENEMY][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::ENEMY][Collider::Type::BOSS] = false;
 	
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::UP_WALL] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::DOWN_WALL] = true;
@@ -79,6 +85,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BREAKABLE] = true;
 	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::PLAYER_SHOT][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::UP_WALL] = false;
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::DOWN_WALL] = false;
@@ -91,6 +98,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::BREAKABLE] = true;
 	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::PLAYER_SHOT_BREAKER][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::UP_WALL] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::DOWN_WALL] = true;
@@ -103,6 +111,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BREAKABLE] = true;
 	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::ENEMY_SHOT][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::BREAKABLE][Collider::Type::UP_WALL] = false;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::DOWN_WALL] = false;
@@ -115,6 +124,7 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::BREAKABLE][Collider::Type::ENEMY_SHOT] = true;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::BREAKABLE][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::BREAKABLE][Collider::Type::BOSS] = false;
 
 	matrix[Collider::Type::POWERUP][Collider::Type::UP_WALL] = false;
 	matrix[Collider::Type::POWERUP][Collider::Type::DOWN_WALL] = false;
@@ -127,7 +137,20 @@ ModuleCollisions::ModuleCollisions(bool startEnabled) : Module(startEnabled)
 	matrix[Collider::Type::POWERUP][Collider::Type::ENEMY_SHOT] = false;
 	matrix[Collider::Type::POWERUP][Collider::Type::BREAKABLE] = false;
 	matrix[Collider::Type::POWERUP][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::POWERUP][Collider::Type::BOSS] = false;
 
+	matrix[Collider::Type::BOSS][Collider::Type::UP_WALL] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::DOWN_WALL] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::RIGHT_WALL] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::LEFT_WALL] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::PLAYER] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::ENEMY] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::PLAYER_SHOT] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::PLAYER_SHOT_BREAKER] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::ENEMY_SHOT] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::BREAKABLE] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::POWERUP] = false;
+	matrix[Collider::Type::BOSS][Collider::Type::BOSS] = false;
 }
 
 // Destructor

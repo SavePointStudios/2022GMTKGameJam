@@ -10,6 +10,7 @@
 #include "Enemy_RedBird.h"
 #include "Enemy_Basecard.h"
 #include "Enemy_Mech.h"
+#include "Enemy_Boss.h"
 
 #define SPAWN_MARGIN	80
 
@@ -26,7 +27,8 @@ ModuleEnemies::~ModuleEnemies()
 
 bool ModuleEnemies::Start()
 {
-	texture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
+	baseCardTexture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
+	bossTexture = App->textures->Load("Assets/Sprites/AceClubs-Sheet.png");
 	enemyDestroyedFx = App->audio->LoadFx("Assets/Fx/explosion.wav");
 
 
@@ -150,8 +152,15 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 				case Enemy_Type::BASECARD:
 					enemies[i] = new Enemy_BaseCard(info.x, info.y);
 					break;
+				case Enemy_Type::BOSS:
+					enemies[i] = new Enemy_Boss(info.x, info.y);
+					break;
 			}
-			enemies[i]->texture = texture;
+			if(info.type == Enemy_Type::BOSS)
+			enemies[i]->texture = bossTexture;
+			else
+			enemies[i]->texture = baseCardTexture;
+
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
 		}
