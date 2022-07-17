@@ -61,6 +61,8 @@ Update_Status ModuleEnemies::Update()
 			enemies[i]->Update();
 	}
 
+	SpreadEnemies();
+
 	return Update_Status::UPDATE_CONTINUE;
 }
 
@@ -163,6 +165,43 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 
 			enemies[i]->destroyedFx = enemyDestroyedFx;
 			break;
+		}
+	}
+}
+
+void ModuleEnemies::SpreadEnemies()
+{
+	for (size_t i = 0; i < MAX_ENEMIES - 1; i++)
+	{
+		float distMin = 50;
+
+		for (size_t j = i + 1; j < MAX_ENEMIES; j++)
+		{
+			if (enemies[i] != nullptr && enemies[j] != nullptr)
+			{
+				float deltaX = enemies[j]->position.x + 16 - (enemies[i]->position.x + 16);
+				float deltaY = enemies[j]->position.y + 32 - (enemies[i]->position.y + 32);
+
+				float dist = sqrt(pow(deltaX, 2) + pow(deltaY, 2));
+
+				distMin = dist < distMin ? dist : distMin;
+
+				if (dist < 50 && dist <= distMin)
+				{
+					if (enemies[i]->spread == 0)
+					{
+						enemies[i]->spread = 10;
+
+						enemies[i]->beta = atan2(deltaY, deltaX) / (M_PI / 180);
+
+						if (enemies[i]->beta < 0)
+							enemies[i]->beta += 360.0f;
+					}
+					enemies[i]->spread--;
+				}
+				else
+					enemies[i]->spread = 0;
+			}
 		}
 	}
 }

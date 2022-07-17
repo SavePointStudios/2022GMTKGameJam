@@ -50,6 +50,10 @@ public:
 	// The distance in pixels to the player
 	iPoint distance;
 
+	// Too close to other enemies?
+	int spread = 0;
+	float beta;
+
 	// Sound fx when destroyed
 	int destroyedFx = 0;
 

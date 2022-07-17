@@ -41,6 +41,10 @@ Update_Status ModuleDebug::Update() {
 			variables = !variables;
 		if (App->input->keys[SDL_SCANCODE_C] == KEY_DOWN)
 			camLimits = !camLimits;
+		if (App->input->keys[SDL_SCANCODE_B] == KEY_DOWN)
+			spawnBasic = !spawnBasic;
+		if (App->input->keys[SDL_SCANCODE_N] == KEY_DOWN)
+			chase = !chase;
 	}
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -119,6 +123,20 @@ void ModuleDebug::DebugDraw() {
 		}
 	}
 
+	//spread
+	for (size_t i = 0; i < MAX_ENEMIES; i++) {
+		if (App->enemies->enemies[i] != nullptr)
+		{
+			float angle = (App->enemies->enemies[i]->beta * (M_PI / 180));
+			App->render->DrawLine(
+				App->enemies->enemies[i]->position.x + 16,
+				App->enemies->enemies[i]->position.y + 32,
+				App->enemies->enemies[i]->position.x + 16 + 20 * cos(angle),
+				App->enemies->enemies[i]->position.y + 32 + 20 * sin(angle),
+				255, 0, 0, 255);
+		}
+	}
+
 	//Camera limits debug
 
 	if (camLimits) {
@@ -167,5 +185,12 @@ void ModuleDebug::DebugDraw() {
 		//App->fonts->BlitText(10, 100, 0, std::to_string(sqrt(pow(App->enemies->enemies[0]->distance.x,2)+ pow(App->enemies->enemies[0]->distance.y, 2))).c_str());
 		App->fonts->BlitText(10, 110, 0, std::to_string(App->enemies->enemies[0]->distance.x).c_str());
 		App->fonts->BlitText(10, 120, 0, std::to_string(App->enemies->enemies[0]->distance.y).c_str());
+	}
+
+	//Spawn Basic enemies debug
+	if (spawnBasic)
+	{
+		App->enemies->AddEnemy(Enemy_Type::BASECARD, App->player->position.x + 50, App->player->position.y + 50);
+		spawnBasic = !spawnBasic;
 	}
 }
