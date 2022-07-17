@@ -10,7 +10,7 @@
 #include <string>
 using namespace std;
 
-ModuleQK::ModuleQK(int x, int y) : Enemy(x, y)
+Enemy_QK::Enemy_QK(int x, int y) : Enemy(x, y)
 {
 	QKinitAnimations();
 
@@ -18,7 +18,7 @@ ModuleQK::ModuleQK(int x, int y) : Enemy(x, y)
 	collider = App->collisions->AddCollider({ 0, 0, 79, 57 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
-void ModuleQK::Update()
+void Enemy_QK::Update()
 {
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
@@ -39,13 +39,13 @@ void ModuleQK::Update()
 	Enemy::Update();
 }
 
-void ModuleQK::QKstartAttack()
+void Enemy_QK::QKstartAttack()
 {
 	QKattacking = true;
 	startTimer = SDL_GetTicks();
 }
 
-void ModuleQK::QKattack()
+void Enemy_QK::QKattack()
 {
 	currentTime = SDL_GetTicks();
 	if (currentTime - startTimer >= 1000 && currentTime - startTimer <= 1100)
@@ -101,7 +101,7 @@ void ModuleQK::QKattack()
 	}
 }
 
-void ModuleQK::QKinitAnimations()
+void Enemy_QK::QKinitAnimations()
 {
 	//Front
 	idleAnimation.PushBack({ 9, 3, 126, 57 });
@@ -113,3 +113,5 @@ void ModuleQK::QKinitAnimations()
 
 	currentAnim = &idleAnimation;
 }
+
+void Enemy_QK::deathAnimation() {}

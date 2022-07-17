@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "Enemy_Basecard.h"
 #include "Enemy_Boss.h"
+#include "Enemy_QK.h"
 
 #define SPAWN_MARGIN	80
 
