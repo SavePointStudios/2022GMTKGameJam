@@ -74,7 +74,7 @@ void Enemy::OnCollision(Collider* collider)
 		healthPoints -= App->player->basicAttack;
 		break;
 	case Collider::Type::PLAYER_SHOT_BREAKER:
-		healthPoints -= App->player->hability;
+		healthPoints -= App->player->ability;
 		break;
 	}
 	

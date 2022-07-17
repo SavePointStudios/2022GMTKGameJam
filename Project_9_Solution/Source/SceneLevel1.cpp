@@ -27,8 +27,8 @@ bool SceneLevel1::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-
-	bgTexture = App->textures->Load("Assets/Sprites/map_base.png");
+	bgTexture = App->textures->Load("Assets/Sprites/background.png");
+	mapTexture = App->textures->Load("Assets/Sprites/map_base.png");
 	
 	// Room 1 Music
 	App->audio->PlayMusic("Assets/Music/Stage1.ogg", 1.0f); // music that plays in the first room
@@ -125,7 +125,8 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, -160, -40, NULL);
+	App->render->Blit(mapTexture, 0, 0, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -139,5 +140,8 @@ bool SceneLevel1::CleanUp()
 	App->collisions->Disable();
 	App->ui->Disable();
 	
+	App->textures->Unload(bgTexture);
+	App->textures->Unload(mapTexture);
+
 	return true;
 }
