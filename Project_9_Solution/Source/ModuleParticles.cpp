@@ -23,13 +23,42 @@ bool ModuleParticles::Start()
 	QK_Sword = App->textures->Load("Assets/Sprites/midboss_Attack");
 
 	// Explosion particle
-	diceAbility.anim.PushBack({ 192, 0, 64, 32 });
-	diceAbility.anim.PushBack({ 192, 32, 64, 32 });
-	diceAbility.anim.loop = true;
-	diceAbility.speed.x = 5;
-	diceAbility.anim.speed = 0.1f;
-	diceAbility.lifetime = 180;
-	diceAbility.isShot = true;
+	diceAbilityRight.anim.PushBack({ 192, 0, 64, 32 });
+	diceAbilityRight.anim.PushBack({ 192, 32, 64, 32 });
+	diceAbilityRight.anim.loop = true;
+	diceAbilityRight.speed.x = -5;
+	diceAbilityRight.speed.y = 0;
+	diceAbilityRight.anim.speed = 0.1f;
+	diceAbilityRight.lifetime = 180;
+	diceAbilityRight.isShot = true;
+
+	diceAbilityLeft.anim.PushBack({ 256, 0, 64, 32 });
+	diceAbilityLeft.anim.PushBack({ 256, 32, 64, 32 });
+	diceAbilityLeft.anim.loop = true;
+	diceAbilityLeft.speed.x = 5;
+	diceAbilityLeft.speed.y = 0;
+	diceAbilityLeft.anim.speed = 0.1f;
+	diceAbilityLeft.lifetime = 180;
+	diceAbilityLeft.isShot = true;
+
+	diceAbilityDown.anim.PushBack({ 320, 0, 32, 64 });
+	diceAbilityDown.anim.PushBack({ 352, 0, 32, 64 });
+	diceAbilityDown.anim.loop = true;
+	diceAbilityDown.speed.x = 0;
+	diceAbilityDown.speed.y = -5;
+	diceAbilityDown.anim.speed = 0.1f;
+	diceAbilityDown.lifetime = 180;
+	diceAbilityDown.isShot = true;
+
+	diceAbilityUp.anim.PushBack({ 384, 0, 32, 64 });
+	diceAbilityUp.anim.PushBack({ 416, 0, 32, 64 });
+	diceAbilityUp.anim.loop = true;
+	diceAbilityUp.speed.x = 0;
+	diceAbilityUp.speed.y = 5;
+	diceAbilityUp.anim.speed = 0.1f;
+	diceAbilityUp.lifetime = 180;
+	diceAbilityUp.isShot = true;
+
 	diceBasicAttack.anim.PushBack({ 225, 65, 13, 13 });
 	diceBasicAttack.speed.x = 5;
 	diceBasicAttack.lifetime = 180;
