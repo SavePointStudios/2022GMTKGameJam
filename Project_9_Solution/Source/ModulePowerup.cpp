@@ -23,7 +23,6 @@ ModulePowerup::~ModulePowerup() {
 
 bool ModulePowerup::Start() {
 
-	powerupTexture = App->textures->Load("Assets/Sprites/enemies.png");
 	//powerupPickUpFx = App->audio->LoadFx("Assets/sounds/sfx/16 5.wav");
 
 	return true;

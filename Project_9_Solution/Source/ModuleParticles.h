@@ -70,14 +70,20 @@ public:
 	//Template particle for a QK_BasicAttack
 	Particle QK_SwordAttack;
 
+
 	//Template
 	Particle deathAnimBoss;
+	Particle bossAttackUp;
+	Particle bossAttackDown;
+	Particle bossAttackLeft;
+	Particle bossAttackRight;
 
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* handTexture = nullptr;
 	SDL_Texture* baseCardTexture = nullptr;
 	SDL_Texture* QK_Sword = nullptr;
+	SDL_Texture* boss = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };

@@ -35,6 +35,7 @@ public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
 	SDL_Texture* mapTexture = nullptr;
+	bool bossHasSpawned = false;
 };
 
 #endif

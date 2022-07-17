@@ -380,28 +380,24 @@ Update_Status ModulePlayer::Update()
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityUp, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 1:
 				shotSpawn.y -= 32;
 				shotSpawn.x -= 50;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityLeft, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 2:
 				shotSpawn.y += 10;
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityDown, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 3:
 				shotSpawn.y -= 20;
 				shotSpawn.x += 20;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityRight, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			default:
 				break;
@@ -540,7 +536,6 @@ Update_Status ModulePlayer::Update()
 				break;
 			}
 			Particle* newParticle = App->particles->AddParticle(App->particles->diceBasicAttack, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT);
-			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(shootFx);
 		}
 
@@ -868,27 +863,23 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE) {
-		switch (movementPlayer)
-		{
-		case 0:
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT) {
 			//Up
-			position.y += speed;
-			break;
-		case 1:
-			//Left
-			position.x += speed;
-			break;
-		case 2:
-			//Down
-			position.y -= speed;
-			break;
-		case 3:
-			//Right
-			position.x -= speed;
-			break;
-		default:
-			break;
+			position.y += speed + 1;
 		}
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) {
+			//Left
+			position.x += speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) {
+			//Down
+			position.y -= speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) {
+			//Right
+			position.x -= speed + 1;
+		}
+
 	}
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
