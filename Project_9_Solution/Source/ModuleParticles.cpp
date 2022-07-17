@@ -21,7 +21,7 @@ bool ModuleParticles::Start()
 
 	baseCardTexture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
 	handTexture = App->textures->Load("Assets/Sprites/Hand_Character_Spritesheet.png");
-	QK_Sword = App->textures->Load("Assets/Sprites/midboss_Attack");
+	QK_Sword = App->textures->Load("Assets/Sprites/midboss.png");
 
 	// Explosion particle
 	diceAbilityRight.anim.PushBack({ 192, 0, 64, 32 });

@@ -38,8 +38,8 @@ void Enemy_QK::Update()
 	}
 
 	//shotPos = shotSpawn;
-	shotPos.x += 2 * cos(degrees);
-	shotPos.y += 2 * sin(degrees);
+	//shotPos.x += 2 * cos(degrees);
+	//shotPos.y += 2 * sin(degrees);
 
 	Enemy::Update();
 }
@@ -53,8 +53,9 @@ void Enemy_QK::QKstartAttack()
 void Enemy_QK::QKattack()
 {
 	currentTime = SDL_GetTicks();
-	if (currentTime - startTimer >= 1000 && currentTime - startTimer <= 1100)
+	if (currentTime - startTimer >= 400 && currentTime - startTimer <= 500)
 	{
+		//down
 		if (degrees > 45 && degrees < 135)
 		{
 			attackdir = 0;
@@ -79,7 +80,7 @@ void Enemy_QK::QKattack()
 		}
 	}
 
-	if (QKattacking && currentTime - startTimer > 1200)
+	if (QKattacking && currentTime - startTimer > 600)
 	{
 		shotSpawn.x = position.x;
 		shotSpawn.y = position.y;
@@ -88,23 +89,31 @@ void Enemy_QK::QKattack()
 		{
 		case 0://Down
 			shotSpawn.y += 30;
-			shotSpawn.x += 0;
-			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
+			shotSpawn.x += 0;		
+			App->particles->QK_SwordAttackDown.speed.x = 5 * cos(degrees);
+			App->particles->QK_SwordAttackDown.speed.y =- 5 * sin(degrees);
+			App->particles->AddParticle(App->particles->QK_SwordAttackDown, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		case 1://Left
 			shotSpawn.y += 0;
 			shotSpawn.x += -30;
-			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
+			App->particles->QK_SwordAttackLeft.speed.x = 5 * cos(degrees);
+			App->particles->QK_SwordAttackLeft.speed.y =- 5 * sin(degrees);
+			App->particles->AddParticle(App->particles->QK_SwordAttackLeft, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		case 2://Up
 			shotSpawn.y += -30;
 			shotSpawn.x += 0;
+			App->particles->QK_SwordAttackUp.speed.x = 5 * cos(degrees);
+			App->particles->QK_SwordAttackUp.speed.y =- 5 * sin(degrees);
 			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		case 3://Right
 			shotSpawn.y += 0;
 			shotSpawn.x += 60;
-			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
+			App->particles->QK_SwordAttackRight.speed.x = 5 * cos(degrees);
+			App->particles->QK_SwordAttackRight.speed.y =- 5 * sin(degrees);
+			App->particles->AddParticle(App->particles->QK_SwordAttackRight, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		default:
 			break;
@@ -123,14 +132,14 @@ void Enemy_QK::QKtrackPlayer()
 void Enemy_QK::QKinitAnimations()
 {
 	//Front
-	idleAnimation.PushBack({ 9, 3, 126, 57 });
+	/*idleAnimation.PushBack({ 9, 3, 126, 57 });
 	idleAnimation.PushBack({ 7, 67, 130, 55 });
 	idleAnimation.PushBack({ 7, 129, 126, 57 });
 	idleAnimation.PushBack({ 5, 194, 130, 59 });
 	idleAnimation.speed = 0.1f;
 	idleAnimation.loop = true;
 
-	currentAnim = &idleAnimation;
+	currentAnim = &idleAnimation;*/
 }
 
 void Enemy_QK::deathAnimation() {}
