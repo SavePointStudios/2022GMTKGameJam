@@ -69,9 +69,6 @@ private:
 	SDL_Texture* handTexture = nullptr;
 	SDL_Texture* baseCardTexture = nullptr;
 
-	bool isShot = false;
-	bool isBaseCard = false;
-
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };
 

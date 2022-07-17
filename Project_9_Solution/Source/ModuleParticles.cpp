@@ -32,11 +32,13 @@ bool ModuleParticles::Start()
 	diceAbility.anim.loop = true;
 	diceAbility.speed.x = 5;
 	diceAbility.anim.speed = 0.1f;
-	diceBasicAttack.lifetime = 180;
+	diceAbility.lifetime = 180;
+	diceAbility.isShot = true;
 
 	diceBasicAttack.anim.PushBack({ 225, 65, 13, 13 });
 	diceBasicAttack.speed.x = 5;
 	diceBasicAttack.lifetime = 180;
+	diceBasicAttack.isShot = true;
 
 	cardAttackMelee.anim.PushBack({ 768, 576, 32, 64 });
 	cardAttackMelee.lifetime = 10;
@@ -45,9 +47,10 @@ bool ModuleParticles::Start()
 	cardDeath.anim.PushBack({ 800, 0, 32, 64 });
 	cardDeath.anim.PushBack({ 832, 0, 32, 64 });
 	cardDeath.anim.PushBack({ 864, 0, 32, 64 });
-	cardDeath.lifetime = 180;
+	cardDeath.lifetime = 70;
 	cardDeath.anim.speed = 0.2;
 	cardDeath.anim.loop = false;
+	cardDeath.isBaseCard = true;
 
 	return true;
 }
@@ -125,10 +128,12 @@ Update_Status ModuleParticles::PostUpdate()
 
 		if (particle != nullptr && particle->isAlive)
 		{
-			if (isShot)
-				App->render->Blit(baseCardTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
-			if (isBaseCard)
+			//App->render->Blit(baseCardTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+			if (particle->isShot)
 				App->render->Blit(handTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+
+			else if (particle->isBaseCard)
+				App->render->Blit(baseCardTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
 
