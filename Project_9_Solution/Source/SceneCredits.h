@@ -1,18 +1,18 @@
-#ifndef __SCENE_MENU_H__
-#define __SCENE_MENU_H__
+#ifndef __SCENE_CREDITS_H__
+#define __SCENE_CREDITS_H__
 
 #include "Module.h"
 #include "Animation.h"
 
 struct SDL_Texture;
 
-class SceneMenu : public Module {
+class SceneCredits : public Module {
 public:
 	//Constructor
-	SceneMenu(bool startEnabled);
+	SceneCredits(bool startEnabled);
 
 	//Destructor
-	~SceneMenu();
+	~SceneCredits();
 
 	// Called when the module is activated
 	// Loads the necessary textures for the map background
@@ -29,19 +29,9 @@ public:
 public:
 	// The scene sprite sheet loaded into an SDL_Texture
 	SDL_Texture* bgTexture = nullptr;
-	SDL_Texture* playerTexture = nullptr;
-	int selection;
+	
 	int fontId;
 
-	// Selection SFx
-	uint selectHover = 0;
-	uint selected = 0;
-
-	Animation anim;
-	Animation* currentAnim = nullptr;
-
-private:
-  bool hasSelected = false;
 
 };
 
