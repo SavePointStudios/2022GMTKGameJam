@@ -43,6 +43,7 @@ public:
 
 	// Direction of the player in the map
 	int direction = 3;
+	int movementPlayer = 4;
 	
 	// The speed in which we move the player (pixels per frame)
 	int speed = 2;
