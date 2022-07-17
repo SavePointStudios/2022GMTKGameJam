@@ -34,12 +34,9 @@ Application::Application()
 	modules[3] =	audio =			new ModuleAudio(true);
 	 
 	modules[4] =	fonts =			new ModuleFonts(true);
-
-
-
 	modules[5] =	sceneMenu =		new SceneMenu(true);
 	modules[6] =	sceneIntro =	new SceneIntro(false);
-  modules[7] =	sceneCredits =	new SceneCredits(false);
+	modules[7] =	sceneCredits =	new SceneCredits(false);
 	modules[8] =	sceneLevel_1 =	new SceneLevel1(false);		//Gameplay scene starts disabled
 	modules[9] =	breakables =	new ModuleBreakable(false);
 	modules[10] =	powerups =		new ModulePowerup(false);
