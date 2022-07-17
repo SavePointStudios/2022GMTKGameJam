@@ -9,6 +9,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleFadeToBlack.h"
 #include "ModuleFonts.h"
+#include "ModuleUI.h"
 
 #include <stdio.h>
 #include <time.h>
@@ -291,9 +292,6 @@ bool ModulePlayer::Start()
 	App->particles->diceBasicAttack.speed.x = -5;
 	App->particles->diceBasicAttack.speed.y = 0;
 
-	App->particles->diceAbility.speed.x = -5;
-	App->particles->diceAbility.speed.y = 0;
-
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
@@ -309,6 +307,36 @@ Update_Status ModulePlayer::Update()
 			srand(time(NULL));
 
 			hability *= 1 + rand() % ((lifePlayer + 1) - 1);
+
+			switch (hability/50)
+			{
+			case 1:
+				App->ui->oneRollAnim.Reset();
+				App->ui->currentRollAnimation = &App->ui->oneRollAnim;
+				break;
+			case 2:
+				App->ui->twoRollAnim.Reset();
+				App->ui->currentRollAnimation = &App->ui->twoRollAnim;
+				break;
+			case 3:
+				App->ui->threeRollAnim.Reset();
+				App->ui->currentRollAnimation = &App->ui->threeRollAnim;
+				break;
+			case 4:
+				App->ui->fourRollAnim.Reset();
+				App->ui->currentRollAnimation = &App->ui->fourRollAnim;
+				break;
+			case 5:
+				App->ui->fiveRollAnim.Reset();
+				App->ui->currentRollAnimation = &App->ui->fiveRollAnim;
+				break;
+			case 6:
+				App->ui->sixRollAnim.Reset();
+				App->ui->currentRollAnimation = &App->ui->sixRollAnim;
+				break;
+			default:
+				break;
+			}
 
 			rollTheDice = true;
 		}
@@ -341,30 +369,40 @@ Update_Status ModulePlayer::Update()
 
 		if (habilityDelay == 0) {
 			iPoint shotSpawn = position;
+			Particle* newParticle;
 			switch (direction)
 			{
 			case 0:
-				shotSpawn.y += 10;
-				shotSpawn.x += 15;
+				shotSpawn.y -= 64;
+				shotSpawn.x += 0;
+
+				newParticle = App->particles->AddParticle(App->particles->diceAbilityUp, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
+				newParticle->collider->AddListener(this);
 				break;
 			case 1:
-				shotSpawn.y += 10;
-				shotSpawn.x += 15;
+				shotSpawn.y -= 32;
+				shotSpawn.x -= 64;
+
+				newParticle = App->particles->AddParticle(App->particles->diceAbilityLeft, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
+				newParticle->collider->AddListener(this);
 				break;
 			case 2:
-				shotSpawn.y += 15;
-				shotSpawn.x += 5;
+				shotSpawn.y += 64;
+				shotSpawn.x += 0;
+
+				newParticle = App->particles->AddParticle(App->particles->diceAbilityDown, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
+				newParticle->collider->AddListener(this);
 				break;
 			case 3:
 				shotSpawn.y -= 20;
 				shotSpawn.x += 20;
+
+				newParticle = App->particles->AddParticle(App->particles->diceAbilityRight, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
+				newParticle->collider->AddListener(this);
 				break;
 			default:
 				break;
 			}
-
-			Particle* newParticle = App->particles->AddParticle(App->particles->diceAbility, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(shootFx);
 		}
 		

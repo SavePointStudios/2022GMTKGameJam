@@ -42,6 +42,9 @@ public:
 	SDL_Texture* lifeBarTexture = nullptr;
 	Animation* currentLifeBarAnimation = nullptr;
 
+	SDL_Texture* rollTexture = nullptr;
+	Animation* currentRollAnimation = nullptr;
+
 	Animation ceroLifeAnim;
 	Animation oneLifeAnim;
 	Animation twoLifeAnim;
@@ -49,6 +52,13 @@ public:
 	Animation fourLifeAnim;
 	Animation fiveLifeAnim;
 	Animation sixLifeAnim;
+
+	Animation oneRollAnim;
+	Animation twoRollAnim;
+	Animation threeRollAnim;
+	Animation fourRollAnim;
+	Animation fiveRollAnim;
+	Animation sixRollAnim;
 
 private:
 

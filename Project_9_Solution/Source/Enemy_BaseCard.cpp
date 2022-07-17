@@ -5,6 +5,7 @@
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
 #include "ModuleAudio.h"
+#include "ModulePlayer.h"
 #include "SDL/include/SDL.h"
 
 #include "ModuleFonts.h"
@@ -208,6 +209,8 @@ void Enemy_BaseCard::deathAnimation() {
 	if (healthPoints <= 0) {
 		App->audio->PlayFx(dieFx);
 		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
+
+		App->player->lifePlayer++;
 
 		SetToDelete();
 	}
