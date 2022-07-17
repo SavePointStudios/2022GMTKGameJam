@@ -90,8 +90,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	specialRightAnim.PushBack({ 160, 0, 32, 32 });
 	specialRightAnim.PushBack({ 192, 0, 32, 32 });
 	specialRightAnim.PushBack({ 192, 0, 32, 32 });
-	upAnim.loop = false;
-	upAnim.speed = 0.1f;
+	specialRightAnim.loop = false;
+	specialRightAnim.speed = 0.1f;
 
 	// left special
 	specialLeftAnim.PushBack({ 128, 32, 32, 32 });
@@ -100,8 +100,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	specialLeftAnim.PushBack({ 160, 32, 32, 32 });
 	specialLeftAnim.PushBack({ 192, 32, 32, 32 });
 	specialLeftAnim.PushBack({ 192, 32, 32, 32 });
-	upAnim.loop = false;
-	upAnim.speed = 0.1f;
+	specialLeftAnim.loop = false;
+	specialLeftAnim.speed = 0.1f;
 
 	// down special
 	specialDownAnim.PushBack({ 128, 64, 32, 32 });
@@ -110,8 +110,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	specialDownAnim.PushBack({ 160, 64, 32, 32 });
 	specialDownAnim.PushBack({ 192, 64, 32, 32 });
 	specialDownAnim.PushBack({ 192, 64, 32, 32 });
-	upAnim.loop = false;
-	upAnim.speed = 0.1f;
+	specialDownAnim.loop = false;
+	specialDownAnim.speed = 0.1f;
 
 	// up special
 	specialUpAnim.PushBack({ 128, 96, 32, 32 });
@@ -120,8 +120,8 @@ ModulePlayer::ModulePlayer(bool startEnabled) : Module(startEnabled)
 	specialUpAnim.PushBack({ 160, 96, 32, 32 });
 	specialUpAnim.PushBack({ 192, 96, 32, 32 });
 	specialUpAnim.PushBack({ 192, 96, 32, 32 });
-	upAnim.loop = false;
-	upAnim.speed = 0.1f;
+	specialUpAnim.loop = false;
+	specialUpAnim.speed = 0.1f;
 
 
 	// idle hand right
@@ -291,6 +291,9 @@ bool ModulePlayer::Start()
 	App->particles->diceBasicAttack.speed.x = -5;
 	App->particles->diceBasicAttack.speed.y = 0;
 
+	App->particles->diceAbility.speed.x = -5;
+	App->particles->diceAbility.speed.y = 0;
+
 	collider = App->collisions->AddCollider({ position.x, position.y, 32, 32 }, Collider::Type::PLAYER, this);
 
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
@@ -311,11 +314,61 @@ Update_Status ModulePlayer::Update()
 		}
 
 		habilityDelay--;
-		
-		if (habilityDelay <= 0) {
-			Particle* newParticle = App->particles->AddParticle(App->particles->diceAbility, position.x + 20, position.y, Collider::Type::PLAYER_SHOT_BREAKER);
+
+		if (habilityDelay == 40) {
+			switch (direction)
+			{
+			case 0:
+				specialUpAnim.Reset();
+				currentDiceAnimation = &specialUpAnim;
+				break;
+			case 1:
+				specialLeftAnim.Reset();
+				currentDiceAnimation = &specialLeftAnim;
+				break;
+			case 2:
+				specialDownAnim.Reset();
+				currentDiceAnimation = &specialDownAnim;
+				break;
+			case 3:
+				specialRightAnim.Reset();
+				currentDiceAnimation = &specialRightAnim;
+				break;
+			default:
+				break;
+			}
+		}
+
+		if (habilityDelay == 0) {
+			iPoint shotSpawn = position;
+			switch (direction)
+			{
+			case 0:
+				shotSpawn.y += 10;
+				shotSpawn.x += 15;
+				break;
+			case 1:
+				shotSpawn.y += 10;
+				shotSpawn.x += 15;
+				break;
+			case 2:
+				shotSpawn.y += 15;
+				shotSpawn.x += 5;
+				break;
+			case 3:
+				shotSpawn.y -= 20;
+				shotSpawn.x += 20;
+				break;
+			default:
+				break;
+			}
+
+			Particle* newParticle = App->particles->AddParticle(App->particles->diceAbility, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
 			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(shootFx);
+		}
+		
+		if (habilityDelay <= -40) {
 
 			//End diceHability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
 			stateHability = false;
@@ -625,10 +678,32 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
 			stateHability = true;
+
+			switch (direction)
+			{
+			case 0:
+				handUpSpecialAnim.Reset();
+				currentDiceHandAnimation = &handUpSpecialAnim;
+				break;
+			case 1:
+				handLeftSpecialAnim.Reset();
+				currentDiceHandAnimation = &handLeftSpecialAnim;
+				break;
+			case 2:
+				handDownSpecialAnim.Reset();
+				currentDiceHandAnimation = &handDownSpecialAnim;
+				break;
+			case 3:
+				handRightSpecialAnim.Reset();
+				currentDiceHandAnimation = &handRightSpecialAnim;
+				break;
+			default:
+				break;
+			}
 		}
 
 		// If no up/down movement detected, set the current animation back to idle
-		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_IDLE) {
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_IDLE) {
 			switch (direction)
 			{
 			case 0:
@@ -674,6 +749,8 @@ Update_Status ModulePlayer::Update()
 		App->fade->FadeToBlack((Module*)App->sceneLevel_1, (Module*)App->sceneMenu, 60);
 
 		destroyed = true;
+
+		App->audio->PlayFx(dieFx);
 	}
 
 	collider->SetPos(position.x, position.y);
@@ -691,8 +768,14 @@ Update_Status ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentDiceAnimation->GetCurrentFrame();
 		App->render->Blit(diceTexture, position.x, position.y, &rect);
 
-		SDL_Rect rect2 = currentDiceHandAnimation->GetCurrentFrame();
-		App->render->Blit(diceHandTexture, position.x, position.y, &rect2);
+		if (stateHability) {
+			SDL_Rect rect2 = currentDiceHandAnimation->GetCurrentFrame();
+			App->render->Blit(diceHandTexture, position.x, position.y - 32, &rect2);
+		}
+		else {
+			SDL_Rect rect2 = currentDiceHandAnimation->GetCurrentFrame();
+			App->render->Blit(diceHandTexture, position.x, position.y, &rect2);
+		}
 	}
 
 	// Draw UI (life) --------------------------------------
@@ -734,13 +817,8 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
 	{
-		App->particles->AddParticle(App->particles->diceAbility, position.x, position.y, Collider::Type::NONE, 9);
-		App->particles->AddParticle(App->particles->diceAbility, position.x + 8, position.y + 11, Collider::Type::NONE, 14);
-		App->particles->AddParticle(App->particles->diceAbility, position.x - 7, position.y + 12, Collider::Type::NONE, 40);
-		App->particles->AddParticle(App->particles->diceAbility, position.x + 5, position.y - 5, Collider::Type::NONE, 28);
-		App->particles->AddParticle(App->particles->diceAbility, position.x - 4, position.y - 4, Collider::Type::NONE, 21);
-
-		App->audio->PlayFx(dieFx);
+		//Hit FX ????
+		//App->audio->PlayFx(dieFx);
 
 		lifePlayer--;
 	}
