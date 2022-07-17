@@ -280,6 +280,7 @@ bool ModulePlayer::Start()
 	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav"); // Played when player dies
 	hitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav"); // Played when player is hit
 	specialLoadFx = App->audio->LoadFx("Assets/Fx/Dice/Special Loading.wav"); // Played while loading the special (dice rolling for multiplier)
+	AllInFx = App->audio->LoadFx("Assets/Fx/Dice/All In.wav"); // ALL IN!!
 
 	position.x = 150;
 	position.y = 120;
@@ -370,6 +371,8 @@ Update_Status ModulePlayer::Update()
 		if (habilityDelay == 0) {
 			iPoint shotSpawn = position;
 			Particle* newParticle;
+			// All in sound
+			App->audio->PlayFx(AllInFx);
 			switch (direction)
 			{
 			case 0:
@@ -716,7 +719,7 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
 			stateHability = true;
-
+			App->audio->PlayFx(specialLoadFx);
 			switch (direction)
 			{
 			case 0:

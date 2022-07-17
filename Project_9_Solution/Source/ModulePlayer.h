@@ -115,6 +115,7 @@ public:
 	uint specialLoadFx = 0;
 	uint dieFx = 0;
 	uint hitFx = 0;
+	uint AllInFx = 0;
 
 	// Font variables
 	int Font = -1;
