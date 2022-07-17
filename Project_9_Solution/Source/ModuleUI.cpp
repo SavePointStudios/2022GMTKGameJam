@@ -155,8 +155,8 @@ Update_Status ModuleUI::PostUpdate()
 	SDL_Rect rect = currentLifeBarAnimation->GetCurrentFrame();
 	App->render->Blit(lifeBarTexture, App->render->camera.x, App->render->camera.y+80, &rect);
 
-	if (App->player->stateHability) {
-		if (App->player->habilityDelay<=90) {
+	if (App->player->stateAbility) {
+		if (App->player->abilityDelay<=90) {
 			SDL_Rect rect2 = currentRollAnimation->GetCurrentFrame();
 			App->render->Blit(rollTexture, App->player->position.x, App->player->position.y - 64, &rect2);
 		}

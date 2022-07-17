@@ -302,13 +302,13 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	if (stateHability) {
+	if (stateAbility) {
 		if (rollTheDice == false) {
 			srand(time(NULL));
 
-			hability *= 1 + rand() % ((lifePlayer + 1) - 1);
+			ability *= 1 + rand() % ((lifePlayer + 1) - 1);
 
-			switch (hability/50)
+			switch (ability/50)
 			{
 			case 1:
 				App->ui->oneRollAnim.Reset();
@@ -341,9 +341,9 @@ Update_Status ModulePlayer::Update()
 			rollTheDice = true;
 		}
 
-		habilityDelay--;
+		abilityDelay--;
 
-		if (habilityDelay == 40) {
+		if (abilityDelay == 40) {
 			switch (direction)
 			{
 			case 0:
@@ -367,7 +367,7 @@ Update_Status ModulePlayer::Update()
 			}
 		}
 
-		if (habilityDelay == 0) {
+		if (abilityDelay == 0) {
 			iPoint shotSpawn = position;
 			Particle* newParticle;
 			switch (direction)
@@ -381,13 +381,13 @@ Update_Status ModulePlayer::Update()
 				break;
 			case 1:
 				shotSpawn.y -= 32;
-				shotSpawn.x -= 64;
+				shotSpawn.x -= 50;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityLeft, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
 				newParticle->collider->AddListener(this);
 				break;
 			case 2:
-				shotSpawn.y += 64;
+				shotSpawn.y += 10;
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityDown, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
@@ -406,14 +406,14 @@ Update_Status ModulePlayer::Update()
 			App->audio->PlayFx(shootFx);
 		}
 		
-		if (habilityDelay <= -40) {
+		if (abilityDelay <= -40) {
 
-			//End diceHability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
-			stateHability = false;
+			//End diceAbility secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
+			stateAbility = false;
 			lifePlayer--;
-			hability = 50;
+			ability = 50;
 			rollTheDice = false;
-			habilityDelay = 100;
+			abilityDelay = 100;
 		}
 	}
 	else if (stateBasicAttack) {
@@ -543,7 +543,7 @@ Update_Status ModulePlayer::Update()
 
 		if (basicAttackDelay <= -40) {
 
-			//End diceHability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
+			//End diceAbility secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
 			stateBasicAttack = false;
 			basicAttackDelay = 20;
 		}
@@ -715,7 +715,7 @@ Update_Status ModulePlayer::Update()
 		}
 
 		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
-			stateHability = true;
+			stateAbility = true;
 
 			switch (direction)
 			{
@@ -806,7 +806,7 @@ Update_Status ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentDiceAnimation->GetCurrentFrame();
 		App->render->Blit(diceTexture, position.x, position.y, &rect);
 
-		if (stateHability) {
+		if (stateAbility) {
 			SDL_Rect rect2 = currentDiceHandAnimation->GetCurrentFrame();
 			App->render->Blit(diceHandTexture, position.x, position.y - 32, &rect2);
 		}
@@ -816,14 +816,17 @@ Update_Status ModulePlayer::PostUpdate()
 		}
 	}
 
-	// Draw UI (life) --------------------------------------
-	sprintf_s(Text, 10, "%7d", lifePlayer);
+	// Draw life --------------------------------------
+	//sprintf_s(Text, 10, "%7d", lifePlayer);
 
     //Blit the text of the life in at the bottom of the screen
-	App->fonts->BlitText(58, 248, Font, Text);
+	//App->fonts->BlitText(58, 248, Font, Text);
 
-	sprintf_s(Text, 10, "%7d", hability);
-	App->fonts->BlitText(58, 228, Font, Text);
+	// Draw ability damage --------------------------------------
+	//sprintf_s(Text, 10, "%7d", ability);
+
+	//Blit the text of the life in at the bottom of the screen
+	//App->fonts->BlitText(58, 228, Font, Text);
 	
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -860,4 +863,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		lifePlayer--;
 	}
+}
+
+bool ModulePlayer::CleanUp()
+{
+	App->textures->Unload(diceTexture);
+	App->textures->Unload(diceHandTexture);
+
+	App->fonts->UnLoad(Font);
+
+	return true;
 }

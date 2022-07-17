@@ -32,6 +32,8 @@ public:
 	// Collision callback, called when the player intersects with another collider
 	void OnCollision(Collider* c1, Collider* c2) override;
 
+	bool CleanUp();
+
 public:
 	//Life unit points
 	int lifePlayer = 1;
@@ -49,8 +51,8 @@ public:
 	//Basic attack damage
 	int basicAttack = 25;
 
-	//Hability damage
-	int hability = 50;
+	//Ability damage
+	int ability = 50;
 
 	// The spritesheets loaded into an SDL_Texture
 	SDL_Texture* diceTexture = nullptr;
@@ -101,13 +103,13 @@ public:
 	// A flag to detect when the player has been destroyed
 	bool destroyed = false;
 
-	//A flag  to detetct when thw player is throwing his diceHability
-	bool stateHability = false;
+	//A flag  to detetct when thw player is throwing his diceAbility
+	bool stateAbility = false;
 
-	//A flag  to detetct when thw player is throwing his diceHability
+	//A flag  to detetct when thw player is throwing his diceAbility
 	bool stateBasicAttack = false;
 
-	//A flag  to detetct when thw player is throwing his diceHability
+	//A flag  to detetct when thw player is throwing his diceAbility
 	bool rollTheDice = false;
 
 	// Sound effects indices
@@ -120,7 +122,7 @@ public:
 	int Font = -1;
 	char Text[10] = { "\0" };
 
-	int habilityDelay = 100;
+	int abilityDelay = 100;
 	int basicAttackDelay = 20;
 
 };

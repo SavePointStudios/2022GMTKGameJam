@@ -11,6 +11,11 @@
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled) {
 
+	anim.PushBack({ 0, 64, 32, 32 });
+	anim.PushBack({ 32, 64, 32, 32 });
+	anim.PushBack({ 64, 64, 32, 32 });
+	anim.speed = 0.1f;
+	currentAnim = &anim;
 }
 
 SceneMenu::~SceneMenu() {
@@ -34,12 +39,6 @@ bool SceneMenu::Start() {
 	selected = App->audio->LoadFx("Assets/Fx/Menu/Select.wav");
 	hasSelected = false;
 	selection = 0;
-
-	anim.PushBack({ 0, 64, 32, 32 });
-	anim.PushBack({ 32, 64, 32, 32 });
-	anim.PushBack({ 64, 64, 32, 32 });
-	anim.speed = 0.1f;
-	currentAnim = &anim;
 
 	return ret;
 }
@@ -126,4 +125,14 @@ Update_Status SceneMenu::PostUpdate() {
 	App->render->Blit(playerTexture, x, y, &rect);
 
 	return Update_Status::UPDATE_CONTINUE;
+}
+
+bool SceneMenu::CleanUp()
+{
+	App->textures->Unload(bgTexture);
+	App->textures->Unload(playerTexture);
+
+	App->fonts->UnLoad(fontId);
+
+	return true;
 }
