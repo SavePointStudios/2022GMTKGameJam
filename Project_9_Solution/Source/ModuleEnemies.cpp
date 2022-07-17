@@ -84,7 +84,7 @@ bool ModuleEnemies::CleanUp()
 	return true;
 }
 
-bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y)
+bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y, unsigned short version)
 {
 	bool ret = false;
 
@@ -95,6 +95,9 @@ bool ModuleEnemies::AddEnemy(Enemy_Type type, int x, int y)
 			spawnQueue[i].type = type;
 			spawnQueue[i].x = x;
 			spawnQueue[i].y = y;
+			if (version != 0) {
+				spawnQueue[i].version = version;
+			}
 			ret = true;
 			break;
 		}
@@ -109,9 +112,9 @@ void ModuleEnemies::HandleEnemiesSpawn()
 		if (spawnQueue[i].type != Enemy_Type::NO_TYPE)
 		{
 			// Spawn a new enemy if the screen has reached a spawn position
-			if (spawnQueue[i].y * SCREEN_SIZE > App->render->camera.y - SPAWN_MARGIN &&
-				spawnQueue[i].x * SCREEN_SIZE >= App->render->camera.x - SPAWN_MARGIN &&
-				spawnQueue[i].x * SCREEN_SIZE <= App->render->camera.x + App->render->camera.w + SPAWN_MARGIN) {
+			if (spawnQueue[i].y * SCREEN_SIZE < (App->render->camera.y + App->render->camera.h) * SCREEN_SIZE + SPAWN_MARGIN &&
+				spawnQueue[i].x * SCREEN_SIZE >= App->render->camera.x * SCREEN_SIZE - SPAWN_MARGIN &&
+				spawnQueue[i].x * SCREEN_SIZE <= (App->render->camera.x + App->render->camera.w) * SCREEN_SIZE + SPAWN_MARGIN) {
 				LOG("Spawning enemy at %d", spawnQueue[i].x * SCREEN_SIZE);
 				SpawnEnemy(spawnQueue[i]);
 				spawnQueue[i].type = Enemy_Type::NO_TYPE; // Removing the newly spawned enemy from the queue
@@ -129,7 +132,7 @@ void ModuleEnemies::SpawnEnemy(const EnemySpawnpoint& info)
 			switch (info.type)
 			{
 			case Enemy_Type::BASECARD:
-				enemies[i] = new Enemy_BaseCard(info.x, info.y);
+				enemies[i] = new Enemy_BaseCard(info.x, info.y, info.version);
 				enemies[i]->texture = baseCardTexture;
 				break;
 			case Enemy_Type::BOSS:
@@ -156,6 +159,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 			if (enemies[i]->healthPoints <= 0) {
+				enemies[i]->deathAnimation();
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}

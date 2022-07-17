@@ -6,10 +6,7 @@
 enum class Enemy_Type
 {
 	NO_TYPE,
-	REDBIRD,
-	BROWNSHIP,
 	BASECARD,
-	MECH,
 	BOSS,
 	QK,
 };
@@ -18,6 +15,7 @@ struct EnemySpawnpoint
 {
 	Enemy_Type type = Enemy_Type::NO_TYPE;
 	int x = -1, y = -1;
+	unsigned short version = 0;
 };
 class Enemy;
 struct SDL_Texture;
@@ -47,7 +45,7 @@ public:
 	// The enemy is destroyed and an explosion particle is fired
 	void OnCollision(Collider* c1, Collider* c2) override;
 	// Add an enemy into the queue to be spawned later
-	bool AddEnemy(Enemy_Type type, int x, int y);
+	bool AddEnemy(Enemy_Type type, int x, int y, unsigned short version = 0);
 	// Iterates the queue and checks for camera position
 	void HandleEnemiesSpawn();
 private:

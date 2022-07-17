@@ -10,7 +10,7 @@ class Enemy_BaseCard : public Enemy
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
-	Enemy_BaseCard(int x, int y);
+	Enemy_BaseCard(int x, int y, unsigned short version);
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
@@ -19,8 +19,7 @@ public:
 	void updateMovement();
 	void startAttack();
 	void attack();
-
-	void initAnimations();
+	void initAnimations(unsigned short version);
 	void deathAnimation();
 
 private:
