@@ -28,3 +28,5 @@ void Enemy_QK::initAnimations()
 {
 
 }
+
+void Enemy_QK::deathAnimation(){ }

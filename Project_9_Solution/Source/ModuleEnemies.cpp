@@ -164,6 +164,7 @@ void ModuleEnemies::OnCollision(Collider* c1, Collider* c2)
 		{
 			enemies[i]->OnCollision(c2); //Notify the enemy of a collision
 			if (enemies[i]->healthPoints <= 0) {
+				enemies[i]->deathAnimation();
 				delete enemies[i];
 				enemies[i] = nullptr;
 			}

@@ -37,12 +37,7 @@ void Enemy_BaseCard::Update()
 	if (attacking)
 		attack();
 
-	if (healthPoints <= 0) {
-		App->audio->PlayFx(dieFx);
-		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
-
-		SetToDelete();
-	}
+	
 	Enemy::Update();
 }
 
@@ -207,4 +202,13 @@ void Enemy_BaseCard::initAnimations()
 	currentAnim = &walkRight;
 
 	path.PushBack({0.0f,0.0f}, 4, currentAnim);
+}
+
+void Enemy_BaseCard::deathAnimation() {
+	if (healthPoints <= 0) {
+		App->audio->PlayFx(dieFx);
+		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
+
+		SetToDelete();
+	}
 }

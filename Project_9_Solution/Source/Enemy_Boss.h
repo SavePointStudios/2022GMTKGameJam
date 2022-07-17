@@ -14,6 +14,7 @@ public:
 	// The enemy is going to perform a sinusoidal movement
 	void Update() override;
 
+	void deathAnimation();
 private:
 
 	// The enemy animation

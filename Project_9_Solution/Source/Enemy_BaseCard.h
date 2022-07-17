@@ -21,6 +21,7 @@ public:
 	void attack();
 
 	void initAnimations();
+	void deathAnimation();
 
 private:
 	// This enemy has one sprite and one frame

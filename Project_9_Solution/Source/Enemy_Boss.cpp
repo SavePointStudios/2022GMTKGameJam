@@ -48,3 +48,7 @@ void Enemy_Boss::Update()
 	// It will update the collider depending on the position
 	Enemy::Update();
 }
+
+void Enemy_Boss::deathAnimation() {
+
+}

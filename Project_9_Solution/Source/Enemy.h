@@ -36,6 +36,8 @@ public:
 	// Sets flag for deletion and for the collider aswell
 	virtual void SetToDelete();
 
+	virtual void deathAnimation() = 0;
+
 public:
 	// The current position in the world
 	iPoint position;
