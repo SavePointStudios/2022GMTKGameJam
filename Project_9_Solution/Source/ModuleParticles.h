@@ -64,10 +64,14 @@ public:
 	Particle cardAttackMelee;
 	Particle cardDeath;
 
+	//Template particle for a QK_BasicAttack
+	Particle QK_SwordAttack;
+
 private:
 	// Particles spritesheet loaded into an SDL Texture
 	SDL_Texture* handTexture = nullptr;
 	SDL_Texture* baseCardTexture = nullptr;
+	SDL_Texture* QK_Sword = nullptr;
 
 	// An array to store and handle all the particles
 	Particle* particles[MAX_ACTIVE_PARTICLES] = { nullptr };

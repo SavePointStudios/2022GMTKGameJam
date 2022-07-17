@@ -56,6 +56,7 @@ public:
 	//To choose sprites
 	bool isShot = false;
 	bool isBaseCard = false;
+	bool isQK_Shot = false;
 };
 
 #endif //__PARTICLE_H__

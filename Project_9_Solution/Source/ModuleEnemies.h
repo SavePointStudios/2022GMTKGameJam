@@ -14,6 +14,7 @@ enum class Enemy_Type
 	BASECARD,
 	MECH,
 	BOSS,
+	QK,
 };
 
 struct EnemySpawnpoint
@@ -78,6 +79,7 @@ private:
 	// The enemies sprite sheet
 	SDL_Texture* baseCardTexture = nullptr;
 	SDL_Texture* bossTexture = nullptr;
+	SDL_Texture* QK_midboss = nullptr;
 
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;

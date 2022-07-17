@@ -19,26 +19,28 @@ public:
 	// Position will be updated depending on the speed defined at each step
 	void Update() override;
 
-	void initAnimations();
+	void QKstartAttack();
+	void QKattack();
+
+	void QKinitAnimations();
 
 private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
-	Animation attackRight;
-	Animation attackLeft;
-	Animation attackUp;
-	Animation attackDown;
 
-	Path path; //(Needed)
+	Animation idleAnimation;
 
-	//Timers for the attack
-	int startTimer = 0;
-	int currentTime = 0;
-	bool attacking = false;
+	int timerSpawn = 0;
 
 	ushort attackdir = 0;
+	ushort QKattackSpeed = 3;
 
-	int QK_health = 200;
+	int moveUp, moveDown, moveRight, moveLeft;
+
+	//Timers for the attack
+	bool QKattacking = false;
+	int startTimer = 0;
+	int currentTime = 0;
 };
 
 #endif // __ENEMY_H__

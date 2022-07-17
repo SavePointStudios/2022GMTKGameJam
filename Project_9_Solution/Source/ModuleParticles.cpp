@@ -10,7 +10,7 @@
 
 ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled)
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 		particles[i] = nullptr;
 }
 
@@ -22,9 +22,10 @@ ModuleParticles::~ModuleParticles()
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
-  
+
 	baseCardTexture = App->textures->Load("Assets/Sprites/Card_Clubs_Sheet.png");
 	handTexture = App->textures->Load("Assets/Sprites/Hand_Character_Spritesheet.png");
+	QK_Sword = App->textures->Load("Assets/Sprites/midboss_Attack");
 
 	// Explosion particle
 	diceAbility.anim.PushBack({ 192, 0, 64, 32 });
@@ -52,6 +53,11 @@ bool ModuleParticles::Start()
 	cardDeath.anim.loop = false;
 	cardDeath.isBaseCard = true;
 
+	QK_SwordAttack.anim.PushBack({ 0, 0, 21, 9 });
+	QK_SwordAttack.speed.x = 5;
+	QK_SwordAttack.lifetime = 180;
+	QK_SwordAttack.isQK_Shot = true;
+
 	return true;
 }
 
@@ -75,9 +81,9 @@ bool ModuleParticles::CleanUp()
 	LOG("Unloading particles");
 
 	// Delete all remaining active particles on application exit 
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
-		if(particles[i] != nullptr)
+		if (particles[i] != nullptr)
 		{
 			delete particles[i];
 			particles[i] = nullptr;
@@ -103,14 +109,14 @@ void ModuleParticles::OnCollision(Collider* c1, Collider* c2)
 
 Update_Status ModuleParticles::Update()
 {
-	for(uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
+	for (uint i = 0; i < MAX_ACTIVE_PARTICLES; ++i)
 	{
 		Particle* particle = particles[i];
 
-		if(particle == nullptr)	continue;
+		if (particle == nullptr)	continue;
 
 		// Call particle Update. If it has reached its lifetime, destroy it
-		if(particle->Update() == false)
+		if (particle->Update() == false)
 		{
 			particles[i]->SetToDelete();
 		}
@@ -134,6 +140,9 @@ Update_Status ModuleParticles::PostUpdate()
 
 			else if (particle->isBaseCard)
 				App->render->Blit(baseCardTexture, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
+
+			else if (particle->isQK_Shot)
+				App->render->Blit(QK_Sword, particle->position.x, particle->position.y, &(particle->anim.GetCurrentFrame()));
 		}
 	}
 
