@@ -16,6 +16,11 @@ Enemy_BaseCard::Enemy_BaseCard(int x, int y) : Enemy(x, y)
 	initAnimations();
 	healthPoints = NUMHEALTH;
 	collider = App->collisions->AddCollider({0, 0, 32, 64}, Collider::Type::ENEMY, (Module*)App->enemies);
+
+	// Sound effects
+	attackFx = App->audio->LoadFx("Assets/Fx/Cards/Attack.wav"); // Played when card attacks
+	dieFx = App->audio->LoadFx("Assets/Fx/Cards/Die.wav"); // Played when card dies
+	hitFx = App->audio->LoadFx("Assets/Fx/Cards/Hit.wav"); // Played when card is hit by player
 }
 
 void Enemy_BaseCard::Update()
@@ -33,8 +38,8 @@ void Enemy_BaseCard::Update()
 		attack();
 
 	if (healthPoints <= 0) {
+		App->audio->PlayFx(dieFx);
 		App->particles->AddParticle(App->particles->cardDeath, position.x, position.y);
-		App->audio->PlayFx(destroyedFx);
 
 		SetToDelete();
 	}
@@ -81,6 +86,8 @@ void Enemy_BaseCard::attack()
 
 	if (currentTime - startTimer >= 1000 && currentTime - startTimer <= 1100)
 	{
+
+		App->audio->PlayFx(attackFx);
 		//Down
 		if (degrees > 45 && degrees < 135)
 		{

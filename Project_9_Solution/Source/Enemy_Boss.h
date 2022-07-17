@@ -20,6 +20,11 @@ private:
 	Animation idleAnim;
 	Animation spinAnim;
 	Animation deathAnim;
+
+public:
+	// Sound effect indices
+	uint idleFx = 0;
+	uint attackFx = 0;
 };
 
 #endif // __ENEMY_BOSS_H__

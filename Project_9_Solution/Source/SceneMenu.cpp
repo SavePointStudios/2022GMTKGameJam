@@ -25,7 +25,7 @@ bool SceneMenu::Start() {
 	bgTexture = App->textures->Load("Assets/Scenes/0.png");
 	playerTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
 
-	App->audio->PlayMusic("Assets/Music/Menu.ogg", 1.0f);
+	App->audio->PlayMusic("Assets/Music/Menu minor.ogg", 1.0f); // Take minor out if we want the "happy" version
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	fontId = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 

@@ -275,10 +275,10 @@ bool ModulePlayer::Start()
 	currentDiceHandAnimation = &idleHandAnimRight;
 
 
-	shootFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav");
-	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav");
-	hitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav");
-	specialLoadFx = App->audio->LoadFx("Assets/Fx/Dice/Special Loading.wav");
+	shootFx = App->audio->LoadFx("Assets/Fx/Dice/Shoot.wav"); // Played when player shoots
+	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav"); // Played when player dies
+	hitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav"); // Played when player is hit
+	specialLoadFx = App->audio->LoadFx("Assets/Fx/Dice/Special Loading.wav"); // Played while loading the special (dice rolling for multiplier)
 
 	position.x = 150;
 	position.y = 120;
