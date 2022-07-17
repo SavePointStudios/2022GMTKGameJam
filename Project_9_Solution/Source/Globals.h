@@ -26,6 +26,15 @@ typedef unsigned int ushort;
 #define SCREEN_HEIGHT 720/2
 //#define SCREEN_HEIGHT 256
 
+// Enemies health amount
+#define NUMHEALTH	2*25
+#define JHEALTH		5*25
+#define QKHEALTH	8*25
+#define AHEALTH		20*25
+
+// Boss features (in seconds)
+#define SPAWN_TIMER		8
+
 #define SCREEN_SIZE 2
 #define WIN_FULLSCREEN 0
 #define WIN_FULLSCREEN_DESKTOP 0
