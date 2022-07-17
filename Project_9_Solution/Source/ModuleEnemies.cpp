@@ -192,10 +192,10 @@ void ModuleEnemies::SpreadEnemies()
 					{
 						enemies[i]->spread = 10;
 
-						enemies[i]->beta = atan2(deltaY, deltaX) / (M_PI / 180);
+						enemies[i]->beta = atan2(-deltaY, -deltaX) + 180;  // / (M_PI / 180);
 
-						if (enemies[i]->beta < 0)
-							enemies[i]->beta += 360.0f;
+						/*if (enemies[i]->beta < 0)
+							enemies[i]->beta += 360.0f;*/
 					}
 					enemies[i]->spread--;
 				}
