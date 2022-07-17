@@ -719,7 +719,7 @@ Update_Status ModulePlayer::Update()
 
 		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
 			stateAbility = true;
-
+			App->audio->PlayFx(specialLoadFx);
 			switch (direction)
 			{
 			case 0:
