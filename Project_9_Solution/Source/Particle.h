@@ -55,6 +55,7 @@ public:
 
 	//To choose sprites
 	bool isShot = false;
+	bool isQK_Shot = false;
 	bool isBaseCard = false;
 };
 
