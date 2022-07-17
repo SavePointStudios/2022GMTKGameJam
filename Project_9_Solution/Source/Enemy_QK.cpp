@@ -3,6 +3,7 @@
 #include "ModuleCollisions.h"
 #include "ModuleEnemies.h"
 #include "ModuleParticles.h"
+#include "ModulePlayer.h"
 #include "ModuleAudio.h"
 #include "SDL/include/SDL.h"
 
@@ -36,6 +37,10 @@ void Enemy_QK::Update()
 		SetToDelete();
 	}
 
+	//shotPos = shotSpawn;
+	shotPos.x += 2 * cos(degrees);
+	shotPos.y += 2 * sin(degrees);
+
 	Enemy::Update();
 }
 
@@ -53,52 +58,66 @@ void Enemy_QK::QKattack()
 		if (degrees > 45 && degrees < 135)
 		{
 			attackdir = 0;
-			moveUp += QKattackSpeed;
 		}
 
 		//Left
 		if (degrees > 135 && degrees < 225)
 		{
 			attackdir = 1;
-			moveLeft += QKattackSpeed;
 		}
 
 		//Up
 		if (degrees > 225 && degrees < 315)
 		{
 			attackdir = 2;
-			moveDown += QKattackSpeed;
 		}
 
 		//Right
 		if (degrees > 315 || degrees < 45)
 		{
 			attackdir = 3;
-			moveRight += QKattackSpeed;
 		}
 	}
 
 	if (QKattacking && currentTime - startTimer > 1200)
 	{
+		shotSpawn.x = position.x;
+		shotSpawn.y = position.y;
+		
 		switch (attackdir)
 		{
 		case 0://Down
-			App->particles->AddParticle(App->particles->QK_SwordAttack, position.x, moveDown, Collider::Type::ENEMY_SHOT);
+			shotSpawn.y += 30;
+			shotSpawn.x += 0;
+			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		case 1://Left
-			App->particles->AddParticle(App->particles->QK_SwordAttack, moveLeft, position.y, Collider::Type::ENEMY_SHOT);
+			shotSpawn.y += 0;
+			shotSpawn.x += -30;
+			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		case 2://Up
-			App->particles->AddParticle(App->particles->QK_SwordAttack, position.x, moveUp, Collider::Type::ENEMY_SHOT);
+			shotSpawn.y += -30;
+			shotSpawn.x += 0;
+			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		case 3://Right
-			App->particles->AddParticle(App->particles->QK_SwordAttack, moveRight, position.y, Collider::Type::ENEMY_SHOT);
+			shotSpawn.y += 0;
+			shotSpawn.x += 60;
+			App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::ENEMY_SHOT);
 			break;
 		default:
 			break;
 		}
+		//Particle* newParticle = App->particles->AddParticle(App->particles->QK_SwordAttackUp, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT);
+		//newParticle->collider->AddListener(this);
 		QKattacking = false;
 	}
+}
+
+void Enemy_QK::QKtrackPlayer()
+{
+
 }
 
 void Enemy_QK::QKinitAnimations()

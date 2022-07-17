@@ -20,6 +20,7 @@ public:
 
 	void QKstartAttack();
 	void QKattack();
+	void QKtrackPlayer();
 
 	void QKinitAnimations();
 	void deathAnimation();
@@ -35,6 +36,9 @@ private:
 	Path path; //(Needed)
 	Animation idleAnimation;
 
+	iPoint shotSpawn = position;
+	iPoint shotPos = position;
+
 	//Timers for the attack
 	int startTimer = 0;
 	int currentTime = 0;
@@ -42,10 +46,7 @@ private:
 	int timerSpawn = 0;
 
 	ushort attackdir = 0;
-	ushort QKattackSpeed = 3;
 
-	int QK_health = 200;
-	int moveUp, moveDown, moveRight, moveLeft;
 };
 
 #endif // __ENEMY_H__ 

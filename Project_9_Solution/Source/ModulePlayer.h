@@ -38,6 +38,7 @@ public:
 	
 	// Position of the player in the map
 	iPoint position;
+	iPoint currentPos;
 
 	// Direction of the player in the map
 	int direction = 3;

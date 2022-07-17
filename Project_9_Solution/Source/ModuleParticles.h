@@ -68,7 +68,10 @@ public:
 	Particle cardDeath;
 
 	//Template particle for a QK_BasicAttack
-	Particle QK_SwordAttack;
+	Particle QK_SwordAttackUp;
+	Particle QK_SwordAttackDown;
+	Particle QK_SwordAttackRight;
+	Particle QK_SwordAttackLeft;
 
 private:
 	// Particles spritesheet loaded into an SDL Texture

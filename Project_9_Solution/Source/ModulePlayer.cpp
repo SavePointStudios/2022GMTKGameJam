@@ -302,6 +302,9 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
+	currentPos.x = position.x;
+	currentPos.y = position.y;
+
 	if (stateHability) {
 		if (rollTheDice == false) {
 			srand(time(NULL));

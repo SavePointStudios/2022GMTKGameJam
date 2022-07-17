@@ -14,6 +14,7 @@ ModuleParticles::ModuleParticles(bool startEnabled) : Module(startEnabled)
 ModuleParticles::~ModuleParticles()
 {
 }
+
 bool ModuleParticles::Start()
 {
 	LOG("Loading particles");
@@ -65,6 +66,7 @@ bool ModuleParticles::Start()
 	diceBasicAttack.isShot = true;
 	cardAttackMelee.anim.PushBack({ 768, 576, 32, 64 });
 	cardAttackMelee.lifetime = 10;
+
 	cardDeath.anim.PushBack({ 768, 0, 32, 64 });
 	cardDeath.anim.PushBack({ 800, 0, 32, 64 });
 	cardDeath.anim.PushBack({ 832, 0, 32, 64 });
@@ -74,10 +76,33 @@ bool ModuleParticles::Start()
 	cardDeath.anim.loop = false;
 	cardDeath.isBaseCard = true;
 
-	QK_SwordAttack.anim.PushBack({ 0, 0, 21, 9 });
-	QK_SwordAttack.speed.x = 5;
-	QK_SwordAttack.lifetime = 180;
-	QK_SwordAttack.isQK_Shot = true;
+	QK_SwordAttackUp.anim.PushBack({ 0, 0, 21, 9 });
+	QK_SwordAttackUp.speed.y = -5;
+	QK_SwordAttackUp.speed.x = 0;
+	QK_SwordAttackUp.anim.speed = 0.1f;
+	QK_SwordAttackUp.lifetime = 180;
+	QK_SwordAttackUp.isQK_Shot = true;
+
+	QK_SwordAttackDown.anim.PushBack({ 0, 0, 21, 9 });
+	QK_SwordAttackDown.speed.y = 5;
+	QK_SwordAttackDown.speed.x = 0;
+	QK_SwordAttackDown.anim.speed = 0.1f;
+	QK_SwordAttackDown.lifetime = 180;
+	QK_SwordAttackDown.isQK_Shot = true;
+
+	QK_SwordAttackRight.anim.PushBack({ 0, 0, 21, 9 });
+	QK_SwordAttackRight.speed.y = 0;
+	QK_SwordAttackRight.speed.x = 5;
+	QK_SwordAttackRight.anim.speed = 0.1f;
+	QK_SwordAttackRight.lifetime = 180;
+	QK_SwordAttackRight.isQK_Shot = true;
+
+	QK_SwordAttackLeft.anim.PushBack({ 0, 0, 21, 9 });
+	QK_SwordAttackLeft.speed.y = 0;
+	QK_SwordAttackLeft.speed.x = -5;
+	QK_SwordAttackLeft.anim.speed = 0.1f;
+	QK_SwordAttackLeft.lifetime = 180;
+	QK_SwordAttackLeft.isQK_Shot = true;
 
 	return true;
 }
