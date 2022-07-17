@@ -14,13 +14,25 @@ public:
 	// The enemy is going to perform a sinusoidal movement
 	void Update() override;
 
+
+	void updateMovement();
+	void startAttack();
+	void attack();
 	void deathAnimation();
+
+	void initAnimations();
 private:
 
 	// The enemy animation
 	Animation idleAnim;
 	Animation spinAnim;
 	Animation deathAnim;
+
+	int movSpeed = 1;
+
+	int startTimer = 0;
+	int currentTime = 0;
+	bool attacking = false;
 
 public:
 	// Sound effect indices

@@ -748,8 +748,6 @@ Update_Status ModulePlayer::Update()
 
 		// If no up/down movement detected, set the current animation back to idle
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_IDLE) {
-			movementPlayer = 4;
-			
 			switch (direction)
 			{
 			case 0:
