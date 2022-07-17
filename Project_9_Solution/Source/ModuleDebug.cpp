@@ -97,6 +97,9 @@ void ModuleDebug::DebugDraw() {
 		case Collider::Type::POWERUP: // white
 			App->render->DrawQuad(App->collisions->colliders[i]->rect, 255, 255, 255, alpha);
 			break;
+		case Collider::Type::BOSS: // purple
+			App->render->DrawQuad(App->collisions->colliders[i]->rect, 138, 43, 226, alpha);
+			break;
 		default:
 			break;
 		}

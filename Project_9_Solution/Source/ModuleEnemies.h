@@ -13,6 +13,7 @@ enum class Enemy_Type
 	BROWNSHIP,
 	BASECARD,
 	MECH,
+	BOSS,
 };
 
 struct EnemySpawnpoint
@@ -75,7 +76,8 @@ private:
 	Enemy* enemies[MAX_ENEMIES] = { nullptr };
 
 	// The enemies sprite sheet
-	SDL_Texture* texture = nullptr;
+	SDL_Texture* baseCardTexture = nullptr;
+	SDL_Texture* bossTexture = nullptr;
 
 	// The audio fx for destroying an enemy
 	int enemyDestroyedFx = 0;
