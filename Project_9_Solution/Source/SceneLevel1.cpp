@@ -27,8 +27,8 @@ bool SceneLevel1::Start()
 	LOG("Loading background assets");
 
 	bool ret = true;
-
-	bgTexture = App->textures->Load("Assets/Sprites/map_base.png");
+	bgTexture = App->textures->Load("Assets/Sprites/background.png");
+	mapTexture = App->textures->Load("Assets/Sprites/map_base.png");
 	
 	// Room 1 Music
 	App->audio->PlayMusic("Assets/Music/Stage1.ogg", 1.0f); // music that plays in the first room
@@ -83,28 +83,103 @@ bool SceneLevel1::Start()
 
 
 	// Enemies ---
-	App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500);
-	//App->enemies->AddEnemy(Enemy_Type::BOSS, 400, 600);
+	// 1st room
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 520, 550, 5);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 250, 900, 2);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 135, 560, 3);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 280, 800, 4);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 430, 880, 7);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 580, 70, 8);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 525, 200, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 400, 500, 6);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 950, 775, 6);
+
+	// 2nd room
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1340, 700, 6);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1410, 700, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1480, 700, 9);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1550, 700, 3);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1620, 700, 2);
+
+	// 3rd room
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1960, 870, 6);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2060, 870, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2111, 870, 9);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2165, 870, 3);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2215, 870, 2);
+
+	// 4th room
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 1960, 870, 2);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2060, 870, 3);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2111, 870, 7);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2165, 870, 8);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2215, 870, 10);
+
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2185, 1364, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2282, 1484, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2315, 1600, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 2163, 1645, 10);
+
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 860, 1637, 10);
+	App->enemies->AddEnemy(Enemy_Type::BASECARD, 860, 1732, 10);
 
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
 
-	//App->enemies->AddEnemy(Enemy_Type::MECH, 900, 195);
-
 	// Breakables ---
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 210, 120);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 113, 52, 0);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::DOOR, 400, 120, 1);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 400, 190, 0);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 430, 190, 1);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::TABLE, 430, 250, 0);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::TABLE, 430, 250, 1);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 0);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 430, 250, 1);
-	//App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 210, -200, 1);
+	// 1st room
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 256, 324);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 412, 364);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 358, 665);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 358, 750);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 460, 665);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 585, 403);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 593, 435);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 617, 403);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 385, 240);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 440, 435);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 370, 270);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 455, 280);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 930, 715);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 930, 715);
 
-	// Powerups ---
-	//App->powerups->AddPowerup(POWERUP_TYPE::DICE, 210, 180);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 1680, 840, 0);
+
+	// 2nd room
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1660, 580);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1692, 580);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1580, 550);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1725, 640);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1436, 521);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1265, 530);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 1330, 820, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 1362, 820, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 1340, 852, 0);
+	
+	//3rd room
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 2215, 815);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1890, 1220);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1750, 845);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1777, 880);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 1756, 900);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 2080, 1300);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 1900, 1230, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 2050, 1030, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CARDBOX, 2300, 1400, 0);
+	//4th room
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 2254, 1458, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 2213, 1600, 0);
+
+	// Boss room
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 63, 1224, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 812, 1224, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 63, 1974, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 812, 1974, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::GOBLET, 1680, 872, 0);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 200, 1464);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 400, 1546);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 600, 1838);
+	App->breakables->AddBreakable(BREAKABLE_TYPE::CHIPSTACK, 545, 1872);
 
 	App->player->Enable();
 	App->enemies->Enable();
@@ -134,7 +209,8 @@ Update_Status SceneLevel1::Update()
 Update_Status SceneLevel1::PostUpdate()
 {
 	// Draw everything --------------------------------------
-	App->render->Blit(bgTexture, 0, 0, NULL);
+	App->render->Blit(bgTexture, -160, -40, NULL);
+	App->render->Blit(mapTexture, 0, 0, NULL);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
@@ -148,5 +224,8 @@ bool SceneLevel1::CleanUp()
 	App->collisions->Disable();
 	App->ui->Disable();
 	
+	App->textures->Unload(bgTexture);
+	App->textures->Unload(mapTexture);
+
 	return true;
 }

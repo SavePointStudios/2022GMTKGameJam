@@ -3,7 +3,7 @@
 
 #include "Module.h"
 
-#define MAX_BREAKABLES		170
+#define MAX_BREAKABLES		200
 
 enum class BREAKABLE_TYPE {
 	NO_TYPE,
@@ -72,6 +72,10 @@ private:
 
 	// The enemies sprite sheet
 	SDL_Texture* breakableTexture = nullptr;
+	int cardboxFx = 0;
+	int chipsFx = 0;
+	int gobletFx = 0;
+	
 
 };
 

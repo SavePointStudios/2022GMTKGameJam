@@ -280,6 +280,7 @@ bool ModulePlayer::Start()
 	dieFx = App->audio->LoadFx("Assets/Fx/Dice/Die.wav"); // Played when player dies
 	hitFx = App->audio->LoadFx("Assets/Fx/Dice/Hit.wav"); // Played when player is hit
 	specialLoadFx = App->audio->LoadFx("Assets/Fx/Dice/Special Loading.wav"); // Played while loading the special (dice rolling for multiplier)
+	AllInFx = App->audio->LoadFx("Assets/Fx/Dice/All In.wav"); // ALL IN!!
 
 	position.x = 150;
 	position.y = 120;
@@ -302,13 +303,13 @@ bool ModulePlayer::Start()
 
 Update_Status ModulePlayer::Update()
 {
-	if (stateHability) {
+	if (stateAbility) {
 		if (rollTheDice == false) {
 			srand(time(NULL));
 
-			hability *= 1 + rand() % ((lifePlayer + 1) - 1);
+			ability *= 1 + rand() % ((lifePlayer + 1) - 1);
 
-			switch (hability/50)
+			switch (ability/50)
 			{
 			case 1:
 				App->ui->oneRollAnim.Reset();
@@ -341,9 +342,9 @@ Update_Status ModulePlayer::Update()
 			rollTheDice = true;
 		}
 
-		habilityDelay--;
+		abilityDelay--;
 
-		if (habilityDelay == 40) {
+		if (abilityDelay == 40) {
 			switch (direction)
 			{
 			case 0:
@@ -367,9 +368,11 @@ Update_Status ModulePlayer::Update()
 			}
 		}
 
-		if (habilityDelay == 0) {
+		if (abilityDelay == 0) {
 			iPoint shotSpawn = position;
 			Particle* newParticle;
+			// All in sound
+			App->audio->PlayFx(AllInFx);
 			switch (direction)
 			{
 			case 0:
@@ -377,28 +380,24 @@ Update_Status ModulePlayer::Update()
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityUp, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 1:
 				shotSpawn.y -= 32;
-				shotSpawn.x -= 64;
+				shotSpawn.x -= 50;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityLeft, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 2:
-				shotSpawn.y += 64;
+				shotSpawn.y += 10;
 				shotSpawn.x += 0;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityDown, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			case 3:
 				shotSpawn.y -= 20;
 				shotSpawn.x += 20;
 
 				newParticle = App->particles->AddParticle(App->particles->diceAbilityRight, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT_BREAKER);
-				newParticle->collider->AddListener(this);
 				break;
 			default:
 				break;
@@ -406,14 +405,14 @@ Update_Status ModulePlayer::Update()
 			App->audio->PlayFx(shootFx);
 		}
 		
-		if (habilityDelay <= -40) {
+		if (abilityDelay <= -40) {
 
-			//End diceHability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
-			stateHability = false;
+			//End diceAbility secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
+			stateAbility = false;
 			lifePlayer--;
-			hability = 50;
+			ability = 50;
 			rollTheDice = false;
-			habilityDelay = 100;
+			abilityDelay = 100;
 		}
 	}
 	else if (stateBasicAttack) {
@@ -537,13 +536,12 @@ Update_Status ModulePlayer::Update()
 				break;
 			}
 			Particle* newParticle = App->particles->AddParticle(App->particles->diceBasicAttack, shotSpawn.x, shotSpawn.y, Collider::Type::PLAYER_SHOT);
-			newParticle->collider->AddListener(this);
 			App->audio->PlayFx(shootFx);
 		}
 
 		if (basicAttackDelay <= -40) {
 
-			//End diceHability secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
+			//End diceAbility secuence, take one life, reset deffault damage, reset deffault Roll the dice, reset deffault delay
 			stateBasicAttack = false;
 			basicAttackDelay = 20;
 		}
@@ -554,6 +552,8 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT)
 		{
 			position.x -= speed;
+
+			movementPlayer = 1;
 
 			switch (direction)
 			{
@@ -582,6 +582,8 @@ Update_Status ModulePlayer::Update()
 		{
 			position.x += speed;
 
+			movementPlayer = 3;
+
 			switch (direction)
 			{
 			case 0:
@@ -607,6 +609,8 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT)
 		{
 			position.y += speed;
+
+			movementPlayer = 2;
 
 			switch (direction)
 			{
@@ -634,6 +638,8 @@ Update_Status ModulePlayer::Update()
 		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT)
 		{
 			position.y -= speed;
+
+			movementPlayer = 0;
 
 			switch (direction)
 			{
@@ -715,8 +721,8 @@ Update_Status ModulePlayer::Update()
 		}
 
 		if (App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_DOWN) {
-			stateHability = true;
-
+			stateAbility = true;
+			App->audio->PlayFx(specialLoadFx);
 			switch (direction)
 			{
 			case 0:
@@ -742,6 +748,8 @@ Update_Status ModulePlayer::Update()
 
 		// If no up/down movement detected, set the current animation back to idle
 		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_IDLE && App->input->keys[SDL_SCANCODE_E] == Key_State::KEY_IDLE) {
+			movementPlayer = 4;
+			
 			switch (direction)
 			{
 			case 0:
@@ -806,7 +814,7 @@ Update_Status ModulePlayer::PostUpdate()
 		SDL_Rect rect = currentDiceAnimation->GetCurrentFrame();
 		App->render->Blit(diceTexture, position.x, position.y, &rect);
 
-		if (stateHability) {
+		if (stateAbility) {
 			SDL_Rect rect2 = currentDiceHandAnimation->GetCurrentFrame();
 			App->render->Blit(diceHandTexture, position.x, position.y - 32, &rect2);
 		}
@@ -816,14 +824,17 @@ Update_Status ModulePlayer::PostUpdate()
 		}
 	}
 
-	// Draw UI (life) --------------------------------------
-	sprintf_s(Text, 10, "%7d", lifePlayer);
+	// Draw life --------------------------------------
+	//sprintf_s(Text, 10, "%7d", lifePlayer);
 
     //Blit the text of the life in at the bottom of the screen
-	App->fonts->BlitText(58, 248, Font, Text);
+	//App->fonts->BlitText(58, 248, Font, Text);
 
-	sprintf_s(Text, 10, "%7d", hability);
-	App->fonts->BlitText(58, 228, Font, Text);
+	// Draw ability damage --------------------------------------
+	//sprintf_s(Text, 10, "%7d", ability);
+
+	//Blit the text of the life in at the bottom of the screen
+	//App->fonts->BlitText(58, 228, Font, Text);
 	
 
 	return Update_Status::UPDATE_CONTINUE;
@@ -853,6 +864,26 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 		position.x += speed;
 	}
 
+	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::BREAKABLE) {
+		if (App->input->keys[SDL_SCANCODE_W] == Key_State::KEY_REPEAT) {
+			//Up
+			position.y += speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_A] == Key_State::KEY_REPEAT) {
+			//Left
+			position.x += speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_S] == Key_State::KEY_REPEAT) {
+			//Down
+			position.y -= speed + 1;
+		}
+		if (App->input->keys[SDL_SCANCODE_D] == Key_State::KEY_REPEAT) {
+			//Right
+			position.x -= speed + 1;
+		}
+
+	}
+
 	if (c1->type == Collider::Type::PLAYER && c2->type == Collider::Type::ENEMY_SHOT && destroyed == false)
 	{
 		//Hit FX ????
@@ -860,4 +891,14 @@ void ModulePlayer::OnCollision(Collider* c1, Collider* c2)
 
 		lifePlayer--;
 	}
+}
+
+bool ModulePlayer::CleanUp()
+{
+	App->textures->Unload(diceTexture);
+	App->textures->Unload(diceHandTexture);
+
+	App->fonts->UnLoad(Font);
+
+	return true;
 }

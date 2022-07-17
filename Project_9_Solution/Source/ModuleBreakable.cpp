@@ -27,7 +27,10 @@ ModuleBreakable::~ModuleBreakable() {
 }
 
 bool ModuleBreakable::Start() {
-	breakableTexture = App->textures->Load("Assets/Sprites/enemies.png");
+	breakableTexture = App->textures->Load("Assets/Sprites/Breakables.png");
+	cardboxFx = App->audio->LoadFx("Assets/Fx/Props/card box break.wav");
+	chipsFx = App->audio->LoadFx("Assets/Fx/Props/chip break.wav");
+	gobletFx = App->audio->LoadFx("Assets/Fx/Props/cubilete break.wav");
 
 	return true;
 }
@@ -117,9 +120,6 @@ void ModuleBreakable::HandleBreakablesSpawn() {
 	}
 }
 
-//spawnQueue[i].y* SCREEN_SIZE > App->render->camera.y* SCREEN_SIZE - SPAWN_MARGIN &&
-//spawnQueue[i].y * SCREEN_SIZE < (App->render->camera.y + App->render->camera.h)* SCREEN_SIZE + SPAWN_MARGIN
-
 void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 	// Find an empty slot in the breakables array
 	for (uint i = 0; i < MAX_BREAKABLES; ++i) {
@@ -127,15 +127,18 @@ void ModuleBreakable::SpawnBreakable(const BreakableSpawnpoint& info) {
 			switch (info.type) {
 			case BREAKABLE_TYPE::CHIPSTACK:
 				breakables[i] = new Breakable_Chips(info.x, info.y, info.version);
+				breakables[i]->destroyedFx = chipsFx;
 				break;
 			case BREAKABLE_TYPE::DOOR:
 				breakables[i] = new Breakable_Door(info.x, info.y, info.version);
 				break;
 			case BREAKABLE_TYPE::CARDBOX:
 				breakables[i] = new Breakable_CardBox(info.x, info.y, info.version);
+				breakables[i]->destroyedFx = cardboxFx;
 				break;
 			case BREAKABLE_TYPE::GOBLET:
 				breakables[i] = new Breakable_Goblet(info.x, info.y, info.version);
+				breakables[i]->destroyedFx = gobletFx;
 				break;
 			case BREAKABLE_TYPE::TABLE:
 				breakables[i] = new Breakable_Table(info.x, info.y, info.version);

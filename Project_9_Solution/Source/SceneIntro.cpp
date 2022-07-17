@@ -86,3 +86,17 @@ Update_Status SceneIntro::PostUpdate() {
 
 	return Update_Status::UPDATE_CONTINUE;
 }
+
+bool SceneIntro::CleanUp()
+{
+	App->textures->Unload(scene0);
+	App->textures->Unload(scene1);
+	App->textures->Unload(scene2);
+	App->textures->Unload(scene3);
+	App->textures->Unload(scene4);
+	App->textures->Unload(scene5);
+	App->textures->Unload(scene6);
+	App->textures->Unload(scene7);
+	
+	return true;
+}

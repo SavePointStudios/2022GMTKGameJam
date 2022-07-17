@@ -53,7 +53,7 @@ public:
 	Particle* AddParticle(const Particle& particle, int x, int y, Collider::Type colliderType = Collider::Type::NONE, uint delay = 0);
 
 public:
-	//Template particle for an diceHability
+	//Template particle for an diceAbility
   
 	Particle diceAbilityRight;
 	Particle diceAbilityLeft;
