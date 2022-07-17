@@ -1,5 +1,5 @@
-#ifndef __ModuleQK_H__
-#define __ModuleQK_H__
+#ifndef __ENEMY_QK_H__
+#define __ENEMY_QK_H__
 
 #include "Enemy.h"
 #include "Path.h"
@@ -8,12 +8,12 @@
 struct SDL_Texture;
 struct Collider;
 
-class ModuleQK : public Enemy
+class Enemy_QK : public Enemy
 {
 public:
 	// Constructor (x y coordinates in the world)
 	// Creates animation and movement data and the collider
-	ModuleQK(int x, int y);
+	Enemy_QK(int x, int y);
 
 	// The enemy is going to follow the different steps in the path
 	// Position will be updated depending on the speed defined at each step
@@ -21,6 +21,7 @@ public:
 
 	void initAnimations();
 
+	void deathAnimation();
 private:
 	// This enemy has one sprite and one frame
 	// We are keeping it an animation for consistency with other enemies
@@ -41,4 +42,4 @@ private:
 	int QK_health = 200;
 };
 
-#endif // __ENEMY_H__
+#endif // __ENEMY_QK_H__

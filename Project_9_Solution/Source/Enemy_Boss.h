@@ -14,12 +14,18 @@ public:
 	// The enemy is going to perform a sinusoidal movement
 	void Update() override;
 
+	void deathAnimation();
 private:
 
 	// The enemy animation
 	Animation idleAnim;
 	Animation spinAnim;
 	Animation deathAnim;
+
+public:
+	// Sound effect indices
+	uint idleFx = 0;
+	uint attackFx = 0;
 };
 
 #endif // __ENEMY_BOSS_H__

@@ -45,6 +45,11 @@ Update_Status ModuleDebug::Update() {
 			spawnBasic = !spawnBasic;
 		if (App->input->keys[SDL_SCANCODE_N] == KEY_DOWN)
 			chase = !chase;
+		if (App->input->keys[SDL_SCANCODE_Q] == Key_State::KEY_DOWN)
+		{
+			App->player->lifePlayer++;
+			if (App->player->lifePlayer > 6) { App->player->lifePlayer = 6; }
+		}
 	}
 
 	return Update_Status::UPDATE_CONTINUE;

@@ -2,6 +2,7 @@
 
 #include "Application.h"
 #include "ModuleCollisions.h"
+#include "ModuleAudio.h"
 
 Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 {
@@ -35,6 +36,10 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	currentAnim = &idleAnim;
 
 	collider = App->collisions->AddCollider({ 0, 0, 64, 96 }, Collider::Type::BOSS, (Module*)App->enemies);
+
+	// Sound effect loading
+	idleFx = App->audio->LoadFx("Assets/Fx/Final boss/Wind.wav"); // Played always when boss is alive
+	idleFx = App->audio->LoadFx("Assets/Fx/Final boss/Attack.wav"); // Played when boss attacks
 }
 
 void Enemy_Boss::Update()
@@ -42,4 +47,8 @@ void Enemy_Boss::Update()
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
 	Enemy::Update();
+}
+
+void Enemy_Boss::deathAnimation() {
+
 }

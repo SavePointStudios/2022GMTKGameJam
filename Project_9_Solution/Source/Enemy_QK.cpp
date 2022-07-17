@@ -1,4 +1,4 @@
-#include "ModuleQK.h"
+#include "Enemy_QK.h"
 
 #include "Application.h"
 #include "ModuleCollisions.h"
@@ -10,13 +10,13 @@
 #include <string>
 using namespace std;
 
-ModuleQK::ModuleQK(int x, int y) : Enemy(x, y)
+Enemy_QK::Enemy_QK(int x, int y) : Enemy(x, y)
 {
 	initAnimations();
 	collider = App->collisions->AddCollider({ 0, 0, 120, 64 }, Collider::Type::ENEMY, (Module*)App->enemies);
 }
 
-void ModuleQK::Update()
+void Enemy_QK::Update()
 {
 	// Call to the base class. It must be called at the end
 	// It will update the collider depending on the position
@@ -24,7 +24,9 @@ void ModuleQK::Update()
 	Enemy::Update();
 }
 
-void ModuleQK::initAnimations()
+void Enemy_QK::initAnimations()
 {
 
 }
+
+void Enemy_QK::deathAnimation(){ }

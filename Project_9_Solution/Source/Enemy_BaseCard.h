@@ -21,6 +21,7 @@ public:
 	void attack();
 
 	void initAnimations();
+	void deathAnimation();
 
 private:
 	// This enemy has one sprite and one frame
@@ -40,6 +41,12 @@ private:
 	ushort attackdir = 0;
 
 	int movSpeed = 1;
+
+public:
+	// Sound effects indices
+	uint attackFx = 0;
+	uint hitFx = 0;
+	uint dieFx = 0;
 };
 
 #endif // __ENEMY_BASECARD_H__

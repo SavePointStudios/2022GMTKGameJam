@@ -7,6 +7,7 @@
 #include "ModuleInput.h"
 #include "ModuleFadeToBlack.h" 
 #include "ModuleFonts.h"
+#include "ModuleParticles.h"
 
 SceneMenu::SceneMenu(bool startEnabled) : Module(startEnabled) {
 
@@ -19,11 +20,12 @@ SceneMenu::~SceneMenu() {
 // Load assets
 bool SceneMenu::Start() {
 	LOG("Loading background assets");
-
 	bool ret = true;
 
-	//bgTexture = App->textures->Load("Assets/Sprites/startScreen.png");
-	App->audio->PlayMusic("Assets/Music/Menu.ogg", 1.0f);
+	bgTexture = App->textures->Load("Assets/Scenes/0.png");
+	playerTexture = App->textures->Load("Assets/Sprites/Dice_Character_Spritesheet.png");
+
+	App->audio->PlayMusic("Assets/Music/Menu minor.ogg", 1.0f); // Take minor out if we want the "happy" version
 	char lookupTable[] = { "! @,_./0123456789$;< ?abcdefghijklmnopqrstuvwxyz" };
 	fontId = App->fonts->Load("Assets/Fonts/casino_font_black.png", lookupTable, 1);
 
@@ -32,17 +34,19 @@ bool SceneMenu::Start() {
 	selected = App->audio->LoadFx("Assets/Fx/Menu/Select.wav");
 	hasSelected = false;
 	selection = 0;
+
+	anim.PushBack({ 0, 64, 32, 32 });
+	anim.PushBack({ 32, 64, 32, 32 });
+	anim.PushBack({ 64, 64, 32, 32 });
+	anim.speed = 0.1f;
+	currentAnim = &anim;
+
 	return ret;
 }
 
 Update_Status SceneMenu::Update() {
 	App->render->camera.x = 0;
 	App->render->camera.y = 0;
-
-	App->fonts->BlitText(250, 25, 0, "just dice"); // need to change game title
-	App->fonts->BlitText(50, 75, 0, "start");
-	App->fonts->BlitText(50, 100, 0, "credits");
-	App->fonts->BlitText(50, 125, 0, "exit");
 
 	if (App->input->keys[SDL_SCANCODE_DOWN] == Key_State::KEY_DOWN && !hasSelected) {
 		if (selection == 2) {
@@ -77,8 +81,7 @@ Update_Status SceneMenu::Update() {
 			App->fade->FadeToBlack(this, (Module*)App->sceneIntro, 90);
 			break;
 		case 1:
-			// should go to the credits scene
-			//App->fade->FadeToBlack(this, (Module*)App->sceneCredits, 90);
+			App->fade->FadeToBlack(this, (Module*)App->sceneCredits, 90);
 			break;
 		case 2:
 			return Update_Status::UPDATE_STOP;
@@ -92,29 +95,35 @@ Update_Status SceneMenu::Update() {
 // Update: draw background
 Update_Status SceneMenu::PostUpdate() {
 	// Draw everything --------------------------------------
+
 	SDL_Rect rect;
 	rect.h = 20;
 	rect.w = 20;
-	//App->render->Blit(bgTexture, 0, 0, NULL);
+
+	App->render->Blit(bgTexture, App->render->camera.x, App->render->camera.y, NULL);
+
+	App->fonts->BlitText(250, 25, 0, "just dice"); // need to change game title
+	App->fonts->BlitText(50, 75, 0, "start");
+	App->fonts->BlitText(50, 125, 0, "credits");
+	App->fonts->BlitText(50, 175, 0, "exit");
+	int x = 15;
+	int y;
 	switch (selection) {
 	case 0:
-		rect.x = 25;
-		rect.y = 65;
-		App->render->DrawQuad(rect, 0, 255, 0, 80);
+		y = 72;
 		break;
 	case 1:
-		rect.x = 25;
-		rect.y = 90;
-		App->render->DrawQuad(rect, 0, 255, 0, 80);
+		y = 122;
 		break;
 	case 2:
-		rect.x = 25;
-		rect.y = 115;
-		App->render->DrawQuad(rect, 0, 255, 0, 80);
+		y = 172;
 		break;
 	default:
 		break;
 	}
+	rect = currentAnim->GetCurrentFrame();
+	currentAnim->Update();
+	App->render->Blit(playerTexture, x, y, &rect);
 
 	return Update_Status::UPDATE_CONTINUE;
 }
