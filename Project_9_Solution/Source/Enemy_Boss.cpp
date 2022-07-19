@@ -15,7 +15,7 @@ Enemy_Boss::Enemy_Boss(int x, int y) : Enemy(x, y)
 	initAnimations();
 
 	collider = App->collisions->AddCollider({ 0, 0, 64, 96 }, Collider::Type::BOSS, (Module*)App->enemies);
-
+	healthPoints = AHEALTH;
 	// Sound effect loading
 	idleFx = App->audio->LoadFx("Assets/Fx/Final boss/Wind.wav"); // Played always when boss is alive
 	idleFx = App->audio->LoadFx("Assets/Fx/Final boss/Attack.wav"); // Played when boss attacks

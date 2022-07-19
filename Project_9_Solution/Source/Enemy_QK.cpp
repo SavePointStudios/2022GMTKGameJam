@@ -104,12 +104,12 @@ void Enemy_QK::QKattack()
 void Enemy_QK::QKinitAnimations()
 {
 	//Front
-	deathAnimation.PushBack({ 6, 257, 137, 63 });
-	deathAnimation.PushBack({ 5, 321, 137, 63 });
-	deathAnimation.PushBack({ 147, 256, 137, 64 });
-	deathAnimation.PushBack({ 149, 320, 137, 64 });
-	idleAnimation.speed = 0.1f;
-	idleAnimation.loop = true;
+	//deathAnimation.PushBack({ 6, 257, 137, 63 });
+	//deathAnimation.PushBack({ 5, 321, 137, 63 });
+	//deathAnimation.PushBack({ 147, 256, 137, 64 });
+	//deathAnimation.PushBack({ 149, 320, 137, 64 });
+	//idleAnimation.speed = 0.1f;
+	//idleAnimation.loop = true;
 
 	currentAnim = &idleAnimation;
 }
