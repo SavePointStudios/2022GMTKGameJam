@@ -1,24 +1,38 @@
 # A small Videogame project for GMTK Game Jam 2022
-
+The dice lived in peace in the casino with the cards, until one day, in an unfortunate turn of events,  the dice are separated, and our protagonist decides to take justice into their own hands.
 
 ## Game instructions
+No Time To Di(c)e is a top-down shooter where you seek revenge to save your dice friend.
+
+Slay your enemies with casino chips or test your luck throwing your special attack and defeat the cards in your way.
+
+In this version you will fight The Clubs Mage and their army.
 
 ## Before executing the code (on Visual Studio 2019)
 - Remember to change the solution platform to x86.
-- Set the path to $(ProjectDir)/Game/
+- Set the depuration path to $(SolutionDir)/$(SolutionName)/Game
 
 ## Controls
-Keyboard controls
+IN-GAME: 
 
++ Move - WASD
++ Aim - Directional Arrows
++ Normal Attack - Space Bar
++ Special Attack - E
++ Exit - Esc
 
-Gamepad controls
+MENUS: 
 
++ Move - Directional Arrows
++ Accept - Space Bar
++ Exit - Esc
 
-## Debug controls
-
+SCENES:
++ Next scene - Space Bar
++ Exit - Esc
 
 ## Team members
-+ Project Repository: [Link](https://github.com/SavePointStudios/GMTKGameJam2022)
++ Project Repository: [Link](https://github.com/SavePointStudios/2022GMTKGameJam/)
 
 _Héctor Báscones's Github and role_
 + Code
@@ -35,6 +49,14 @@ _Francisco Ferrerós's Github and role_
 _Pau Fusco's Github and role_
 + Code & Sound Engineer
 + [PauFusco](https://github.com/PauFusco)
+
+_Hèctor Garcia's Github and role_
++ Artist & Designer 
++ [Neidragon](https://github.com/Neidragon)
+
+_Luis González's Github and role_
++ Artist & Designer 
++ [punto16](https://github.com/punto16)
 
 _Víctor Martin's Github and role_
 + Artist & Designer
@@ -60,10 +82,4 @@ _Ariadna Sevcik's Github and role_
 + Artist & Designer
 + [AriSevcik](https://github.com/AriSevcik)
 
-_Hèctor Garcia's Github and role_
-+ Artist & Designer 
-+ [Neidragon](https://github.com/Neidragon)
 
-_Luis González's Github and role_
-+ Artist & Designer 
-+ [punto16](https://github.com/punto16)
